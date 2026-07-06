@@ -1,5 +1,6 @@
 "use client";
 
+import React from "react";
 import Image from "next/image";
 import { Badge } from "@/components/ui/badge";
 import {
@@ -22,7 +23,33 @@ import evershelfDashboard from "@/assets/images/staging_everyshelf_dashboard.png
 import bogoballersLogin from "@/assets/images/team_creator_or_player_login_screen.png";
 import clinicsLogo from "@/assets/images/clinics.png";
 import gunitLogo from "@/assets/images/gunit.png";
-import Link from "next/link";
+
+const EVERYSHELF_LINK = "https://staging--everyshelf-web.netlify.app";
+const GUNIT_LINK = "https://github.com/jswnh/gunit";
+
+function ExternalLink({
+  href,
+  children,
+  className,
+}: {
+  href?: string;
+  children: React.ReactNode;
+  className?: string;
+}) {
+  if (!href) return <>{children}</>;
+
+  return (
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      className={className}
+    >
+      {children}
+    </a>
+  );
+}
+
 export default function FeatureProjectSection() {
   const data = [
     {
@@ -77,7 +104,7 @@ export default function FeatureProjectSection() {
     },
     {
       title: "Gunit \u2014 Personal Project",
-      link: "https://github.com/jswnh/gunit",
+      link: GUNIT_LINK,
       content: (
         <div className="space-y-6">
           <div className="flex flex-wrap gap-2 mb-4">
@@ -107,20 +134,23 @@ export default function FeatureProjectSection() {
             sales tracking without depending on a constant internet connection.
           </p>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            <div className="relative aspect-square w-32 md:w-42 rounded-lg overflow-hidden border border-primary/10 shadow-xl transition-all duration-300 hover:border-primary/30 hover:shadow-primary/5">
-              <Image
-                src={gunitLogo}
-                alt="Gunit — offline inventory POS mobile app built with Expo and React Native"
-                fill
-                className="object-cover transition-transform duration-500 hover:scale-110"
-              />
-            </div>
+            <ExternalLink href={GUNIT_LINK} className="block group">
+              <div className="relative aspect-square w-32 md:w-42 rounded-lg overflow-hidden border border-primary/10 shadow-xl transition-all duration-300 group-hover:border-primary/30 group-hover:shadow-primary/5 cursor-pointer">
+                <Image
+                  src={gunitLogo}
+                  alt="Gunit — offline inventory POS mobile app built with Expo and React Native"
+                  fill
+                  className="object-cover transition-transform duration-500 group-hover:scale-110"
+                />
+              </div>
+            </ExternalLink>
           </div>
         </div>
       ),
     },
     {
       title: "Everyshelf \u2014 Backend Developer",
+      link: EVERYSHELF_LINK,
       content: (
         <div className="space-y-6">
           <div className="flex flex-wrap gap-2 mb-4">
@@ -151,11 +181,7 @@ export default function FeatureProjectSection() {
           </p>
           <div className="grid grid-cols-1 gap-4">
             <div className="grid grid-cols-1 gap-4">
-              <Link
-                href="https://staging--everyshelf-web.netlify.app"
-                target="_blank"
-                className="block group"
-              >
+              <ExternalLink href={EVERYSHELF_LINK} className="block group">
                 <div className="relative h-44 md:h-80 w-full rounded-lg overflow-hidden border border-primary/10 shadow-2xl cursor-pointer">
                   <Image
                     src={evershelfDashboard}
@@ -163,10 +189,9 @@ export default function FeatureProjectSection() {
                     fill
                     className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
                   />
-                  {/* Optional: Add a subtle overlay on hover to signal it's clickable */}
                   <div className="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-colors duration-500" />
                 </div>
-              </Link>
+              </ExternalLink>
             </div>
           </div>
         </div>
