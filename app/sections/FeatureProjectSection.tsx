@@ -78,6 +78,7 @@ export default function FeatureProjectSection() {
     },
     {
       title: "Gunit \u2014 Personal Project",
+      link: "https://github.com/jswnh/gunit",
       content: (
         <div className="space-y-6">
           <div className="flex flex-wrap gap-2 mb-4">
