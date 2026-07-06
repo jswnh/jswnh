@@ -30,13 +30,18 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
   return (
     <div className="font-sans md:px-10" ref={containerRef}>
       <div className="max-w-7xl mx-auto py-20 px-4 md:px-8 lg:px-10">
-        <h2 className="text-lg md:text-5xl mb-4 max-w-4xl font-bold uppercase tracking-tighter">
-          Development Roadmap
+        <h2
+          id="projects-heading"
+          className="text-lg md:text-5xl mb-4 max-w-4xl font-bold uppercase tracking-tighter"
+        >
+          Projects & Skills in Action
         </h2>
         <p className="text-neutral-700 dark:text-neutral-300 text-sm md:text-base max-w-2xl leading-relaxed">
-          A list of my technical projects and competitive milestones as a
-          graduating IT student. This journey highlights my transition from
-          algorithmic problem solving to architecting full-stack systems.
+          A list of my technical projects where back-end skills, mobile skills,
+          and web development skills come together. Each project reflects the
+          skills I&apos;ve built — from server architecture and API design to
+          full-stack delivery across clinic systems, POS apps, and league
+          platforms.
         </p>
       </div>
       <div ref={ref} className="relative max-w-7xl mx-auto pb-20">

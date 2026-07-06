@@ -19,9 +19,104 @@ import { Smartphone } from "lucide-react";
 import dashboardImg from "@/assets/images/dashboardImage.png";
 import evershelfDashboard from "@/assets/images/staging_everyshelf_dashboard.png";
 import bogoballersLogin from "@/assets/images/team_creator_or_player_login_screen.png";
+import clinicsLogo from "@/assets/images/clinics.png";
+import gunitLogo from "@/assets/images/gunit.png";
 import Link from "next/link";
 export default function FeatureProjectSection() {
   const data = [
+    {
+      title: "QrWise Clinic \u2014 Full-Stack Developer",
+      content: (
+        <div className="space-y-6">
+          <div className="flex flex-wrap gap-2 mb-4">
+            <Badge
+              variant="outline"
+              className="flex gap-1 items-center border-primary/20 bg-primary/5"
+            >
+              <SiFlutter className="text-[#02569B]" /> Flutter
+            </Badge>
+            <Badge
+              variant="outline"
+              className="flex gap-1 items-center border-primary/20 bg-primary/5"
+            >
+              <SiPython className="text-[#3776AB]" /> Python
+            </Badge>
+            <Badge
+              variant="outline"
+              className="flex gap-1 items-center border-primary/20 bg-primary/5"
+            >
+              <SiReact className="text-[#61DAFB]" /> React.js
+            </Badge>
+            <Badge
+              variant="outline"
+              className="flex gap-1 items-center border-primary/20 bg-primary/5"
+            >
+              <SiPostgresql className="text-[#336791]" /> PostgreSQL
+            </Badge>
+          </div>
+          <p className="text-xs md:text-sm font-normal text-neutral-800 dark:text-neutral-200 leading-relaxed">
+            Currently employed at <strong>QrWise Clinic</strong>, applying
+            full-stack skills to build an inventory POS and booking system with
+            integrated marketing tools. Using back-end architecture skills,
+            mobile development skills, and web skills to streamline clinic
+            operations and patient scheduling.
+          </p>
+          <div className="grid grid-cols-1 gap-4">
+            <div className="relative h-44 md:h-64 w-full max-w-md rounded-lg overflow-hidden border border-primary/10 shadow-2xl">
+              <Image
+                src={clinicsLogo}
+                alt="QrWise Clinic — inventory POS and booking system built with full-stack developer skills"
+                fill
+                className="object-cover transition-transform duration-500 hover:scale-105"
+              />
+            </div>
+          </div>
+        </div>
+      ),
+    },
+    {
+      title: "Gunit \u2014 Personal Project",
+      content: (
+        <div className="space-y-6">
+          <div className="flex flex-wrap gap-2 mb-4">
+            <Badge
+              variant="outline"
+              className="flex gap-1 items-center border-primary/20 bg-primary/5"
+            >
+              <SiFlutter className="text-[#02569B]" /> Flutter
+            </Badge>
+            <Badge
+              variant="outline"
+              className="flex gap-1 items-center border-primary/20 bg-primary/5"
+            >
+              <SiDart className="text-[#02569B]" /> Dart
+            </Badge>
+            <Badge
+              variant="outline"
+              className="flex gap-1 items-center border-primary/20 bg-primary/5"
+            >
+              <Smartphone className="size-3" /> Offline-First
+            </Badge>
+          </div>
+          <p className="text-xs md:text-sm font-normal text-neutral-800 dark:text-neutral-200 leading-relaxed">
+            A personal project showcasing mobile development skills — a
+            minimalist offline inventory POS app built to support local
+            businesses. Flutter and Dart skills applied for reliable day-to-day
+            sales tracking without depending on a constant internet connection.
+          </p>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <div className="relative aspect-square w-32 md:w-42 rounded-lg overflow-hidden border border-primary/10 shadow-xl transition-all duration-300 hover:border-primary/30 hover:shadow-primary/5">
+              <Image
+                src={gunitLogo}
+                alt="Gunit — offline inventory POS mobile app built with Flutter skills"
+                fill
+                className="object-cover transition-transform duration-500 hover:scale-110"
+              />
+            </div>
+          </div>
+        </div>
+      ),
+    },
     {
       title: "Everyshelf \u2014 Backend Developer",
       content: (

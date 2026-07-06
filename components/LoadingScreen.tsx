@@ -3,21 +3,16 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
 
-export default function LoadingScreen({
-  onFinished,
-}: {
-  onFinished: () => void;
-}) {
+export default function LoadingScreen() {
   const [isVisible, setIsVisible] = useState(true);
 
   useEffect(() => {
-    // Show loader for 2.5 seconds then hide
     const timer = setTimeout(() => setIsVisible(false), 2500);
     return () => clearTimeout(timer);
   }, []);
 
   return (
-    <AnimatePresence onExitComplete={onFinished}>
+    <AnimatePresence>
       {isVisible && (
         <motion.div
           initial={{ opacity: 1 }}
@@ -26,9 +21,9 @@ export default function LoadingScreen({
             transition: { duration: 0.8, ease: [0.76, 0, 0.24, 1] },
           }}
           className="fixed inset-0 z-100 flex flex-col items-center justify-center bg-background text-foreground"
+          aria-hidden="true"
         >
           <div className="flex flex-col items-center gap-4">
-            {/* Welcome Text */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -38,17 +33,15 @@ export default function LoadingScreen({
               Welcome Visitor
             </motion.div>
 
-            {/* Main Heading */}
-            <motion.h1
+            <motion.p
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.5, duration: 0.8 }}
               className="text-4xl md:text-6xl font-black uppercase tracking-tighter"
             >
-              Let's dive in
-            </motion.h1>
+              Let&apos;s dive in
+            </motion.p>
 
-            {/* Progress bar line */}
             <div className="mt-8 h-[1px] w-48 bg-border overflow-hidden relative">
               <motion.div
                 initial={{ left: "-100%" }}

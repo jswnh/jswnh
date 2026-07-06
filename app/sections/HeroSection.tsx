@@ -34,7 +34,10 @@ export default function HeroSection() {
     },
   });
   return (
-    <section className="relative min-h-screen w-full flex items-center justify-center overflow-x-hidden py-16 md:py-0">
+    <div
+      className="relative min-h-screen w-full flex items-center justify-center overflow-x-hidden py-16 md:py-0"
+      aria-label="Introduction and developer skills overview"
+    >
       <div className="container mx-auto px-4 sm:px-6 flex flex-col md:flex-row items-center justify-between gap-10 md:gap-12">
         <div className="flex-1 space-y-6 md:space-y-8 animate-in fade-in slide-in-from-left duration-700 z-10 text-center md:text-left flex flex-col items-center md:items-start">
           <Badge
@@ -46,8 +49,11 @@ export default function HeroSection() {
           </Badge>
 
           <div className="space-y-4">
-            <h1 className="text-4xl sm:text-5xl lg:text-7xl font-bold tracking-tight leading-[1.1]">
-              Hi, I'm{" "}
+            <h1
+              id="hero-heading"
+              className="text-4xl sm:text-5xl lg:text-7xl font-bold tracking-tight leading-[1.1]"
+            >
+              Hi, I&apos;m{" "}
               <span className="relative inline-block text-foreground">
                 <Highlighter action="box" color="#6e56cf">
                   Josuan.
@@ -55,15 +61,13 @@ export default function HeroSection() {
               </span>
             </h1>
 
-            <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-medium text-primary leading-tight max-w-[90%] md:max-w-none mx-auto md:mx-0">
-              Aspiring Full Stack Developer building modern
-              <br className="hidden md:block" /> and web & mobile experiences.
-            </h2>
+            <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-medium text-primary leading-tight max-w-[90%] md:max-w-none mx-auto md:mx-0">
+              Full-Stack Developer | Specialized in Back-End & Server
+              Architecture Skills
+            </p>
 
-            <p className="text-muted-foreground text-sm sm:text-base md:text-lg max-w-[450px]">
-              Graduating IT student focused on React.js frontends, Python
-              backends, Flutter mobile apps, and database development primarily
-              using ORM-based workflows.
+            <p className="text-muted-foreground text-sm sm:text-base md:text-lg max-w-[500px]">
+              Also experienced in mobile and web development.
             </p>
           </div>
 
@@ -80,13 +84,22 @@ export default function HeroSection() {
               <Download className="mr-2 size-4" />
               Download Resume
             </Button>
+            <a href="#skills" className="w-full sm:w-auto">
+              <Button
+                variant="outline"
+                className="rounded-full px-8 border-primary text-primary w-full sm:w-auto hover:bg-primary hover:text-primary-foreground transition-all"
+              >
+                <Code2 className="mr-2 size-4" />
+                Explore Skills
+              </Button>
+            </a>
             <a href="#contact" className="w-full sm:w-auto">
               <Button
                 variant="outline"
                 className="rounded-full px-8 border-primary text-primary w-full sm:w-auto hover:bg-primary hover:text-primary-foreground transition-all"
               >
                 <MessageSquare className="mr-2 size-4" />
-                Let's Chat
+                Let&apos;s Chat
               </Button>
             </a>
           </div>
@@ -103,7 +116,7 @@ export default function HeroSection() {
             <div className="relative h-full w-full rounded-3xl overflow-hidden border border-primary/20 shadow-2xl">
               <Image
                 src={resumeImage}
-                alt="Josuan Leonardo Hulom"
+                alt="Josuan Leonardo Hulom — Full-Stack Developer with back-end, mobile, and web development skills"
                 fill
                 priority
                 className="object-cover transition-transform duration-500 hover:scale-105"
@@ -117,7 +130,7 @@ export default function HeroSection() {
             >
               <div className="flex flex-col items-center">
                 <span className="text-[8px] sm:text-[10px] font-bold text-primary mb-1.5 uppercase tracking-wider">
-                  Stack
+                  Core Skills
                 </span>
                 <div className="flex gap-1.5 sm:gap-2">
                   <div className="size-5 sm:size-7 flex items-center justify-center bg-white rounded-md border border-slate-200 shadow-sm">
@@ -133,7 +146,7 @@ export default function HeroSection() {
               </div>
             </motion.div>
 
-            {/* Floating Graduation Label */}
+            {/* Floating Role Label */}
             <motion.div
               {...floatAnimation(1.2)}
               className="absolute -top-3 -right-3 sm:-top-6 sm:-right-6 bg-background/90 backdrop-blur-md border border-border p-2 sm:p-4 rounded-xl sm:rounded-2xl shadow-xl z-20"
@@ -144,10 +157,10 @@ export default function HeroSection() {
                 </div>
                 <div>
                   <p className="text-[10px] sm:text-xs font-bold leading-none">
-                    BSIT 2026
+                    BSIT Graduate
                   </p>
                   <p className="text-[8px] sm:text-[10px] text-muted-foreground mt-0.5 sm:mt-1 whitespace-nowrap">
-                    Expected Graduation
+                    Full-Stack Developer
                   </p>
                 </div>
               </div>
@@ -165,12 +178,12 @@ export default function HeroSection() {
                 </p>
               </div>
               <p className="text-[8px] sm:text-[10px] text-muted-foreground mt-0.5 sm:mt-1 ml-3 sm:ml-4 whitespace-nowrap">
-                Full Stack Development
+                Full-Stack & Mobile Skills
               </p>
             </motion.div>
           </motion.div>
         </div>
       </div>
-    </section>
+    </div>
   );
 }

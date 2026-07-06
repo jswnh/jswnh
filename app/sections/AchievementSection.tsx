@@ -67,16 +67,16 @@ export default function AchievementSection() {
       number: "01",
       title: "ISITE National Python Contest",
       description:
-        "Selected as the official school representative to compete against student developers in a national-level technical tournament, solving advanced algorithmic challenges under high-pressure conditions.",
-      tags: ["National Representative", "Python", "Algorithms"],
+        "Selected as the official school representative to compete against student developers in a national-level technical tournament — validating Python programming skills and algorithmic problem-solving skills under high-pressure conditions.",
+      tags: ["National Representative", "Python Skills", "Algorithms"],
       year: "2025",
     },
     {
       number: "02",
       title: "Foundational C# Certification",
       description:
-        "Foundational certification awarded by Microsoft Developer in C# programming, .NET environments, and object-oriented logic.",
-      tags: ["Microsoft", "C#", "Foundational"],
+        "Foundational certification awarded by Microsoft Developer — strengthening C# programming skills, .NET skills, and object-oriented development skills.",
+      tags: ["Microsoft", "C# Skills", "Foundational"],
       year: "2024",
       link: "https://www.freecodecamp.org/certification/josuanhulom/foundational-c-sharp-with-microsoft",
     },
@@ -85,10 +85,18 @@ export default function AchievementSection() {
   return (
     <div className="pt-24">
       <div className="max-w-7xl mx-auto px-6">
-        <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tighter text-foreground leading-none mb-12">
+        <h2
+          id="achievements-heading"
+          className="text-4xl md:text-6xl font-black uppercase tracking-tighter text-foreground leading-none mb-4"
+        >
           Achieve
           <span className="text-muted-foreground/60">ments</span>
         </h2>
+        <p className="text-muted-foreground text-sm md:text-base max-w-2xl mb-12 leading-relaxed">
+          Milestones that sharpened my technical skills — from competitive
+          programming to certified development skills recognized by industry
+          leaders.
+        </p>
         <div className="flex flex-col border-b border-white/10">
           {achievements.map((item) => (
             <AchievementItem key={item.number} {...item} />

@@ -2,24 +2,30 @@
 
 import React from "react";
 import { Mail, Phone } from "lucide-react";
+import { SiLinkedin } from "react-icons/si";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 
 export default function ContactSection() {
   return (
-    <section className="py-12 md:py-24 px-5 sm:px-10 md:px-16 lg:px-24 bg-background transition-colors duration-300">
+    <div className="py-12 md:py-24 px-5 sm:px-10 md:px-16 lg:px-24 bg-background transition-colors duration-300">
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
           <div className="flex flex-col space-y-8 order-2 lg:order-1">
             <div className="space-y-4 text-center lg:text-left">
-              <h2 className="text-4xl sm:text-6xl md:text-7xl font-bold leading-[1.1] tracking-tighter text-foreground">
-                Let's have <br />
+              <h2
+                id="contact-heading"
+                className="text-4xl sm:text-6xl md:text-7xl font-bold leading-[1.1] tracking-tighter text-foreground"
+              >
+                Let&apos;s have <br />
                 <span className="text-primary">a Chat</span>
               </h2>
               <p className="text-muted-foreground text-sm sm:text-base md:text-lg max-w-md mx-auto lg:mx-0">
-                Want to discuss full-stack development or just grab a coffee?
-                Send me a message and I'll get back to you!
+                Need a developer with strong back-end skills, mobile skills, or
+                full-stack skills? Whether it&apos;s a POS system, web app, or
+                server architecture — send a message and I&apos;ll get back to
+                you.
               </p>
             </div>
 
@@ -95,6 +101,16 @@ export default function ContactSection() {
               </p>
               <div className="flex gap-4 justify-center lg:justify-start">
                 <a
+                  href="https://www.linkedin.com/in/hulomjosuan/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-4 rounded-full border border-border bg-card hover:border-primary/50 hover:bg-accent transition-all group"
+                  title="LinkedIn — Josuan Leonardo Hulom developer skills profile"
+                  aria-label="LinkedIn profile showcasing full-stack developer skills"
+                >
+                  <SiLinkedin className="size-6 text-foreground group-hover:text-primary transition-colors" />
+                </a>
+                <a
                   href="mailto:hulomjosuan@gmail.com"
                   className="p-4 rounded-full border border-border bg-card hover:border-primary/50 hover:bg-accent transition-all group"
                   title="Email"
@@ -115,6 +131,6 @@ export default function ContactSection() {
           </p>
         </div>
       </div>
-    </section>
+    </div>
   );
 }
