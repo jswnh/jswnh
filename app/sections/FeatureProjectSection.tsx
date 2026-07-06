@@ -7,7 +7,6 @@ import {
   SiPostgresql,
   SiReact,
   SiExpo,
-  SiReactnative,
   SiFlutter,
   SiShadcnui,
   SiTailwindcss,
@@ -92,7 +91,7 @@ export default function FeatureProjectSection() {
               variant="outline"
               className="flex gap-1 items-center border-primary/20 bg-primary/5"
             >
-              <SiReactnative className="text-[#61DAFB]" /> React Native
+              React Native
             </Badge>
             <Badge
               variant="outline"
