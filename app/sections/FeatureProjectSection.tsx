@@ -6,6 +6,8 @@ import {
   SiPython,
   SiPostgresql,
   SiReact,
+  SiExpo,
+  SiReactnative,
   SiFlutter,
   SiShadcnui,
   SiTailwindcss,
@@ -83,13 +85,13 @@ export default function FeatureProjectSection() {
               variant="outline"
               className="flex gap-1 items-center border-primary/20 bg-primary/5"
             >
-              <SiFlutter className="text-[#02569B]" /> Flutter
+              <SiExpo className="text-[#000020]" /> Expo
             </Badge>
             <Badge
               variant="outline"
               className="flex gap-1 items-center border-primary/20 bg-primary/5"
             >
-              <SiDart className="text-[#02569B]" /> Dart
+              <SiReactnative className="text-[#61DAFB]" /> React Native
             </Badge>
             <Badge
               variant="outline"
@@ -101,14 +103,14 @@ export default function FeatureProjectSection() {
           <p className="text-xs md:text-sm font-normal text-neutral-800 dark:text-neutral-200 leading-relaxed">
             A personal project showcasing mobile development skills — a
             minimalist offline inventory POS app built to support local
-            businesses. Flutter and Dart skills applied for reliable day-to-day
+            businesses. Built with Expo and React Native for reliable day-to-day
             sales tracking without depending on a constant internet connection.
           </p>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             <div className="relative aspect-square w-32 md:w-42 rounded-lg overflow-hidden border border-primary/10 shadow-xl transition-all duration-300 hover:border-primary/30 hover:shadow-primary/5">
               <Image
                 src={gunitLogo}
-                alt="Gunit — offline inventory POS mobile app built with Flutter skills"
+                alt="Gunit — offline inventory POS mobile app built with Expo and React Native"
                 fill
                 className="object-cover transition-transform duration-500 hover:scale-110"
               />
