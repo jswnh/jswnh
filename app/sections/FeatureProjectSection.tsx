@@ -19,7 +19,7 @@ import {
 import { Timeline } from "@/components/ui/timeline";
 import { Smartphone } from "lucide-react";
 import dashboardImg from "@/assets/images/dashboardImage.png";
-import evershelfDashboard from "@/assets/images/staging_everyshelf_dashboard.png";
+import evershelfDashboard from "@/assets/images/everyshelf.png";
 import bogoballersLogin from "@/assets/images/team_creator_or_player_login_screen.png";
 import clinicsLogo from "@/assets/images/clinics.png";
 import gunitLogo from "@/assets/images/gunit.png";
@@ -83,7 +83,7 @@ export default function FeatureProjectSection() {
             </Badge>
           </div>
           <p className="text-xs md:text-sm font-normal text-neutral-800 dark:text-neutral-200 leading-relaxed">
-            Currently employed at <strong>QrWise Clinic</strong>, applying
+            Currently working on a contract and probationary basis for <strong>QrWise Clinic</strong>, applying
             full-stack skills to build an inventory POS and booking system with
             integrated marketing tools. Using back-end architecture skills,
             mobile development skills, and web skills to streamline clinic
@@ -180,19 +180,17 @@ export default function FeatureProjectSection() {
             Supabase.
           </p>
           <div className="grid grid-cols-1 gap-4">
-            <div className="grid grid-cols-1 gap-4">
-              <ExternalLink href={EVERYSHELF_LINK} className="block group">
-                <div className="relative h-44 md:h-80 w-full rounded-lg overflow-hidden border border-primary/10 shadow-2xl cursor-pointer">
-                  <Image
-                    src={evershelfDashboard}
-                    alt="Everyshelf Web Dashboard"
-                    fill
-                    className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
-                  />
-                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-colors duration-500" />
-                </div>
-              </ExternalLink>
-            </div>
+            <ExternalLink href={EVERYSHELF_LINK} className="block group">
+              <div className="relative h-44 md:h-64 w-full max-w-md rounded-lg overflow-hidden border border-primary/10 shadow-2xl cursor-pointer">
+                <Image
+                  src={evershelfDashboard}
+                  alt="Everyshelf Web Dashboard"
+                  fill
+                  className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-colors duration-500" />
+              </div>
+            </ExternalLink>
           </div>
         </div>
       ),

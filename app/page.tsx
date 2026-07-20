@@ -1,13 +1,22 @@
 "use client";
 
 import { DockItem, DockNavigation } from "@/components/dock-navigation";
-import { Home, Code2, Cpu, Trophy, Github, Mail } from "lucide-react";
+import {
+  Home,
+  Code2,
+  Cpu,
+  Trophy,
+  BadgeCheck,
+  Github,
+  Mail,
+} from "lucide-react";
 import { SiLinkedin } from "react-icons/si";
 import HeroSection from "./sections/HeroSection";
 import Header from "@/components/Header";
 import FeatureProjectSection from "./sections/FeatureProjectSection";
 import SkillSection from "./sections/SkillSection";
 import AchievementSection from "./sections/AchievementSection";
+import CertificationSection from "./sections/CertificationSection";
 import ContactSection from "./sections/ContactSection";
 import LoadingScreen from "@/components/LoadingScreen";
 
@@ -17,7 +26,8 @@ export default function Page() {
     { label: "Skills", href: "#skills", icon: Cpu },
     { label: "Projects", href: "#projects", icon: Code2 },
     { label: "Achievements", href: "#awards", icon: Trophy },
-    { label: "GitHub", href: "https://github.com/hulomjosuan21", icon: Github },
+    { label: "Certifications", href: "#certifications", icon: BadgeCheck },
+    { label: "GitHub", href: "https://github.com/jswnh", icon: Github },
     {
       label: "LinkedIn",
       href: "https://www.linkedin.com/in/hulomjosuan/",
@@ -43,6 +53,9 @@ export default function Page() {
         </section>
         <section id="awards" aria-labelledby="achievements-heading">
           <AchievementSection />
+        </section>
+        <section id="certifications" aria-labelledby="certifications-heading">
+          <CertificationSection />
         </section>
         <section id="contact" aria-labelledby="contact-heading">
           <ContactSection />

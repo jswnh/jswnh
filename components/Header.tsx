@@ -11,7 +11,7 @@ export default function Header() {
           <a
             href="#hero"
             className="text-lg font-bold uppercase tracking-tighter text-foreground hover:text-primary transition-colors"
-            aria-label="Josuan — Full-Stack Developer home"
+            aria-label="Josuan — Software Developer home"
           >
             Josuan
           </a>
@@ -28,6 +28,18 @@ export default function Header() {
               className="hidden sm:inline text-sm font-medium text-muted-foreground hover:text-primary transition-colors"
             >
               Projects
+            </a>
+            <a
+              href="#awards"
+              className="hidden sm:inline text-sm font-medium text-muted-foreground hover:text-primary transition-colors"
+            >
+              Achievements
+            </a>
+            <a
+              href="#certifications"
+              className="hidden sm:inline text-sm font-medium text-muted-foreground hover:text-primary transition-colors"
+            >
+              Certifications
             </a>
             <a
               href="#contact"

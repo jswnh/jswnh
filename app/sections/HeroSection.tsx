@@ -3,7 +3,8 @@ import { Badge } from "@/components/ui/badge";
 import { Download, MessageSquare, MapPin, Code2 } from "lucide-react";
 import Image from "next/image";
 import resumeImage from "@/assets/images/resume.jpg";
-import { SiFlutter, SiPython, SiTypescript } from "react-icons/si";
+import { SiPython, SiTypescript } from "react-icons/si";
+import { TbBrandCSharp } from "react-icons/tb";
 import { Highlighter } from "@/components/ui/highlighter";
 import { motion, cubicBezier } from "framer-motion";
 const floatAnimation = (delay: number = 0) => ({
@@ -62,7 +63,7 @@ export default function HeroSection() {
             </h1>
 
             <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-medium text-primary leading-tight max-w-[90%] md:max-w-none mx-auto md:mx-0">
-              Full-Stack Developer | Specialized in Back-End & Server
+              Software Developer | Specialized in Back-End & Server
               Architecture Skills
             </p>
 
@@ -116,7 +117,7 @@ export default function HeroSection() {
             <div className="relative h-full w-full rounded-3xl overflow-hidden border border-primary/20 shadow-2xl">
               <Image
                 src={resumeImage}
-                alt="Josuan Leonardo Hulom — Full-Stack Developer with back-end, mobile, and web development skills"
+                alt="Josuan Leonardo Hulom — Software Developer with back-end, mobile, and web development skills"
                 fill
                 priority
                 className="object-cover transition-transform duration-500 hover:scale-105"
@@ -140,7 +141,7 @@ export default function HeroSection() {
                     <SiPython className="size-3 sm:size-4 text-[#3776AB]" />
                   </div>
                   <div className="size-5 sm:size-7 flex items-center justify-center bg-white rounded-md border border-slate-200 shadow-sm">
-                    <SiFlutter className="size-3 sm:size-4 text-[#02569B]" />
+                    <TbBrandCSharp className="size-3 sm:size-4 text-[#239120]" />
                   </div>
                 </div>
               </div>
@@ -160,7 +161,7 @@ export default function HeroSection() {
                     BSIT Graduate
                   </p>
                   <p className="text-[8px] sm:text-[10px] text-muted-foreground mt-0.5 sm:mt-1 whitespace-nowrap">
-                    Full-Stack Developer
+                    Software Developer
                   </p>
                 </div>
               </div>
@@ -178,7 +179,7 @@ export default function HeroSection() {
                 </p>
               </div>
               <p className="text-[8px] sm:text-[10px] text-muted-foreground mt-0.5 sm:mt-1 ml-3 sm:ml-4 whitespace-nowrap">
-                Full-Stack & Mobile Skills
+                Software & Mobile Skills
               </p>
             </motion.div>
           </motion.div>

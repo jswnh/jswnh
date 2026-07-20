@@ -1,0 +1,378 @@
+{
+  "personalInfo": {
+    "name": "Josuan Leonardo Hulom",
+    "shortName": "Josuan",
+    "title": "Josuan | Software Developer | Back-End, Server Architecture & Mobile Skills",
+    "role": "Software Developer",
+    "specialization": "Back-End & Server Architecture with mobile and web development skills",
+    "location": "Tabogon, Cebu, Philippines",
+    "shortLocation": "Tabogon, Cebu",
+    "email": "hulomjosuan@gmail.com",
+    "phone": "+639682006456",
+    "phoneFormatted": "+63 968 200 6456",
+    "github": "https://github.com/jswnh",
+    "linkedIn": "https://www.linkedin.com/in/hulomjosuan/",
+    "resumeUrl": "/assets/pdf/JosuanLeonardoHulom_Resume_FullStackDeveloper.pdf",
+    "websiteUrl": "https://josuan.cv",
+    "availability": "Available for Projects"
+  },
+  "seoData": {
+    "title": "Josuan | Software Developer | Back-End, Server Architecture & Mobile Skills",
+    "description": "Portfolio of Josuan Leonardo Hulom — a Software Developer in Cebu, Philippines with strong back-end and server architecture skills, mobile development skills, and web development skills. Explore technical skills in React.js, Python, Flutter, PostgreSQL, and full-stack project experience.",
+    "keywords": [
+      "software developer skills",
+      "full-stack developer skills",
+      "back-end developer skills",
+      "server architecture skills",
+      "mobile development skills",
+      "web development skills",
+      "React.js skills",
+      "C# developer skills",
+      "Python developer skills",
+      "Flutter developer skills",
+      "SQL skills",
+      "PostgreSQL skills",
+      "TypeScript skills",
+      "Next.js skills",
+      "software developer Philippines",
+      "Cebu developer",
+      "Josuan Leonardo Hulom",
+      "software developer portfolio",
+      "technical skills",
+      "programming skills",
+      "API development skills",
+      "database skills",
+      "POS system developer",
+      "inventory system developer"
+    ],
+    "locale": "en_US"
+  },
+  "navigationData": [
+    { "label": "Home", "href": "#hero", "icon": "Home" },
+    { "label": "Skills", "href": "#skills", "icon": "Cpu" },
+    { "label": "Projects", "href": "#projects", "icon": "Code2" },
+    { "label": "Achievements", "href": "#awards", "icon": "Trophy" },
+    {
+      "label": "Certifications",
+      "href": "#certifications",
+      "icon": "BadgeCheck"
+    },
+    {
+      "label": "GitHub",
+      "href": "https://github.com/jswnh",
+      "icon": "Github"
+    },
+    {
+      "label": "LinkedIn",
+      "href": "https://www.linkedin.com/in/hulomjosuan/",
+      "icon": "Linkedin"
+    },
+    { "label": "Contact", "href": "#contact", "icon": "Mail" }
+  ],
+  "heroSectionData": {
+    "badgeLocation": "Tabogon, Cebu",
+    "greeting": "Hi, I'm",
+    "highlightedName": "Josuan.",
+    "roleTitle": "Software Developer | Specialized in Back-End & Server Architecture Skills",
+    "subtitle": "Also experienced in mobile and web development.",
+    "buttons": {
+      "downloadResume": "Download Resume",
+      "exploreSkills": "Explore Skills",
+      "letsChat": "Let's Chat"
+    },
+    "floatingBadges": {
+      "coreSkillsTitle": "Core Skills",
+      "coreSkillsList": ["TypeScript", "Python", "C#"],
+      "educationBadge": {
+        "degree": "BSIT Graduate",
+        "role": "Software Developer"
+      },
+      "availabilityBadge": {
+        "status": "Available for Projects",
+        "subtitle": "Software & Mobile Skills"
+      }
+    }
+  },
+  "skillSectionData": {
+    "heading": {
+      "title": "Technical",
+      "highlight": "Skills"
+    },
+    "description": "Core technologies I use to build scalable web, back-end, and mobile applications — covering C#, .NET Web API, Python, React.js, SQL, and PostgreSQL.",
+    "subDescription": "Specialized in server architecture, RESTful API design, and database management for production systems.",
+    "highlightedSkills": [
+      "C#",
+      ".NET Web API",
+      "Back-End Development",
+      "Python",
+      "React.js",
+      "SQL",
+      "PostgreSQL",
+      "Mobile Development"
+    ],
+    "allSkills": [
+      "C#",
+      ".NET Web API",
+      "Back-End Development",
+      "Server Architecture",
+      "SQL",
+      "PostgreSQL",
+      "Python",
+      "FastAPI",
+      "React.js",
+      "Next.js",
+      "TypeScript",
+      "JavaScript",
+      "Flutter",
+      "Dart",
+      "MongoDB",
+      "Supabase",
+      "Docker",
+      "REST API Design",
+      "ORM Workflows",
+      "Full-Stack Development"
+    ],
+    "iconCloudSlugs": [
+      "csharp",
+      "dotnet",
+      "typescript",
+      "javascript",
+      "dart",
+      "react",
+      "flutter",
+      "nodedotjs",
+      "express",
+      "nextdotjs",
+      "python",
+      "fastapi",
+      "postgresql",
+      "mongodb",
+      "firebase",
+      "vercel",
+      "docker",
+      "github",
+      "visualstudiocode",
+      "figma"
+    ]
+  },
+  "projectSectionData": {
+    "heading": {
+      "title": "Featured",
+      "highlight": "Projects"
+    },
+    "projects": [
+      {
+        "id": "qrwise-clinic",
+        "title": "QrWise Clinic — Full-Stack Developer (Contract / Probationary)",
+        "role": "Contract / Probationary Full-Stack Developer",
+        "company": "QrWise Clinic",
+        "techStack": [
+          { "name": "Flutter", "icon": "SiFlutter", "color": "#02569B" },
+          { "name": "Python", "icon": "SiPython", "color": "#3776AB" },
+          { "name": "React.js", "icon": "SiReact", "color": "#61DAFB" },
+          { "name": "PostgreSQL", "icon": "SiPostgresql", "color": "#336791" }
+        ],
+        "description": "Currently working on a contract and probationary basis for QrWise Clinic, applying full-stack skills to build an inventory POS and booking system with integrated marketing tools. Using back-end architecture skills, mobile development skills, and web skills to streamline clinic operations and patient scheduling.",
+        "image": "/assets/images/clinics.png",
+        "imageAlt": "QrWise Clinic — inventory POS and booking system built with full-stack developer skills"
+      },
+      {
+        "id": "gunit",
+        "title": "Gunit — Personal Project",
+        "role": "Personal Project",
+        "link": "https://github.com/jswnh/gunit",
+        "techStack": [
+          { "name": "Expo", "icon": "SiExpo", "color": "#000020" },
+          { "name": "React Native", "icon": "React Native", "color": "" },
+          { "name": "Offline-First", "icon": "Smartphone", "color": "" }
+        ],
+        "description": "A personal project showcasing mobile development skills — a minimalist offline inventory POS app built to support local businesses. Built with Expo and React Native for reliable day-to-day sales tracking without depending on a constant internet connection.",
+        "image": "/assets/images/gunit.png",
+        "imageAlt": "Gunit — offline inventory POS mobile app built with Expo and React Native"
+      },
+      {
+        "id": "everyshelf",
+        "title": "Everyshelf — Backend Developer",
+        "role": "Backend Developer",
+        "company": "Everyshelf",
+        "link": "https://staging--everyshelf-web.netlify.app",
+        "techStack": [
+          { "name": "Next.js", "icon": "SiNextdotjs", "color": "#3776AB" },
+          { "name": "Supabase", "icon": "SiSupabase", "color": "#336791" },
+          { "name": "Hono", "icon": "SiHono", "color": "#336791" }
+        ],
+        "description": "Contributed to the development of Everyshelf, an inventory management system & stock transfer management, during my internship. Architected scalable backend services using Hono and Supabase.",
+        "image": "/assets/images/everyshelf.png",
+        "imageAlt": "Everyshelf Web Dashboard"
+      },
+      {
+        "id": "bogoballers-backend",
+        "title": "BogoBallers — Backend",
+        "role": "Backend",
+        "techStack": [
+          { "name": "Python (Quart)", "icon": "SiPython", "color": "#3776AB" },
+          { "name": "SQLAlchemy", "icon": "SiPostgresql", "color": "#336791" }
+        ],
+        "description": "Built the backend for a league management system as part of an academic project. Implemented basic role-based access control (RBAC) to manage user permissions and improve data organization and security."
+      },
+      {
+        "id": "bogoballers-web",
+        "title": "BogoBallers — Web Dashboard",
+        "role": "Web Dashboard",
+        "techStack": [
+          { "name": "React.js", "icon": "SiReact", "color": "#61DAFB" },
+          { "name": "Tailwind CSS", "icon": "SiTailwindcss", "color": "" },
+          { "name": "Shadcnui", "icon": "SiShadcnui", "color": "" }
+        ],
+        "description": "Developed a web-based dashboard for managing league data. Focused on building reusable UI components and implementing features such as match scheduling.",
+        "image": "/assets/images/dashboardImage.png",
+        "imageAlt": "BogoBallers Web Dashboard Preview"
+      },
+      {
+        "id": "bogoballers-mobile",
+        "title": "BogoBallers — Mobile App",
+        "role": "Mobile App",
+        "techStack": [
+          { "name": "Flutter", "icon": "SiFlutter", "color": "#02569B" },
+          { "name": "Dart", "icon": "SiDart", "color": "#02569B" }
+        ],
+        "description": "Created a mobile application prototype focused on displaying league and match information. Practiced integrating backend APIs and building responsive layouts.",
+        "image": "/assets/images/team_creator_or_player_login_screen.png",
+        "imageAlt": "BogoBallers Mobile App Interface"
+      }
+    ]
+  },
+  "achievementSectionData": {
+    "heading": {
+      "title": "Achieve",
+      "highlight": "ments"
+    },
+    "description": "Graduation honors, technical awards, and competitive programming achievements.",
+    "achievements": [
+      {
+        "number": "01",
+        "title": "Outstanding Intern of the Year",
+        "description": "Awarded during graduation in May 2026 for demonstrating exceptional technical performance and reliability throughout the internship period.",
+        "tags": ["Graduation Award", "Internship", "Excellence"],
+        "year": "Graduation 2026"
+      },
+      {
+        "number": "02",
+        "title": "Full-Stack Developer of the Year",
+        "description": "Recognized during graduation in May 2026 for excellence and implementation in end-to-end application development.",
+        "tags": ["Graduation Award", "Full-Stack", "Software Development"],
+        "year": "Graduation 2026"
+      },
+      {
+        "number": "03",
+        "title": "Best in PC Troubleshooting",
+        "description": "Honored during graduation in May 2026 for demonstrating outstanding practical skills in hardware diagnostics and system problem-solving.",
+        "tags": ["Graduation Award", "Hardware", "Diagnostics"],
+        "year": "Graduation 2026"
+      },
+      {
+        "number": "04",
+        "title": "ISITE National Python Contest",
+        "description": "Selected as the official school representative to compete against student developers in a national-level technical tournament — validating Python programming skills and algorithmic problem-solving skills under high-pressure conditions.",
+        "tags": ["National Representative", "Python Skills", "Algorithms"],
+        "year": "2025"
+      }
+    ]
+  },
+  "certificationSectionData": {
+    "heading": {
+      "title": "Certifi",
+      "highlight": "cations"
+    },
+    "description": "Verified certifications from Microsoft, HackerRank, and freeCodeCamp.",
+    "certifications": [
+      {
+        "number": "01",
+        "title": "SQL (Advanced)",
+        "issuer": "HackerRank",
+        "description": "Advanced SQL certification validating complex query optimization, joins, indexing, subqueries, and window functions.",
+        "tags": ["HackerRank", "SQL", "Database"],
+        "year": "Jul 2026",
+        "credentialId": "3b69edc82268",
+        "link": "https://www.hackerrank.com/certificates/3b69edc82268"
+      },
+      {
+        "number": "02",
+        "title": "Software Engineer Intern",
+        "issuer": "HackerRank",
+        "description": "Software Engineer Intern role skill certification covering core problem solving, data structures, Python, and relational database management.",
+        "tags": ["HackerRank", "Python", "SQL"],
+        "year": "Jul 2026",
+        "credentialId": "d6ea8006d5a4",
+        "link": "https://www.hackerrank.com/certificates/d6ea8006d5a4"
+      },
+      {
+        "number": "03",
+        "title": "React Certification",
+        "issuer": "HackerRank",
+        "description": "React developer certification demonstrating proficiency in component lifecycle, hooks, state management, and modern front-end architecture.",
+        "tags": ["HackerRank", "React.js", "JavaScript"],
+        "year": "Jul 2026",
+        "credentialId": "56c625ac85a4",
+        "link": "https://www.hackerrank.com/certificates/56c625ac85a4"
+      },
+      {
+        "number": "04",
+        "title": "Python Certification",
+        "issuer": "freeCodeCamp",
+        "description": "Python programming certification demonstrating core algorithms, data structures, and back-end logic implementation.",
+        "tags": ["freeCodeCamp", "Python"],
+        "year": "Apr 2026",
+        "link": "https://www.freecodecamp.org/certification/josuanhulom/python-v9"
+      },
+      {
+        "number": "05",
+        "title": "JavaScript Certification",
+        "issuer": "freeCodeCamp",
+        "description": "JavaScript algorithms and data structures certification validating ES6+, asynchronous programming, and web development fundamentals.",
+        "tags": ["freeCodeCamp", "JavaScript"],
+        "year": "Apr 2026",
+        "link": "https://www.freecodecamp.org/certification/josuanhulom/javascript-v9"
+      },
+      {
+        "number": "06",
+        "title": "Foundational C# Microsoft",
+        "issuer": "Microsoft / freeCodeCamp",
+        "description": "Foundational certification awarded by Microsoft Developer and freeCodeCamp — strengthening C# programming skills, .NET fundamentals, and object-oriented development.",
+        "tags": ["Microsoft", "freeCodeCamp", "C#"],
+        "year": "Sep 2023",
+        "link": "https://www.freecodecamp.org/certification/josuanhulom/foundational-c-sharp-with-microsoft"
+      }
+    ]
+  },
+  "contactSectionData": {
+    "heading": {
+      "title": "Let's have",
+      "highlight": "a Chat"
+    },
+    "description": "Need a developer with strong back-end skills, mobile skills, or full-stack skills? Whether it's a POS system, web app, or server architecture — send a message and I'll get back to you.",
+    "formAction": "https://formsubmit.co/hulomjosuan@gmail.com",
+    "contactInfo": {
+      "email": "hulomjosuan@gmail.com",
+      "phone": "+63 968 200 6456",
+      "location": "Tabogon, Cebu, Philippines"
+    },
+    "socialLinks": [
+      {
+        "name": "LinkedIn",
+        "url": "https://www.linkedin.com/in/hulomjosuan/",
+        "title": "LinkedIn — Josuan Leonardo Hulom developer skills profile",
+        "ariaLabel": "LinkedIn profile showcasing full-stack developer skills"
+      },
+      {
+        "name": "Email",
+        "url": "mailto:hulomjosuan@gmail.com",
+        "title": "Email"
+      }
+    ],
+    "footer": {
+      "copyrightText": "Josuan. All rights reserved.",
+      "tagline": "Made with passion in Tabogon, Cebu"
+    }
+  }
+}
