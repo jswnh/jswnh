@@ -152,7 +152,8 @@
       "docker",
       "github",
       "visualstudiocode",
-      "figma"
+      "figma",
+      "nestjs"
     ]
   },
   "projectSectionData": {
@@ -163,8 +164,8 @@
     "projects": [
       {
         "id": "qrwise-clinic",
-        "title": "QrWise Clinic — Full-Stack Developer (Contract / Probationary)",
-        "role": "Contract / Probationary Full-Stack Developer",
+        "title": "QrWise Clinic — Full-Stack Developer (Contract)",
+        "role": "Full-Stack Developer",
         "company": "QrWise Clinic",
         "techStack": [
           { "name": "Flutter", "icon": "SiFlutter", "color": "#02569B" },
@@ -172,7 +173,7 @@
           { "name": "React.js", "icon": "SiReact", "color": "#61DAFB" },
           { "name": "PostgreSQL", "icon": "SiPostgresql", "color": "#336791" }
         ],
-        "description": "Currently working on a contract and probationary basis for QrWise Clinic, applying full-stack skills to build an inventory POS and booking system with integrated marketing tools. Using back-end architecture skills, mobile development skills, and web skills to streamline clinic operations and patient scheduling.",
+        "description": "Worked on a contract basis for QrWise Clinic, applying full-stack skills to build an inventory POS and booking system with integrated marketing tools. Used back-end architecture, mobile development, and web development skills to streamline clinic operations and patient scheduling.",
         "image": "/assets/images/clinics.png",
         "imageAlt": "QrWise Clinic — inventory POS and booking system built with full-stack developer skills"
       },
