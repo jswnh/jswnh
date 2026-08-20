@@ -10,7 +10,7 @@ import {
   Github,
   Mail,
 } from "lucide-react";
-import { SiLinkedin } from "react-icons/si";
+import { FaLinkedin } from "react-icons/fa";
 import HeroSection from "./sections/HeroSection";
 import Header from "@/components/Header";
 import FeatureProjectSection from "./sections/FeatureProjectSection";
@@ -31,7 +31,7 @@ export default function Page() {
     {
       label: "LinkedIn",
       href: "https://www.linkedin.com/in/hulomjosuan/",
-      icon: SiLinkedin,
+      icon: FaLinkedin,
     },
     { label: "Contact", href: "#contact", icon: Mail },
   ];

@@ -2,7 +2,7 @@
 
 import React from "react";
 import { Mail, Phone } from "lucide-react";
-import { SiLinkedin } from "react-icons/si";
+import { FaLinkedin } from "react-icons/fa";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -105,14 +105,20 @@ export default function ContactSection() {
                   <a
                     key={social.name}
                     href={social.url}
-                    target={social.url.startsWith("http") ? "_blank" : undefined}
-                    rel={social.url.startsWith("http") ? "noopener noreferrer" : undefined}
+                    target={
+                      social.url.startsWith("http") ? "_blank" : undefined
+                    }
+                    rel={
+                      social.url.startsWith("http")
+                        ? "noopener noreferrer"
+                        : undefined
+                    }
                     className="p-4 rounded-full border border-border bg-card hover:border-primary/50 hover:bg-accent transition-all group"
                     title={social.title}
                     aria-label={social.ariaLabel || social.title}
                   >
                     {social.name === "LinkedIn" ? (
-                      <SiLinkedin className="size-6 text-foreground group-hover:text-primary transition-colors" />
+                      <FaLinkedin className="size-6 text-foreground group-hover:text-primary transition-colors" />
                     ) : (
                       <Mail className="size-6 text-foreground group-hover:text-primary transition-colors" />
                     )}
@@ -127,12 +133,9 @@ export default function ContactSection() {
           <p className="text-foreground/60 font-medium">
             © {new Date().getFullYear()} {footer.copyrightText}
           </p>
-          <p className="italic opacity-80 font-light">
-            {footer.tagline}
-          </p>
+          <p className="italic opacity-80 font-light">{footer.tagline}</p>
         </div>
       </div>
     </div>
   );
 }
-

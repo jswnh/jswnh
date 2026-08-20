@@ -174,7 +174,9 @@
           { "name": "PostgreSQL", "icon": "SiPostgresql", "color": "#336791" }
         ],
         "description": "Worked on a contract basis for QrWise Clinic, applying full-stack skills to build an inventory POS and booking system with integrated marketing tools. Used back-end architecture, mobile development, and web development skills to streamline clinic operations and patient scheduling.",
-        "image": "/assets/images/clinics.png",
+        "images": [
+          "/assets/images/clinics.png"
+        ],
         "imageAlt": "QrWise Clinic — inventory POS and booking system built with full-stack developer skills"
       },
       {
@@ -188,7 +190,9 @@
           { "name": "Offline-First", "icon": "Smartphone", "color": "" }
         ],
         "description": "A personal project showcasing mobile development skills — a minimalist offline inventory POS app built to support local businesses. Built with Expo and React Native for reliable day-to-day sales tracking without depending on a constant internet connection.",
-        "image": "/assets/images/gunit.png",
+        "images": [
+          "/assets/images/gunit.png"
+        ],
         "imageAlt": "Gunit — offline inventory POS mobile app built with Expo and React Native"
       },
       {
@@ -203,7 +207,9 @@
           { "name": "Hono", "icon": "SiHono", "color": "#336791" }
         ],
         "description": "Contributed to the development of Everyshelf, an inventory management system & stock transfer management, during my internship. Architected scalable backend services using Hono and Supabase.",
-        "image": "/assets/images/everyshelf.png",
+        "images": [
+          "/assets/images/everyshelf.png"
+        ],
         "imageAlt": "Everyshelf Web Dashboard"
       },
       {
@@ -214,7 +220,8 @@
           { "name": "Python (Quart)", "icon": "SiPython", "color": "#3776AB" },
           { "name": "SQLAlchemy", "icon": "SiPostgresql", "color": "#336791" }
         ],
-        "description": "Built the backend for a league management system as part of an academic project. Implemented basic role-based access control (RBAC) to manage user permissions and improve data organization and security."
+        "description": "Built the backend for a league management system as part of an academic project. Implemented basic role-based access control (RBAC) to manage user permissions and improve data organization and security.",
+        "images": []
       },
       {
         "id": "bogoballers-web",
@@ -226,7 +233,9 @@
           { "name": "Shadcnui", "icon": "SiShadcnui", "color": "" }
         ],
         "description": "Developed a web-based dashboard for managing league data. Focused on building reusable UI components and implementing features such as match scheduling.",
-        "image": "/assets/images/dashboardImage.png",
+        "images": [
+          "/assets/images/dashboardImage.png"
+        ],
         "imageAlt": "BogoBallers Web Dashboard Preview"
       },
       {
@@ -238,7 +247,9 @@
           { "name": "Dart", "icon": "SiDart", "color": "#02569B" }
         ],
         "description": "Created a mobile application prototype focused on displaying league and match information. Practiced integrating backend APIs and building responsive layouts.",
-        "image": "/assets/images/team_creator_or_player_login_screen.png",
+        "images": [
+          "/assets/images/team_creator_or_player_login_screen.png"
+        ],
         "imageAlt": "BogoBallers Mobile App Interface"
       }
     ]

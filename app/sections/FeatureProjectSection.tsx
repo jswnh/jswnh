@@ -80,76 +80,62 @@ export default function FeatureProjectSection() {
   const { projects } = portfolioData.projectSectionData;
 
   const data = projects.map((project) => {
-    const isMobile =
-      project.id === "gunit" || project.id === "bogoballers-mobile";
-    const aspectClass =
-      project.id === "gunit" ? "aspect-square" : "aspect-[9/16]";
-    const containerClass =
-      project.id === "bogoballers-web"
-        ? "relative h-44 md:h-80 w-full rounded-lg overflow-hidden border border-primary/10 shadow-2xl"
-        : "relative h-44 md:h-64 w-full max-w-md rounded-lg overflow-hidden border border-primary/10 shadow-2xl";
+    // Support both images array and legacy single image field
+    const projectImages: string[] = Array.isArray(
+      (project as { images?: string[] }).images
+    )
+      ? (project as { images?: string[] }).images!
+      : (project as { image?: string }).image
+      ? [(project as { image?: string }).image!]
+      : [];
 
-    const imageSrc = project.image ? imageMap[project.image] : null;
+    const renderImages = () => {
+      if (!projectImages || projectImages.length === 0) return null;
 
-    // Helper to render image wrapper
-    const renderImage = () => {
-      if (!imageSrc) return null;
+      // Responsive compact grid classes based on image count
+      const gridClass =
+        projectImages.length === 1
+          ? "grid grid-cols-1 w-full max-w-xs sm:max-w-sm md:max-w-md"
+          : projectImages.length === 2
+          ? "grid grid-cols-2 gap-3 w-full max-w-sm sm:max-w-md md:max-w-lg"
+          : "grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 w-full max-w-lg sm:max-w-xl md:max-w-2xl";
 
-      if (isMobile) {
-        const mobileImageContent = (
-          <div
-            className={`relative ${aspectClass} w-32 md:w-42 rounded-lg bg-zinc-900 border border-primary/10 overflow-hidden shadow-xl transition-all duration-300 group-hover:border-primary/30 group-hover:shadow-primary/5 ${
-              project.link ? "cursor-pointer" : ""
-            }`}
-          >
-            <Image
-              src={imageSrc}
-              alt={project.imageAlt || project.title}
-              fill
-              className="object-cover object-top transition-transform duration-500 group-hover:scale-110"
-            />
-            <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-500" />
-          </div>
-        );
+      return (
+        <div className={`${gridClass} mt-4`}>
+          {projectImages.map((imgSrc, imgIndex) => {
+            const resolvedSrc = imageMap[imgSrc] || imgSrc;
+            const altText =
+              project.imageAlt || `${project.title} image ${imgIndex + 1}`;
 
-        return (
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-6">
-            {project.link ? (
-              <ExternalLink href={project.link} className="block group">
-                {mobileImageContent}
+            const imageContent = (
+              <div className="relative aspect-video w-full rounded-lg overflow-hidden border border-neutral-200/80 dark:border-neutral-800 bg-neutral-900 shadow-md transition-all duration-300 group-hover:border-primary/40 group-hover:shadow-lg">
+                <Image
+                  src={resolvedSrc}
+                  alt={altText}
+                  fill
+                  sizes="(max-width: 640px) 160px, (max-width: 1024px) 240px, 320px"
+                  className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 dark:group-hover:bg-white/5 transition-colors duration-500" />
+              </div>
+            );
+
+            return project.link ? (
+              <ExternalLink
+                key={imgIndex}
+                href={project.link}
+                className="block group"
+              >
+                {imageContent}
               </ExternalLink>
             ) : (
-              <div className="group block">{mobileImageContent}</div>
-            )}
-          </div>
-        );
-      } else {
-        const desktopImageContent = (
-          <div
-            className={`${containerClass} ${project.link ? "cursor-pointer" : ""}`}
-          >
-            <Image
-              src={imageSrc}
-              alt={project.imageAlt || project.title}
-              fill
-              className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
-            />
-            <div className="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-colors duration-500" />
-          </div>
-        );
-
-        return (
-          <div className="grid grid-cols-1 gap-4 mt-6">
-            {project.link ? (
-              <ExternalLink href={project.link} className="block group">
-                {desktopImageContent}
-              </ExternalLink>
-            ) : (
-              <div className="group block">{desktopImageContent}</div>
-            )}
-          </div>
-        );
-      }
+              <div key={imgIndex} className="group block">
+                {imageContent}
+              </div>
+            );
+          })}
+        </div>
+      );
     };
 
     return {
@@ -182,7 +168,7 @@ export default function FeatureProjectSection() {
           <p className="text-xs md:text-sm font-normal text-neutral-800 dark:text-neutral-200 leading-relaxed">
             {project.description}
           </p>
-          {renderImage()}
+          {renderImages()}
         </div>
       ),
     };
