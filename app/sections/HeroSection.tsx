@@ -63,8 +63,8 @@ export default function HeroSection() {
             </h1>
 
             <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-medium text-primary leading-tight max-w-[90%] md:max-w-none mx-auto md:mx-0">
-              Software Developer | Specialized in Back-End & Server
-              Architecture Skills
+              Software Developer | Specialized in Back-End & Server Architecture
+              Skills
             </p>
 
             <p className="text-muted-foreground text-sm sm:text-base md:text-lg max-w-[500px]">
@@ -78,31 +78,13 @@ export default function HeroSection() {
               onClick={() =>
                 window.open(
                   "/assets/pdf/JosuanLeonardoHulom_Resume_FullStackDeveloper.pdf",
-                  "_blank"
+                  "_blank",
                 )
               }
             >
               <Download className="mr-2 size-4" />
               Download Resume
             </Button>
-            <a href="#skills" className="w-full sm:w-auto">
-              <Button
-                variant="outline"
-                className="rounded-full px-8 border-primary text-primary w-full sm:w-auto hover:bg-primary hover:text-primary-foreground transition-all"
-              >
-                <Code2 className="mr-2 size-4" />
-                Explore Skills
-              </Button>
-            </a>
-            <a href="#contact" className="w-full sm:w-auto">
-              <Button
-                variant="outline"
-                className="rounded-full px-8 border-primary text-primary w-full sm:w-auto hover:bg-primary hover:text-primary-foreground transition-all"
-              >
-                <MessageSquare className="mr-2 size-4" />
-                Let&apos;s Chat
-              </Button>
-            </a>
           </div>
         </div>
 

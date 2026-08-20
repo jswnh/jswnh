@@ -284,6 +284,7 @@ export interface TerminalProps {
   delayBetweenCommands?: number;
   initialDelay?: number;
   enableSound?: boolean;
+  onComplete?: () => void;
 }
 
 export function Terminal({
@@ -295,6 +296,7 @@ export function Terminal({
   delayBetweenCommands = 800,
   initialDelay = 500,
   enableSound = true,
+  onComplete,
 }: TerminalProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
@@ -404,6 +406,15 @@ export function Terminal({
     const interval = setInterval(() => setCursorVisible((v) => !v), 530);
     return () => clearInterval(interval);
   }, []);
+
+  useEffect(() => {
+    if (phase === "done" && onComplete) {
+      const t = setTimeout(() => {
+        onComplete();
+      }, 500);
+      return () => clearTimeout(t);
+    }
+  }, [phase, onComplete]);
 
   useEffect(() => {
     if (contentRef.current) {

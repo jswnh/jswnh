@@ -101,16 +101,18 @@
     "description": "Core technologies I use to build scalable web, back-end, and mobile applications — covering C#, .NET Web API, Python, React.js, SQL, and PostgreSQL.",
     "subDescription": "Specialized in server architecture, RESTful API design, and database management for production systems.",
     "highlightedSkills": [
+      "React.js",
+      "SQL",
       "C#",
       ".NET Web API",
       "Back-End Development",
       "Python",
-      "React.js",
-      "SQL",
       "PostgreSQL",
       "Mobile Development"
     ],
     "allSkills": [
+      "React.js",
+      "TypeScript",
       "C#",
       ".NET Web API",
       "Back-End Development",
@@ -119,9 +121,7 @@
       "PostgreSQL",
       "Python",
       "FastAPI",
-      "React.js",
       "Next.js",
-      "TypeScript",
       "JavaScript",
       "Flutter",
       "Dart",
@@ -137,6 +137,7 @@
       "dotnet",
       "typescript",
       "javascript",
+      "laravel",
       "dart",
       "react",
       "flutter",
@@ -174,9 +175,7 @@
           { "name": "PostgreSQL", "icon": "SiPostgresql", "color": "#336791" }
         ],
         "description": "Worked on a contract basis for QrWise Clinic, applying full-stack skills to build an inventory POS and booking system with integrated marketing tools. Used back-end architecture, mobile development, and web development skills to streamline clinic operations and patient scheduling.",
-        "images": [
-          "/assets/images/clinics.png"
-        ],
+        "images": ["/assets/images/clinics.png"],
         "imageAlt": "QrWise Clinic — inventory POS and booking system built with full-stack developer skills"
       },
       {
@@ -190,9 +189,7 @@
           { "name": "Offline-First", "icon": "Smartphone", "color": "" }
         ],
         "description": "A personal project showcasing mobile development skills — a minimalist offline inventory POS app built to support local businesses. Built with Expo and React Native for reliable day-to-day sales tracking without depending on a constant internet connection.",
-        "images": [
-          "/assets/images/gunit.png"
-        ],
+        "images": ["/assets/images/gunit.png"],
         "imageAlt": "Gunit — offline inventory POS mobile app built with Expo and React Native"
       },
       {
@@ -207,9 +204,7 @@
           { "name": "Hono", "icon": "SiHono", "color": "#336791" }
         ],
         "description": "Contributed to the development of Everyshelf, an inventory management system & stock transfer management, during my internship. Architected scalable backend services using Hono and Supabase.",
-        "images": [
-          "/assets/images/everyshelf.png"
-        ],
+        "images": ["/assets/images/everyshelf.png"],
         "imageAlt": "Everyshelf Web Dashboard"
       },
       {
@@ -233,9 +228,7 @@
           { "name": "Shadcnui", "icon": "SiShadcnui", "color": "" }
         ],
         "description": "Developed a web-based dashboard for managing league data. Focused on building reusable UI components and implementing features such as match scheduling.",
-        "images": [
-          "/assets/images/dashboardImage.png"
-        ],
+        "images": ["/assets/images/dashboardImage.png"],
         "imageAlt": "BogoBallers Web Dashboard Preview"
       },
       {
@@ -247,9 +240,7 @@
           { "name": "Dart", "icon": "SiDart", "color": "#02569B" }
         ],
         "description": "Created a mobile application prototype focused on displaying league and match information. Practiced integrating backend APIs and building responsive layouts.",
-        "images": [
-          "/assets/images/team_creator_or_player_login_screen.png"
-        ],
+        "images": ["/assets/images/team_creator_or_player_login_screen.png"],
         "imageAlt": "BogoBallers Mobile App Interface"
       }
     ]
