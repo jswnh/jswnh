@@ -15,12 +15,17 @@ import {
   SiNextdotjs,
   SiSupabase,
   SiHono,
+  SiTypescript,
+  SiCloudflare,
 } from "react-icons/si";
 import { Timeline } from "@/components/ui/timeline";
-import { Smartphone, ArrowUpRight } from "lucide-react";
+import { Smartphone, ArrowUpRight, CreditCard } from "lucide-react";
 import portfolioData from "@/data/portfolio-data.json";
 
 // Import local images statically for Next.js image optimization
+import forkplayImg1 from "@/assets/images/forkplay-image1.png";
+import forkplayImg2 from "@/assets/images/forkplay-image2.png";
+import forkplayImg3 from "@/assets/images/forkplay-image3.png";
 import dashboardImg from "@/assets/images/dashboardImage.png";
 import evershelfDashboard from "@/assets/images/everyshelf.png";
 import bogoballersLogin from "@/assets/images/team_creator_or_player_login_screen.png";
@@ -28,6 +33,9 @@ import clinicsLogo from "@/assets/images/clinics.png";
 import gunitLogo from "@/assets/images/gunit.png";
 
 const imageMap: Record<string, any> = {
+  "/assets/images/forkplay-image1.png": forkplayImg1,
+  "/assets/images/forkplay-image2.png": forkplayImg2,
+  "/assets/images/forkplay-image3.png": forkplayImg3,
   "/assets/images/clinics.png": clinicsLogo,
   "/assets/images/gunit.png": gunitLogo,
   "/assets/images/everyshelf.png": evershelfDashboard,
@@ -50,7 +58,10 @@ const iconMap: Record<
   SiTailwindcss,
   SiShadcnui,
   SiDart,
+  SiTypescript,
+  SiCloudflare,
   Smartphone,
+  CreditCard,
 };
 
 function ExternalLink({

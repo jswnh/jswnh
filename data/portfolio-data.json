@@ -164,6 +164,30 @@
     },
     "projects": [
       {
+        "id": "forkplay",
+        "title": "Forkplay — Personal Project",
+        "role": "Personal Project",
+        "link": "https://forkplay.vercel.app/",
+        "techStack": [
+          { "name": "Next.js", "icon": "SiNextdotjs", "color": "" },
+          { "name": "TypeScript", "icon": "SiTypescript", "color": "#3178C6" },
+          { "name": "Hono API", "icon": "SiHono", "color": "#E36002" },
+          { "name": "Cloudflare", "icon": "SiCloudflare", "color": "#F38020" },
+          {
+            "name": "NeonDB (PostgreSQL)",
+            "icon": "SiPostgresql",
+            "color": "#336791"
+          },
+          { "name": "Xendit Payment", "icon": "CreditCard", "color": "" }
+        ],
+        "description": "A personal project built to strengthen my skills — a next-gen cloud game launcher made with Next.js, TypeScript, and Hono API. Built with NeonDB PostgreSQL, Cloudflare edge services, and integrated Xendit payment gateway, designed to sell online or share on GitHub.",
+        "images": [
+          "/assets/images/forkplay-image1.png",
+          "/assets/images/forkplay-image2.png",
+          "/assets/images/forkplay-image3.png"
+        ]
+      },
+      {
         "id": "qrwise-clinic",
         "title": "QrWise Clinic — Full-Stack Developer (Contract)",
         "role": "Full-Stack Developer",
