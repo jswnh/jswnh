@@ -49,6 +49,7 @@
   },
   "navigationData": [
     { "label": "Home", "href": "#hero", "icon": "Home" },
+    { "label": "About", "href": "#about", "icon": "User" },
     { "label": "Skills", "href": "#skills", "icon": "Cpu" },
     { "label": "Projects", "href": "#projects", "icon": "Code2" },
     { "label": "Achievements", "href": "#awards", "icon": "Trophy" },
@@ -84,7 +85,7 @@
       "coreSkillsTitle": "Core Skills",
       "coreSkillsList": ["TypeScript", "Python", "C#"],
       "educationBadge": {
-        "degree": "BSIT Graduate",
+        "degree": "BS in Information Technology",
         "role": "Software Developer"
       },
       "availabilityBadge": {
@@ -93,13 +94,34 @@
       }
     }
   },
+  "aboutSectionData": {
+    "heading": {
+      "title": "About",
+      "highlight": "Me"
+    },
+    "subtitle": "Software Developer from the Philippines",
+    "location": "Tabogon, Cebu, Philippines",
+    "lat": 10.93,
+    "lng": 124.03,
+    "bio": "I am a Bachelor of Science in Information Technology degree holder from Tabogon, Cebu, Philippines. I've gained hands-on experience building real-world projects across full-stack web, back-end APIs, and mobile apps, pursuing software development as my core focus and craft.",
+    "subBio": "I focus on learning new technologies, designing clean database schemas, and building practical, reliable applications.",
+    "highlights": [
+      { "label": "Origin", "value": "Philippines", "icon": "MapPin" },
+      {
+        "label": "Education",
+        "value": "Bachelor of Science in Information Technology Degree Holder",
+        "icon": "GraduationCap"
+      },
+      { "label": "Experience", "value": "Real-World Projects", "icon": "Briefcase" }
+    ]
+  },
   "skillSectionData": {
     "heading": {
       "title": "Technical",
       "highlight": "Skills"
     },
-    "description": "Core technologies I use to build scalable web, back-end, and mobile applications — covering C#, .NET Web API, Python, React.js, SQL, and PostgreSQL.",
-    "subDescription": "Specialized in server architecture, RESTful API design, and database management for production systems.",
+    "description": "Technologies and tools I use to build scalable web, mobile, and backend applications.",
+    "subDescription": "Focused on server architecture, high-performance APIs, and robust database management.",
     "highlightedSkills": [
       "React.js",
       "SQL",
