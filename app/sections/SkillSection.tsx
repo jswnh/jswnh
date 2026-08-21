@@ -20,7 +20,7 @@ export default function SkillSection() {
   );
 
   return (
-    <div className="max-w-6xl mx-auto py-16 px-5 sm:px-8 lg:px-12">
+    <div className="max-w-6xl mx-auto py-10 md:py-14 px-5 sm:px-8 lg:px-12">
       <div className="flex flex-col md:flex-row items-center justify-between gap-10 md:gap-14">
         <div className="w-full md:w-1/2 space-y-5 text-left">
           <h2

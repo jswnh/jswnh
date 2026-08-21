@@ -14,10 +14,10 @@ export default function ContactSection() {
   const { location } = portfolioData.personalInfo;
 
   return (
-    <div className="py-16 md:py-20 px-5 sm:px-8 lg:px-12 bg-background transition-colors duration-300">
+    <div className="py-10 md:py-14 px-5 sm:px-8 lg:px-12 bg-background transition-colors duration-300">
       <div className="max-w-4xl mx-auto">
         {/* Centered Section Header */}
-        <div className="text-center space-y-3 mb-12 max-w-xl mx-auto">
+        <div className="text-center space-y-3 mb-8 max-w-xl mx-auto">
           <h2
             id="contact-heading"
             className="text-2xl sm:text-3xl md:text-4xl font-bold leading-tight tracking-tight text-foreground"
@@ -182,7 +182,7 @@ export default function ContactSection() {
         </div>
 
         {/* Footer */}
-        <div className="mt-16 pt-6 mb-24 border-t border-border/40 flex flex-col sm:flex-row justify-between items-center gap-3 text-muted-foreground text-[10px] sm:text-xs text-center">
+        <div className="mt-12 pt-6 mb-20 border-t border-border/40 flex flex-col sm:flex-row justify-between items-center gap-3 text-muted-foreground text-[10px] sm:text-xs text-center">
           <p className="text-foreground/60 font-medium">
             © {new Date().getFullYear()} {footer.copyrightText}
           </p>

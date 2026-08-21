@@ -37,7 +37,7 @@ export default function HeroSection() {
 
   return (
     <div
-      className="relative min-h-screen w-full flex items-center justify-center overflow-x-hidden py-20 md:py-0"
+      className="relative w-full flex items-center justify-center overflow-x-hidden py-14 md:py-20"
       aria-label="Introduction and developer skills overview"
     >
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 w-full flex flex-col md:flex-row items-center justify-between gap-10 md:gap-12">
