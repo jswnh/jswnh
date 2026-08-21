@@ -22,7 +22,7 @@ import DockNavigation from "@/components/dock-navigation";
 
 export default function Page() {
   return (
-    <div className="relative scroll-smooth overflow-x-hidden min-h-screen">
+    <div className="relative scroll-smooth overflow-x-clip min-h-screen">
       <LoadingScreen />
 
       {/* Top Header Flickering Grid Background with bottom fade */}
