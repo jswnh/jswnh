@@ -75,9 +75,29 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
   const heightTransform = useTransform(scrollYProgress, [0, 1], [0, Math.max(0, height - 60)]);
   const opacityTransform = useTransform(scrollYProgress, [0, 0.1], [0, 1]);
 
+  const headerRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress: headerScrollProgress } = useScroll({
+    target: headerRef,
+    offset: ["start end", "end start"],
+  });
+  const headerOpacity = useTransform(
+    headerScrollProgress,
+    [0, 0.2, 0.8, 1],
+    [0.2, 1, 1, 0.2]
+  );
+  const headerY = useTransform(
+    headerScrollProgress,
+    [0, 0.2, 0.8, 1],
+    [20, 0, 0, -20]
+  );
+
   return (
     <div className="font-sans md:px-8" ref={containerRef}>
-      <div className="max-w-6xl mx-auto pt-10 md:pt-14 pb-4 px-4 md:px-8">
+      <motion.div
+        ref={headerRef}
+        style={{ opacity: headerOpacity, y: headerY }}
+        className="max-w-6xl mx-auto pt-10 md:pt-14 pb-4 px-4 md:px-8 will-change-transform"
+      >
         <h2
           id="projects-heading"
           className="text-2xl sm:text-3xl md:text-4xl mb-3 max-w-3xl font-bold uppercase tracking-tight"
@@ -91,33 +111,10 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
           full-stack delivery across clinic systems, POS apps, and league
           platforms.
         </p>
-      </div>
+      </motion.div>
       <div ref={ref} className="relative max-w-6xl mx-auto pb-8">
         {data.map((item, index) => (
-          <div
-            key={index}
-            className="flex justify-start pt-6 md:pt-12 md:gap-10"
-          >
-            <div className="sticky flex flex-col md:flex-row z-40 items-center top-40 self-start max-w-xs lg:max-w-sm md:w-full">
-              <div className="h-10 absolute left-3 md:left-3 w-10 rounded-full bg-white dark:bg-black flex items-center justify-center shadow-xs">
-                <div className="h-4 w-4 rounded-full bg-neutral-200 dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700" />
-              </div>
-              <TimelineTitle
-                title={item.title}
-                link={item.link}
-                className="hidden md:block text-sm md:pl-20 md:text-xl font-bold"
-              />
-            </div>
-
-            <div className="relative pl-20 pr-4 md:pl-4 w-full">
-              <TimelineTitle
-                title={item.title}
-                link={item.link}
-                className="md:hidden block text-lg sm:text-xl mb-3 text-left font-bold"
-              />
-              {item.content}{" "}
-            </div>
-          </div>
+          <TimelineRow key={index} item={item} />
         ))}
         <div
           style={{
@@ -137,3 +134,52 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
     </div>
   );
 };
+
+function TimelineRow({ item }: { item: TimelineEntry }) {
+  const rowRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: rowRef,
+    offset: ["start end", "end start"],
+  });
+
+  const opacity = useTransform(
+    scrollYProgress,
+    [0, 0.18, 0.82, 1],
+    [0.15, 1, 1, 0.15]
+  );
+  const y = useTransform(
+    scrollYProgress,
+    [0, 0.18, 0.82, 1],
+    [25, 0, 0, -25]
+  );
+
+  return (
+    <div
+      ref={rowRef}
+      className="flex justify-start pt-6 md:pt-12 md:gap-10"
+    >
+      <div className="sticky flex flex-col md:flex-row z-40 items-center top-40 self-start max-w-xs lg:max-w-sm md:w-full">
+        <div className="h-10 absolute left-3 md:left-3 w-10 rounded-full bg-white dark:bg-black flex items-center justify-center shadow-xs">
+          <div className="h-4 w-4 rounded-full bg-neutral-200 dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700" />
+        </div>
+        <TimelineTitle
+          title={item.title}
+          link={item.link}
+          className="hidden md:block text-sm md:pl-20 md:text-xl font-bold"
+        />
+      </div>
+
+      <motion.div
+        style={{ opacity, y }}
+        className="relative pl-20 pr-4 md:pl-4 w-full will-change-transform"
+      >
+        <TimelineTitle
+          title={item.title}
+          link={item.link}
+          className="md:hidden block text-lg sm:text-xl mb-3 text-left font-bold"
+        />
+        {item.content}{" "}
+      </motion.div>
+    </div>
+  );
+}

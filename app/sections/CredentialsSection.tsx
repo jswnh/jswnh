@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import {
   Trophy,
   Award,
@@ -12,7 +12,7 @@ import {
   Medal,
 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, useScroll, useTransform, useSpring } from "framer-motion";
 import portfolioData from "@/data/portfolio-data.json";
 
 type CredentialType = "all" | "awards" | "certifications";
@@ -32,6 +32,19 @@ interface CredentialItem {
 
 export default function CredentialsSection() {
   const [activeTab, setActiveTab] = useState<CredentialType>("all");
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start end", "end start"],
+  });
+
+  const yHeaderRaw = useTransform(scrollYProgress, [0, 1], [25, -25]);
+  const yCardsRaw = useTransform(scrollYProgress, [0, 1], [15, -15]);
+  const opacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0]);
+
+  const yHeader = useSpring(yHeaderRaw, { stiffness: 100, damping: 25 });
+  const yCards = useSpring(yCardsRaw, { stiffness: 100, damping: 25 });
 
   const { achievements } = portfolioData.achievementSectionData;
   const { certifications } = portfolioData.certificationSectionData;
@@ -90,10 +103,16 @@ export default function CredentialsSection() {
   };
 
   return (
-    <div className="py-10 md:py-14 px-5 sm:px-8 lg:px-12 bg-background transition-colors duration-300">
+    <div
+      ref={containerRef}
+      className="py-10 md:py-14 px-5 sm:px-8 lg:px-12 bg-background transition-colors duration-300 overflow-hidden"
+    >
       <div className="max-w-6xl mx-auto">
         {/* Section Header */}
-        <div className="text-center space-y-3 mb-6 max-w-xl mx-auto">
+        <motion.div
+          style={{ y: yHeader, opacity }}
+          className="text-center space-y-3 mb-6 max-w-xl mx-auto will-change-transform"
+        >
           <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-semibold uppercase tracking-wider mb-1">
             <Sparkles className="size-3.5" />
             Verified Credentials & Honors
@@ -108,10 +127,13 @@ export default function CredentialsSection() {
             Graduation awards, competitive programming honors, and verified
             certifications from Microsoft, HackerRank, and freeCodeCamp.
           </p>
-        </div>
+        </motion.div>
 
         {/* Filter Tabs */}
-        <div className="flex justify-center mb-8">
+        <motion.div
+          style={{ y: yHeader, opacity }}
+          className="flex justify-center mb-8 will-change-transform"
+        >
           <div className="inline-flex p-1.5 rounded-full bg-card border border-border shadow-xs gap-1">
             <button
               onClick={() => setActiveTab("all")}
@@ -173,12 +195,13 @@ export default function CredentialsSection() {
               </span>
             </button>
           </div>
-        </div>
+        </motion.div>
 
         {/* Credentials Grid */}
         <motion.div
           layout
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5"
+          style={{ y: yCards, opacity }}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 will-change-transform"
         >
           <AnimatePresence mode="popLayout">
             {filteredItems.map((item) => (

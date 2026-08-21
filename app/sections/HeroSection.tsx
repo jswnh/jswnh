@@ -6,13 +6,29 @@ import resumeImage from "@/assets/images/resume.jpg";
 import { SiPython, SiTypescript } from "react-icons/si";
 import { TbBrandCSharp } from "react-icons/tb";
 import { Highlighter } from "@/components/ui/highlighter";
-import { motion, cubicBezier } from "framer-motion";
+import { motion, cubicBezier, useScroll, useTransform, useSpring } from "framer-motion";
 import portfolioData from "@/data/portfolio-data.json";
 import { NoiseBackground } from "@/components/ui/noise-background";
 import { confetti } from "@/components/ui/confetti";
 
 export default function HeroSection() {
   const [isDownloading, setIsDownloading] = useState(false);
+  const containerRef = React.useRef<HTMLDivElement>(null);
+
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end start"],
+  });
+
+  // Bidirectional parallax transforms (hardware-accelerated, smooth on scroll down and scroll up)
+  const yTextRaw = useTransform(scrollYProgress, [0, 1], [0, 60]);
+  const yImageRaw = useTransform(scrollYProgress, [0, 1], [0, -40]);
+  const yGlowRaw = useTransform(scrollYProgress, [0, 1], [0, 80]);
+  const opacity = useTransform(scrollYProgress, [0, 0.7], [1, 0]);
+
+  const yText = useSpring(yTextRaw, { stiffness: 120, damping: 25 });
+  const yImage = useSpring(yImageRaw, { stiffness: 120, damping: 25 });
+  const yGlow = useSpring(yGlowRaw, { stiffness: 120, damping: 25 });
 
   const {
     badgeLocation,
@@ -72,11 +88,15 @@ export default function HeroSection() {
 
   return (
     <div
+      ref={containerRef}
       className="relative w-full flex items-center justify-center overflow-x-hidden py-14 md:py-20"
       aria-label="Introduction and developer skills overview"
     >
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 w-full flex flex-col md:flex-row items-center justify-between gap-10 md:gap-12">
-        <div className="flex-1 space-y-5 md:space-y-6 animate-in fade-in slide-in-from-left duration-700 z-10 text-center md:text-left flex flex-col items-center md:items-start">
+        <motion.div
+          style={{ y: yText, opacity }}
+          className="flex-1 space-y-5 md:space-y-6 animate-in fade-in slide-in-from-left duration-700 z-10 text-center md:text-left flex flex-col items-center md:items-start will-change-transform"
+        >
           <Badge
             variant="secondary"
             className="rounded-full px-3.5 py-1 text-xs bg-secondary/50 border-primary/20 text-primary flex w-fit items-center gap-1.5"
@@ -137,10 +157,16 @@ export default function HeroSection() {
               </button>
             </NoiseBackground>
           </div>
-        </div>
+        </motion.div>
 
-        <div className="flex-1 relative animate-in fade-in zoom-in duration-1000 flex justify-center w-full max-w-[280px] sm:max-w-[340px] md:max-w-none">
-          <div className="absolute inset-0 bg-primary/20 rounded-full blur-[60px] md:blur-3xl opacity-40" />
+        <motion.div
+          style={{ y: yImage, opacity }}
+          className="flex-1 relative animate-in fade-in zoom-in duration-1000 flex justify-center w-full max-w-[280px] sm:max-w-[340px] md:max-w-none will-change-transform"
+        >
+          <motion.div
+            style={{ y: yGlow }}
+            className="absolute inset-0 bg-primary/20 rounded-full blur-[60px] md:blur-3xl opacity-40"
+          />
 
           {/* Main Image Container with subtle float */}
           <motion.div
@@ -216,7 +242,7 @@ export default function HeroSection() {
               </p>
             </motion.div>
           </motion.div>
-        </div>
+        </motion.div>
       </div>
     </div>
   );

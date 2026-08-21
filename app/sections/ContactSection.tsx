@@ -1,23 +1,45 @@
 "use client";
 
-import React from "react";
+import React, { useRef } from "react";
 import { Mail, Phone, MapPin } from "lucide-react";
 import { FaLinkedin } from "react-icons/fa";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 import portfolioData from "@/data/portfolio-data.json";
 
 export default function ContactSection() {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start end", "end start"],
+  });
+
+  const yHeaderRaw = useTransform(scrollYProgress, [0, 1], [20, -20]);
+  const yFormRaw = useTransform(scrollYProgress, [0, 1], [25, -25]);
+  const yInfoRaw = useTransform(scrollYProgress, [0, 1], [-20, 20]);
+  const opacity = useTransform(scrollYProgress, [0, 0.22, 0.9, 1], [0, 1, 1, 0.3]);
+
+  const yHeader = useSpring(yHeaderRaw, { stiffness: 100, damping: 25 });
+  const yForm = useSpring(yFormRaw, { stiffness: 100, damping: 25 });
+  const yInfo = useSpring(yInfoRaw, { stiffness: 100, damping: 25 });
+
   const { heading, description, formAction, contactInfo, socialLinks, footer } =
     portfolioData.contactSectionData;
   const { location } = portfolioData.personalInfo;
 
   return (
-    <div className="py-10 md:py-14 px-5 sm:px-8 lg:px-12 bg-background transition-colors duration-300">
+    <div
+      ref={containerRef}
+      className="py-10 md:py-14 px-5 sm:px-8 lg:px-12 bg-background transition-colors duration-300 overflow-hidden"
+    >
       <div className="max-w-4xl mx-auto">
         {/* Centered Section Header */}
-        <div className="text-center space-y-3 mb-8 max-w-xl mx-auto">
+        <motion.div
+          style={{ y: yHeader, opacity }}
+          className="text-center space-y-3 mb-8 max-w-xl mx-auto will-change-transform"
+        >
           <h2
             id="contact-heading"
             className="text-2xl sm:text-3xl md:text-4xl font-bold leading-tight tracking-tight text-foreground"
@@ -28,12 +50,15 @@ export default function ContactSection() {
           <p className="text-xs sm:text-sm md:text-base text-muted-foreground leading-relaxed">
             {description}
           </p>
-        </div>
+        </motion.div>
 
         {/* Centered 2-Column Content */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10 items-stretch">
           {/* Form Column */}
-          <div className="w-full bg-card/50 border border-border/50 rounded-2xl p-6 sm:p-7 shadow-xs flex flex-col justify-between">
+          <motion.div
+            style={{ y: yForm, opacity }}
+            className="w-full bg-card/50 border border-border/50 rounded-2xl p-6 sm:p-7 shadow-xs flex flex-col justify-between will-change-transform"
+          >
             <form
               action={formAction}
               method="POST"
@@ -88,10 +113,13 @@ export default function ContactSection() {
                 Send Message
               </Button>
             </form>
-          </div>
+          </motion.div>
 
           {/* Contact Details Column */}
-          <div className="w-full flex flex-col justify-between space-y-6 bg-card/50 border border-border/50 rounded-2xl p-6 sm:p-7 shadow-xs">
+          <motion.div
+            style={{ y: yInfo, opacity }}
+            className="w-full flex flex-col justify-between space-y-6 bg-card/50 border border-border/50 rounded-2xl p-6 sm:p-7 shadow-xs will-change-transform"
+          >
             <div className="space-y-6">
               <div>
                 <p className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground font-bold mb-3.5">
@@ -178,7 +206,7 @@ export default function ContactSection() {
                 </div>
               </div>
             </div>
-          </div>
+          </motion.div>
         </div>
 
         {/* Footer */}
