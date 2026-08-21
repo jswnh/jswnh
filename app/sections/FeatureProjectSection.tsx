@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import Image from "next/image";
+import Image, { StaticImageData } from "next/image";
 import { Badge } from "@/components/ui/badge";
 import {
   SiPython,
@@ -20,6 +20,7 @@ import {
 } from "react-icons/si";
 import { Timeline } from "@/components/ui/timeline";
 import { Smartphone, ArrowUpRight, CreditCard } from "lucide-react";
+import { ImageCarousel } from "@/components/ui/carousel";
 import portfolioData from "@/data/portfolio-data.json";
 
 // Import local images statically for Next.js image optimization
@@ -32,7 +33,7 @@ import bogoballersLogin from "@/assets/images/team_creator_or_player_login_scree
 import clinicsLogo from "@/assets/images/clinics.png";
 import gunitLogo from "@/assets/images/gunit.png";
 
-const imageMap: Record<string, any> = {
+const imageMap: Record<string, StaticImageData> = {
   "/assets/images/forkplay-image1.png": forkplayImg1,
   "/assets/images/forkplay-image2.png": forkplayImg2,
   "/assets/images/forkplay-image3.png": forkplayImg3,
@@ -64,90 +65,23 @@ const iconMap: Record<
   CreditCard,
 };
 
-function ExternalLink({
-  href,
-  children,
-  className,
-}: {
-  href?: string;
-  children: React.ReactNode;
-  className?: string;
-}) {
-  if (!href) return <>{children}</>;
-
-  return (
-    <a
-      href={href}
-      target="_blank"
-      rel="noopener noreferrer"
-      className={className}
-    >
-      {children}
-    </a>
-  );
-}
-
 export default function FeatureProjectSection() {
   const { projects } = portfolioData.projectSectionData;
 
   const data = projects.map((project) => {
     // Support both images array and legacy single image field
     const projectImages: string[] = Array.isArray(
-      (project as { images?: string[] }).images
+      (project as { images?: string[] }).images,
     )
       ? (project as { images?: string[] }).images!
       : (project as { image?: string }).image
-      ? [(project as { image?: string }).image!]
-      : [];
+        ? [(project as { image?: string }).image!]
+        : [];
 
-    const renderImages = () => {
-      if (!projectImages || projectImages.length === 0) return null;
-
-      // Responsive compact grid classes based on image count
-      const gridClass =
-        projectImages.length === 1
-          ? "grid grid-cols-1 w-full max-w-xs sm:max-w-sm md:max-w-md"
-          : projectImages.length === 2
-          ? "grid grid-cols-2 gap-3 w-full max-w-sm sm:max-w-md md:max-w-lg"
-          : "grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 w-full max-w-lg sm:max-w-xl md:max-w-2xl";
-
-      return (
-        <div className={`${gridClass} mt-3`}>
-          {projectImages.map((imgSrc, imgIndex) => {
-            const resolvedSrc = imageMap[imgSrc] || imgSrc;
-            const altText =
-              project.imageAlt || `${project.title} image ${imgIndex + 1}`;
-
-            const imageContent = (
-              <div className="relative aspect-video w-full rounded-xl overflow-hidden border border-border/60 bg-neutral-900 shadow-sm transition-all duration-300 group-hover:border-primary/40 group-hover:shadow-md">
-                <Image
-                  src={resolvedSrc}
-                  alt={altText}
-                  fill
-                  sizes="(max-width: 640px) 160px, (max-width: 1024px) 240px, 320px"
-                  className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
-                />
-                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 dark:group-hover:bg-white/5 transition-colors duration-500" />
-              </div>
-            );
-
-            return project.link ? (
-              <ExternalLink
-                key={imgIndex}
-                href={project.link}
-                className="block group"
-              >
-                {imageContent}
-              </ExternalLink>
-            ) : (
-              <div key={imgIndex} className="group block">
-                {imageContent}
-              </div>
-            );
-          })}
-        </div>
-      );
-    };
+    const resolvedImages = projectImages.map((imgSrc, imgIndex) => ({
+      src: imageMap[imgSrc] || imgSrc,
+      alt: project.imageAlt || `${project.title} screenshot ${imgIndex + 1}`,
+    }));
 
     return {
       title: project.title,
@@ -215,8 +149,10 @@ export default function FeatureProjectSection() {
             {project.description}
           </p>
 
-          {/* Images */}
-          {renderImages()}
+          {/* Image Carousel with hardcoded aspect-ratio and size */}
+          {resolvedImages.length > 0 && (
+            <ImageCarousel images={resolvedImages} link={project.link} />
+          )}
         </div>
       ),
     };

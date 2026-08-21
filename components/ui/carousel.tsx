@@ -1,6 +1,9 @@
 "use client";
 import { IconArrowNarrowRight } from "@tabler/icons-react";
 import { useState, useRef, useId, useEffect } from "react";
+import Image from "next/image";
+import { ChevronLeft, ChevronRight } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 
 interface SlideData {
   title: string;
@@ -20,7 +23,7 @@ const Slide = ({ slide, index, current, handleSlideClick }: SlideProps) => {
 
   const xRef = useRef(0);
   const yRef = useRef(0);
-  const frameRef = useRef<number>();
+  const frameRef = useRef<number | undefined>(undefined);
 
   useEffect(() => {
     const animate = () => {
@@ -208,6 +211,164 @@ export default function Carousel({ slides }: CarouselProps) {
           title="Go to next slide"
           handleClick={handleNextClick}
         />
+      </div>
+    </div>
+  );
+}
+
+export interface ImageCarouselProps {
+  images: Array<{
+    src: any;
+    alt: string;
+  }>;
+  link?: string;
+  className?: string;
+  aspectRatio?: string;
+}
+
+export function ImageCarousel({
+  images,
+  link,
+  className = "w-full max-w-lg",
+  aspectRatio = "aspect-video",
+}: ImageCarouselProps) {
+  const [current, setCurrent] = useState(0);
+
+  if (!images || images.length === 0) return null;
+
+  const handlePrev = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    e.preventDefault();
+    setCurrent((prev) => (prev === 0 ? images.length - 1 : prev - 1));
+  };
+
+  const handleNext = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    e.preventDefault();
+    setCurrent((prev) => (prev === images.length - 1 ? 0 : prev + 1));
+  };
+
+  if (images.length === 1) {
+    const singleImage = (
+      <div
+        className={`relative ${aspectRatio} w-full rounded-xl overflow-hidden border border-border/60 bg-neutral-900 shadow-sm transition-all duration-300 group-hover:border-primary/40 group-hover:shadow-md`}
+      >
+        <Image
+          src={images[0].src}
+          alt={images[0].alt}
+          fill
+          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 480px, 600px"
+          className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
+        />
+        <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 dark:group-hover:bg-white/5 transition-colors duration-500" />
+      </div>
+    );
+
+    return (
+      <div className={`${className} mt-3`}>
+        {link ? (
+          <a
+            href={link}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block group"
+          >
+            {singleImage}
+          </a>
+        ) : (
+          <div className="group block">{singleImage}</div>
+        )}
+      </div>
+    );
+  }
+
+  return (
+    <div className={`${className} mt-3 relative group/carousel select-none`}>
+      <div
+        className={`relative ${aspectRatio} w-full rounded-xl overflow-hidden border border-border/60 bg-neutral-900 shadow-sm transition-all duration-300 group-hover/carousel:border-primary/40 group-hover/carousel:shadow-md`}
+      >
+        <AnimatePresence mode="wait" initial={false}>
+          <motion.div
+            key={current}
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: -20 }}
+            transition={{ duration: 0.25, ease: "easeInOut" }}
+            className="absolute inset-0 w-full h-full"
+          >
+            {link ? (
+              <a
+                href={link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block w-full h-full"
+              >
+                <Image
+                  src={images[current].src}
+                  alt={images[current].alt}
+                  fill
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 480px, 600px"
+                  className="object-cover object-top transition-transform duration-500 group-hover/carousel:scale-105"
+                />
+              </a>
+            ) : (
+              <Image
+                src={images[current].src}
+                alt={images[current].alt}
+                fill
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 480px, 600px"
+                className="object-cover object-top transition-transform duration-500 group-hover/carousel:scale-105"
+              />
+            )}
+          </motion.div>
+        </AnimatePresence>
+
+        <div className="absolute inset-0 bg-black/0 group-hover/carousel:bg-black/10 dark:group-hover/carousel:bg-white/5 transition-colors duration-500 pointer-events-none" />
+
+        {/* Carousel Prev/Next Buttons */}
+        <button
+          type="button"
+          onClick={handlePrev}
+          aria-label="Previous image"
+          className="absolute left-2 top-1/2 -translate-y-1/2 z-20 size-7 sm:size-8 rounded-full bg-background/80 hover:bg-background text-foreground border border-border/60 shadow-md backdrop-blur-md flex items-center justify-center transition-all opacity-80 hover:opacity-100 hover:scale-105 active:scale-95 cursor-pointer"
+        >
+          <ChevronLeft className="size-4" />
+        </button>
+
+        <button
+          type="button"
+          onClick={handleNext}
+          aria-label="Next image"
+          className="absolute right-2 top-1/2 -translate-y-1/2 z-20 size-7 sm:size-8 rounded-full bg-background/80 hover:bg-background text-foreground border border-border/60 shadow-md backdrop-blur-md flex items-center justify-center transition-all opacity-80 hover:opacity-100 hover:scale-105 active:scale-95 cursor-pointer"
+        >
+          <ChevronRight className="size-4" />
+        </button>
+
+        {/* Slide Counter Badge */}
+        <div className="absolute bottom-2.5 right-2.5 z-20 px-2 py-0.5 rounded-full bg-black/70 backdrop-blur-md text-white text-[10px] font-semibold tabular-nums border border-white/10 shadow-sm pointer-events-none">
+          {current + 1} / {images.length}
+        </div>
+
+        {/* Indicator Dots */}
+        <div className="absolute bottom-2.5 left-1/2 -translate-x-1/2 z-20 flex gap-1.5 p-1 rounded-full bg-black/40 backdrop-blur-xs">
+          {images.map((_, dotIdx) => (
+            <button
+              key={dotIdx}
+              type="button"
+              onClick={(e) => {
+                e.stopPropagation();
+                e.preventDefault();
+                setCurrent(dotIdx);
+              }}
+              aria-label={`Go to slide ${dotIdx + 1}`}
+              className={`h-1.5 rounded-full transition-all cursor-pointer ${
+                current === dotIdx
+                  ? "w-4 bg-primary"
+                  : "w-1.5 bg-white/50 hover:bg-white/80"
+              }`}
+            />
+          ))}
+        </div>
       </div>
     </div>
   );
