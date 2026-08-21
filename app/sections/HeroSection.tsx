@@ -127,9 +127,9 @@ export default function HeroSection() {
             </p>
           </div>
 
-          <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto pt-1">
+          <div className="flex flex-col sm:flex-row items-center justify-center md:justify-start gap-4 w-full sm:w-auto pt-1">
             <NoiseBackground
-              containerClassName="w-fit p-1 sm:p-1.5 rounded-full"
+              containerClassName="w-fit mx-auto md:mx-0 p-1 sm:p-1.5 rounded-full"
               gradientColors={[
                 "rgb(110, 86, 207)",
                 "rgb(96, 165, 250)",

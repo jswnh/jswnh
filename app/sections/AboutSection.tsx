@@ -144,8 +144,8 @@ export default function AboutSection() {
           style={{ y: yText, opacity }}
           className="w-full md:w-1/2 space-y-5 text-left will-change-transform"
         >
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-semibold uppercase tracking-wider">
-            <Heart className="size-3.5 text-primary" />
+          <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-primary/10 border border-primary/20 text-primary text-[10px] sm:text-[11px] font-semibold uppercase tracking-wide">
+            <Heart className="size-3 text-primary" />
             {subtitle}
           </div>
 
@@ -165,20 +165,22 @@ export default function AboutSection() {
           </p>
 
           {/* Highlight Badges */}
-          <div className="flex flex-wrap gap-2 pt-1">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 pt-1">
             {highlights.map((item) => (
               <div
                 key={item.label}
-                className="p-2.5 px-3.5 rounded-xl bg-card/50 border border-border/60 flex items-center gap-2.5 shadow-2xs hover:border-primary/30 transition-colors"
+                className="p-2.5 px-3 rounded-xl bg-card/50 border border-border/60 flex items-start sm:items-center gap-2.5 shadow-2xs hover:border-primary/30 transition-colors"
               >
-                <div className="p-1.5 rounded-lg bg-primary/10 shrink-0">
-                  {iconLookup[item.icon] || <Sparkles className="size-3.5 text-primary" />}
+                <div className="p-1.5 rounded-lg bg-primary/10 shrink-0 mt-0.5 sm:mt-0">
+                  {iconLookup[item.icon] || (
+                    <Sparkles className="size-3.5 text-primary" />
+                  )}
                 </div>
-                <div className="min-w-0">
+                <div className="min-w-0 flex-1">
                   <p className="text-[10px] uppercase font-bold text-muted-foreground tracking-wider">
                     {item.label}
                   </p>
-                  <p className="text-xs sm:text-sm font-semibold text-foreground truncate">
+                  <p className="text-xs sm:text-sm font-semibold text-foreground leading-snug break-words">
                     {item.value}
                   </p>
                 </div>
