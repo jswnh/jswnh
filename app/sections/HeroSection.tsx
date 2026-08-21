@@ -1,6 +1,6 @@
-import { Button } from "@/components/ui/button";
+import React, { useState } from "react";
 import { Badge } from "@/components/ui/badge";
-import { Download, MapPin } from "lucide-react";
+import { Download, MapPin, Loader2 } from "lucide-react";
 import Image from "next/image";
 import resumeImage from "@/assets/images/resume.jpg";
 import { SiPython, SiTypescript } from "react-icons/si";
@@ -8,8 +8,12 @@ import { TbBrandCSharp } from "react-icons/tb";
 import { Highlighter } from "@/components/ui/highlighter";
 import { motion, cubicBezier } from "framer-motion";
 import portfolioData from "@/data/portfolio-data.json";
+import { NoiseBackground } from "@/components/ui/noise-background";
+import { confetti } from "@/components/ui/confetti";
 
 export default function HeroSection() {
+  const [isDownloading, setIsDownloading] = useState(false);
+
   const {
     badgeLocation,
     greeting,
@@ -20,6 +24,37 @@ export default function HeroSection() {
     floatingBadges,
   } = portfolioData.heroSectionData;
   const { resumeUrl, name, role } = portfolioData.personalInfo;
+
+  const handleDownloadResume = async (e: React.MouseEvent<HTMLButtonElement>) => {
+    if (isDownloading) return;
+    setIsDownloading(true);
+
+    const target = e.currentTarget;
+    if (target) {
+      const rect = target.getBoundingClientRect();
+      const origin = {
+        x: (rect.left + rect.width / 2) / window.innerWidth,
+        y: (rect.top + rect.height / 2) / window.innerHeight,
+      };
+
+      try {
+        await confetti({
+          particleCount: 80,
+          spread: 70,
+          origin,
+          colors: ["#6e56cf", "#60a5fa", "#a855f7", "#c084fc", "#93c5fd"],
+          zIndex: 9999,
+        });
+      } catch (err) {
+        console.error("Confetti error:", err);
+      }
+    }
+
+    setTimeout(() => {
+      window.open(resumeUrl, "_blank");
+      setIsDownloading(false);
+    }, 700);
+  };
 
   const floatAnimation = (delay: number = 0) => ({
     initial: { y: 0 },
@@ -73,13 +108,34 @@ export default function HeroSection() {
           </div>
 
           <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto pt-1">
-            <Button
-              className="rounded-full px-6 py-2 text-sm font-medium bg-primary text-primary-foreground hover:opacity-90 transition-all active:scale-95 w-full sm:w-auto cursor-pointer shadow-sm"
-              onClick={() => window.open(resumeUrl, "_blank")}
+            <NoiseBackground
+              containerClassName="w-fit p-1 sm:p-1.5 rounded-full"
+              gradientColors={[
+                "rgb(110, 86, 207)",
+                "rgb(96, 165, 250)",
+                "rgb(168, 85, 247)",
+              ]}
+              noiseIntensity={0.15}
+              speed={0.08}
             >
-              <Download className="mr-2 size-4" />
-              {buttons.downloadResume}
-            </Button>
+              <button
+                onClick={handleDownloadResume}
+                disabled={isDownloading}
+                className="flex items-center justify-center gap-2 cursor-pointer rounded-full bg-gradient-to-r from-white via-purple-50/70 to-white px-5 py-2.5 text-xs sm:text-sm font-semibold text-foreground shadow-[0px_2px_0px_0px_rgba(255,255,255,0.9)_inset,0px_1px_3px_0px_rgba(110,86,207,0.15)] transition-all duration-200 active:scale-95 hover:opacity-95 dark:from-[#26174a] dark:via-[#1e133b] dark:to-[#2e1c59] dark:text-purple-100 dark:border-primary/50 dark:shadow-[0px_1px_0px_0px_rgba(168,85,247,0.3)_inset,0px_2px_10px_0px_rgba(110,86,207,0.25)] hover:dark:border-primary/80 hover:dark:from-[#2e1d5a] hover:dark:to-[#37226c] border border-primary/30 disabled:opacity-80"
+              >
+                {isDownloading ? (
+                  <>
+                    <Loader2 className="size-4 animate-spin text-primary" />
+                    <span>Opening Resume...</span>
+                  </>
+                ) : (
+                  <>
+                    <Download className="size-4 text-primary" />
+                    <span>{buttons.downloadResume}</span>
+                  </>
+                )}
+              </button>
+            </NoiseBackground>
           </div>
         </div>
 
