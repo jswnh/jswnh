@@ -1,6 +1,5 @@
 "use client";
 
-import { DockItem, DockNavigation } from "@/components/dock-navigation";
 import {
   Home,
   Code2,
@@ -12,36 +11,33 @@ import {
 } from "lucide-react";
 import { FaLinkedin } from "react-icons/fa";
 import HeroSection from "./sections/HeroSection";
-import Header from "@/components/Header";
 import FeatureProjectSection from "./sections/FeatureProjectSection";
 import SkillSection from "./sections/SkillSection";
 import AchievementSection from "./sections/AchievementSection";
 import CertificationSection from "./sections/CertificationSection";
 import ContactSection from "./sections/ContactSection";
 import LoadingScreen from "@/components/LoadingScreen";
+import { FlickeringGrid } from "@/components/ui/flickering-grid";
+import DockNavigation from "@/components/dock-navigation";
 
 export default function Page() {
-  const navItems: DockItem[] = [
-    { label: "Home", href: "#hero", icon: Home },
-    { label: "Skills", href: "#skills", icon: Cpu },
-    { label: "Projects", href: "#projects", icon: Code2 },
-    { label: "Achievements", href: "#awards", icon: Trophy },
-    { label: "Certifications", href: "#certifications", icon: BadgeCheck },
-    { label: "GitHub", href: "https://github.com/jswnh", icon: Github },
-    {
-      label: "LinkedIn",
-      href: "https://www.linkedin.com/in/hulomjosuan/",
-      icon: FaLinkedin,
-    },
-    { label: "Contact", href: "#contact", icon: Mail },
-  ];
-
   return (
-    <div className="relative scroll-smooth">
+    <div className="relative scroll-smooth overflow-x-hidden min-h-screen">
       <LoadingScreen />
-      <Header />
 
-      <main id="main-content">
+      {/* Top Header Flickering Grid Background with bottom fade */}
+      <div className="absolute top-0 left-0 right-0 z-0 h-64 sm:h-80 md:h-[420px] w-full overflow-hidden pointer-events-none [mask-image:linear-gradient(to_bottom,black_20%,transparent_100%)] [-webkit-mask-image:linear-gradient(to_bottom,black_20%,transparent_100%)]">
+        <FlickeringGrid
+          className="h-full w-full"
+          squareSize={4}
+          gridGap={6}
+          color="#60A5FA"
+          maxOpacity={0.4}
+          flickerChance={0.1}
+        />
+      </div>
+
+      <main id="main-content" className="relative z-10">
         <section id="hero" aria-labelledby="hero-heading">
           <HeroSection />
         </section>
@@ -63,9 +59,7 @@ export default function Page() {
       </main>
 
       <nav aria-label="Site navigation">
-        <div className="fixed bottom-10 left-1/2 -translate-x-1/2 z-50">
-          <DockNavigation groups={[navItems]} />
-        </div>
+        <DockNavigation />
       </nav>
     </div>
   );

@@ -1,6 +1,6 @@
 "use client"
 
-import React, { PropsWithChildren, useRef } from "react"
+import React, { createContext, useContext, useRef, type PropsWithChildren } from "react"
 import { cva, type VariantProps } from "class-variance-authority"
 import {
   motion,
@@ -28,8 +28,18 @@ const DEFAULT_MAGNIFICATION = 60
 const DEFAULT_DISTANCE = 140
 const DEFAULT_DISABLEMAGNIFICATION = false
 
+interface DockContextType {
+  mouseX: MotionValue<number>
+  iconSize: number
+  iconMagnification: number
+  disableMagnification: boolean
+  iconDistance: number
+}
+
+const DockContext = createContext<DockContextType | null>(null)
+
 const dockVariants = cva(
-  "supports-backdrop-blur:bg-white/10 supports-backdrop-blur:dark:bg-black/10 mx-auto mt-8 flex h-[58px] w-max items-center justify-center gap-2 rounded-2xl border p-2 backdrop-blur-md"
+  "supports-backdrop-blur:bg-white/10 supports-backdrop-blur:dark:bg-black/10 mx-auto flex h-[58px] w-max items-center justify-center gap-2 rounded-full border p-2 backdrop-blur-md"
 )
 
 const Dock = React.forwardRef<HTMLDivElement, DockProps>(
@@ -48,39 +58,30 @@ const Dock = React.forwardRef<HTMLDivElement, DockProps>(
   ) => {
     const mouseX = useMotionValue(Infinity)
 
-    const renderChildren = () => {
-      return React.Children.map(children, (child) => {
-        if (
-          React.isValidElement<DockIconProps>(child) &&
-          child.type === DockIcon
-        ) {
-          return React.cloneElement(child, {
-            ...child.props,
-            mouseX: mouseX,
-            size: iconSize,
-            magnification: iconMagnification,
-            disableMagnification: disableMagnification,
-            distance: iconDistance,
-          })
-        }
-        return child
-      })
-    }
-
     return (
-      <motion.div
-        ref={ref}
-        onMouseMove={(e) => mouseX.set(e.pageX)}
-        onMouseLeave={() => mouseX.set(Infinity)}
-        {...props}
-        className={cn(dockVariants({ className }), {
-          "items-start": direction === "top",
-          "items-center": direction === "middle",
-          "items-end": direction === "bottom",
-        })}
+      <DockContext.Provider
+        value={{
+          mouseX,
+          iconSize,
+          iconMagnification,
+          disableMagnification,
+          iconDistance,
+        }}
       >
-        {renderChildren()}
-      </motion.div>
+        <motion.div
+          ref={ref}
+          onMouseMove={(e) => mouseX.set(e.clientX)}
+          onMouseLeave={() => mouseX.set(Infinity)}
+          {...props}
+          className={cn(dockVariants({ className }), {
+            "items-start": direction === "top",
+            "items-center": direction === "middle",
+            "items-end": direction === "bottom",
+          })}
+        >
+          {children}
+        </motion.div>
+      </DockContext.Provider>
     )
   }
 )
@@ -102,17 +103,23 @@ export interface DockIconProps extends Omit<
 }
 
 const DockIcon = ({
-  size = DEFAULT_SIZE,
-  magnification = DEFAULT_MAGNIFICATION,
-  disableMagnification,
-  distance = DEFAULT_DISTANCE,
-  mouseX,
+  size: sizeProp,
+  magnification: magnificationProp,
+  disableMagnification: disableMagnificationProp,
+  distance: distanceProp,
+  mouseX: mouseXProp,
   className,
   children,
   ...props
 }: DockIconProps) => {
+  const context = useContext(DockContext)
+  const size = sizeProp ?? context?.iconSize ?? DEFAULT_SIZE
+  const magnification = magnificationProp ?? context?.iconMagnification ?? DEFAULT_MAGNIFICATION
+  const disableMagnification = disableMagnificationProp ?? context?.disableMagnification ?? DEFAULT_DISABLEMAGNIFICATION
+  const distance = distanceProp ?? context?.iconDistance ?? DEFAULT_DISTANCE
+  const mouseX = mouseXProp ?? context?.mouseX
+
   const ref = useRef<HTMLDivElement>(null)
-  const padding = Math.max(6, size * 0.2)
   const defaultMouseX = useMotionValue(Infinity)
 
   const distanceCalc = useTransform(mouseX ?? defaultMouseX, (val: number) => {
@@ -128,7 +135,19 @@ const DockIcon = ({
     [size, targetSize, size]
   )
 
+  const yTransform = useTransform(
+    distanceCalc,
+    [-distance, 0, distance],
+    [0, -8, 0]
+  )
+
   const scaleSize = useSpring(sizeTransform, {
+    mass: 0.1,
+    stiffness: 150,
+    damping: 12,
+  })
+
+  const y = useSpring(yTransform, {
     mass: 0.1,
     stiffness: 150,
     damping: 12,
@@ -137,7 +156,7 @@ const DockIcon = ({
   return (
     <motion.div
       ref={ref}
-      style={{ width: scaleSize, height: scaleSize, padding }}
+      style={{ width: scaleSize, height: scaleSize, y }}
       className={cn(
         "flex aspect-square cursor-pointer items-center justify-center rounded-full",
         disableMagnification && "hover:bg-muted-foreground transition-colors",
@@ -145,7 +164,9 @@ const DockIcon = ({
       )}
       {...props}
     >
-      <div>{children}</div>
+      <div className="flex size-full items-center justify-center">
+        {children}
+      </div>
     </motion.div>
   )
 }

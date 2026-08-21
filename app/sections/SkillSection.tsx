@@ -1,20 +1,26 @@
 import { IconCloud } from "@/components/ui/icon-cloud";
-import React, { useMemo } from "react";
+import { useMemo } from "react";
 import portfolioData from "@/data/portfolio-data.json";
 
 export default function SkillSection() {
-  const { heading, description, subDescription, highlightedSkills, iconCloudSlugs } =
-    portfolioData.skillSectionData;
+  const {
+    heading,
+    description,
+    subDescription,
+    highlightedSkills,
+    iconCloudSlugs,
+  } = portfolioData.skillSectionData;
 
   const images = useMemo(
-    () => iconCloudSlugs.map((slug) => `https://cdn.simpleicons.org/${slug}/${slug}`),
-    [iconCloudSlugs]
+    () =>
+      iconCloudSlugs.map(
+        (slug) => `https://cdn.simpleicons.org/${slug}/${slug}`,
+      ),
+    [iconCloudSlugs],
   );
 
   return (
-    <div
-      className="max-w-7xl mx-auto py-12 px-6 md:px-16 lg:px-24"
-    >
+    <div className="max-w-7xl mx-auto py-12 px-6 md:px-16 lg:px-24">
       <div className="flex flex-col md:flex-row items-center justify-between gap-12">
         <div className="w-full md:w-1/2 space-y-6 text-left">
           <h2
@@ -22,7 +28,9 @@ export default function SkillSection() {
             className="text-4xl md:text-6xl font-black uppercase tracking-tighter text-foreground leading-none"
           >
             {heading.title} <br />
-            <span className="text-muted-foreground/60">{heading.highlight}</span>
+            <span className="text-muted-foreground/60">
+              {heading.highlight}
+            </span>
           </h2>
           <p className="text-muted-foreground text-base md:text-lg leading-relaxed max-w-md">
             {description}
@@ -31,7 +39,10 @@ export default function SkillSection() {
             {subDescription}
           </p>
 
-          <ul className="flex flex-wrap gap-2 pt-1" aria-label="Highlighted technical skills">
+          <ul
+            className="flex flex-wrap gap-2 pt-1"
+            aria-label="Highlighted technical skills"
+          >
             {highlightedSkills.map((skill) => (
               <li
                 key={skill}
@@ -58,4 +69,3 @@ export default function SkillSection() {
     </div>
   );
 }
-

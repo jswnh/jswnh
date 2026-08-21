@@ -88,8 +88,8 @@
         "role": "Software Developer"
       },
       "availabilityBadge": {
-        "status": "Available for Projects",
-        "subtitle": "Software & Mobile Skills"
+        "status": "Available for",
+        "subtitle": "Full-Stack Projects"
       }
     }
   },
@@ -104,11 +104,11 @@
       "React.js",
       "SQL",
       "C#",
-      ".NET Web API",
-      "Back-End Development",
+      "TypeScript",
       "Python",
-      "PostgreSQL",
-      "Mobile Development"
+      "Back-End Development",
+      "Mobile Development",
+      "Web Development"
     ],
     "allSkills": [
       "React.js",

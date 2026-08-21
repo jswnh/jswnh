@@ -1,26 +1,26 @@
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Download, MessageSquare, MapPin, Code2 } from "lucide-react";
+import { Download, MapPin } from "lucide-react";
 import Image from "next/image";
 import resumeImage from "@/assets/images/resume.jpg";
 import { SiPython, SiTypescript } from "react-icons/si";
 import { TbBrandCSharp } from "react-icons/tb";
 import { Highlighter } from "@/components/ui/highlighter";
 import { motion, cubicBezier } from "framer-motion";
-const floatAnimation = (delay: number = 0) => ({
-  initial: { y: 0 },
-  animate: {
-    y: [-10, 10, -10],
-    transition: {
-      duration: 5,
-      repeat: Infinity,
-      repeatType: "reverse" as const,
-      ease: "easeInOut",
-      delay: delay,
-    },
-  },
-});
+import portfolioData from "@/data/portfolio-data.json";
+
 export default function HeroSection() {
+  const {
+    badgeLocation,
+    greeting,
+    highlightedName,
+    roleTitle,
+    subtitle,
+    buttons,
+    floatingBadges,
+  } = portfolioData.heroSectionData;
+  const { resumeUrl, name, role } = portfolioData.personalInfo;
+
   const floatAnimation = (delay: number = 0) => ({
     initial: { y: 0 },
     animate: {
@@ -28,12 +28,13 @@ export default function HeroSection() {
       transition: {
         duration: 5,
         repeat: Infinity,
-        repeatType: "reverse" as const, // Cast the union type
-        ease: cubicBezier(0.45, 0, 0.55, 1), // This returns a valid Easing function
+        repeatType: "reverse" as const,
+        ease: cubicBezier(0.45, 0, 0.55, 1),
         delay: delay,
       },
     },
   });
+
   return (
     <div
       className="relative min-h-screen w-full flex items-center justify-center overflow-x-hidden py-16 md:py-0"
@@ -46,7 +47,7 @@ export default function HeroSection() {
             className="rounded-full px-4 py-1.5 bg-secondary/50 border-primary/20 text-primary flex w-fit items-center gap-2"
           >
             <MapPin className="size-3" />
-            Tabogon, Cebu
+            {badgeLocation}
           </Badge>
 
           <div className="space-y-4">
@@ -54,36 +55,30 @@ export default function HeroSection() {
               id="hero-heading"
               className="text-4xl sm:text-5xl lg:text-7xl font-bold tracking-tight leading-[1.1]"
             >
-              Hi, I&apos;m{" "}
+              {greeting}{" "}
               <span className="relative inline-block text-foreground">
                 <Highlighter action="box" color="#6e56cf">
-                  Josuan.
+                  {highlightedName}
                 </Highlighter>
               </span>
             </h1>
 
             <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-medium text-primary leading-tight max-w-[90%] md:max-w-none mx-auto md:mx-0">
-              Software Developer | Specialized in Back-End & Server Architecture
-              Skills
+              {roleTitle}
             </p>
 
             <p className="text-muted-foreground text-sm sm:text-base md:text-lg max-w-[500px]">
-              Also experienced in mobile and web development.
+              {subtitle}
             </p>
           </div>
 
           <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
             <Button
-              className="rounded-full px-8 bg-primary text-primary-foreground w-full sm:w-auto"
-              onClick={() =>
-                window.open(
-                  "/assets/pdf/JosuanLeonardoHulom_Resume_FullStackDeveloper.pdf",
-                  "_blank",
-                )
-              }
+              className="rounded-full px-8 bg-primary text-primary-foreground w-full sm:w-auto cursor-pointer"
+              onClick={() => window.open(resumeUrl, "_blank")}
             >
               <Download className="mr-2 size-4" />
-              Download Resume
+              {buttons.downloadResume}
             </Button>
           </div>
         </div>
@@ -99,7 +94,7 @@ export default function HeroSection() {
             <div className="relative h-full w-full rounded-3xl overflow-hidden border border-primary/20 shadow-2xl">
               <Image
                 src={resumeImage}
-                alt="Josuan Leonardo Hulom — Software Developer with back-end, mobile, and web development skills"
+                alt={`${name} — ${role} with back-end, mobile, and web development skills`}
                 fill
                 priority
                 className="object-cover transition-transform duration-500 hover:scale-105"
@@ -113,7 +108,7 @@ export default function HeroSection() {
             >
               <div className="flex flex-col items-center">
                 <span className="text-[8px] sm:text-[10px] font-bold text-primary mb-1.5 uppercase tracking-wider">
-                  Core Skills
+                  {floatingBadges.coreSkillsTitle}
                 </span>
                 <div className="flex gap-1.5 sm:gap-2">
                   <div className="size-5 sm:size-7 flex items-center justify-center bg-white rounded-md border border-slate-200 shadow-sm">
@@ -136,14 +131,14 @@ export default function HeroSection() {
             >
               <div className="flex items-center gap-2 sm:gap-3">
                 <div className="size-6 sm:size-8 bg-primary/20 rounded-lg flex items-center justify-center text-primary font-bold text-[10px] sm:text-xs">
-                  J
+                  {name.charAt(0)}
                 </div>
                 <div>
                   <p className="text-[10px] sm:text-xs font-bold leading-none">
-                    BSIT Graduate
+                    {floatingBadges.educationBadge.degree}
                   </p>
                   <p className="text-[8px] sm:text-[10px] text-muted-foreground mt-0.5 sm:mt-1 whitespace-nowrap">
-                    Software Developer
+                    {floatingBadges.educationBadge.role}
                   </p>
                 </div>
               </div>
@@ -157,11 +152,11 @@ export default function HeroSection() {
               <div className="flex items-center gap-2">
                 <div className="size-1.5 sm:size-2 rounded-full bg-primary animate-pulse" />
                 <p className="text-[10px] sm:text-sm font-medium">
-                  Available for Projects
+                  {floatingBadges.availabilityBadge.status}
                 </p>
               </div>
               <p className="text-[8px] sm:text-[10px] text-muted-foreground mt-0.5 sm:mt-1 ml-3 sm:ml-4 whitespace-nowrap">
-                Software & Mobile Skills
+                {floatingBadges.availabilityBadge.subtitle}
               </p>
             </motion.div>
           </motion.div>
