@@ -23,13 +23,16 @@ import { Smartphone, ArrowUpRight, CreditCard } from "lucide-react";
 import { ImageCarousel } from "@/components/ui/carousel";
 import portfolioData from "@/data/portfolio-data.json";
 
-// Import local images statically for Next.js image optimization
 import forkplayImg1 from "@/assets/images/forkplay-image1.png";
 import forkplayImg2 from "@/assets/images/forkplay-image2.png";
 import forkplayImg3 from "@/assets/images/forkplay-image3.png";
-import dashboardImg from "@/assets/images/dashboardImage.png";
+import capstoneWeb1 from "@/assets/images/capstone/capstone-web1.png";
+import capstoneWeb2 from "@/assets/images/capstone/capstone-web2.png";
+import capstoneWeb3 from "@/assets/images/capstone/capstone-web3.png";
+import gunitWeb1 from "@/assets/images/gunit/gunit-web1.png";
+import gunitWeb2 from "@/assets/images/gunit/gunit-web2.png";
+import capstoneMobile1 from "@/assets/images/capstone/capstone-mobile1.png";
 import evershelfDashboard from "@/assets/images/everyshelf.png";
-import bogoballersLogin from "@/assets/images/team_creator_or_player_login_screen.png";
 import clinicsLogo from "@/assets/images/clinics.png";
 import gunitLogo from "@/assets/images/gunit.png";
 
@@ -40,8 +43,12 @@ const imageMap: Record<string, StaticImageData> = {
   "/assets/images/clinics.png": clinicsLogo,
   "/assets/images/gunit.png": gunitLogo,
   "/assets/images/everyshelf.png": evershelfDashboard,
-  "/assets/images/dashboardImage.png": dashboardImg,
-  "/assets/images/team_creator_or_player_login_screen.png": bogoballersLogin,
+  "/assets/images/capstone/capstone-web1.png": capstoneWeb1,
+  "/assets/images/capstone/capstone-web2.png": capstoneWeb2,
+  "/assets/images/capstone/capstone-web3.png": capstoneWeb3,
+  "/assets/images/capstone/capstone-mobile1.png": capstoneMobile1,
+  "/assets/images/gunit/gunit-web1.png": gunitWeb1,
+  "/assets/images/gunit/gunit-web2.png": gunitWeb2,
 };
 
 const iconMap: Record<

@@ -107,7 +107,11 @@
     "subBio": "I focus on learning new technologies, designing clean database schemas, and building practical, reliable applications.",
     "highlights": [
       { "label": "Origin", "value": "Philippines", "icon": "MapPin" },
-      { "label": "Experience", "value": "Real-World Projects", "icon": "Briefcase" },
+      {
+        "label": "Experience",
+        "value": "Real-World Projects",
+        "icon": "Briefcase"
+      },
       {
         "label": "Education",
         "value": "Bachelor of Science in Information Technology Degree Holder",
@@ -235,7 +239,11 @@
           { "name": "Offline-First", "icon": "Smartphone", "color": "" }
         ],
         "description": "A personal project showcasing mobile development skills — a minimalist offline inventory POS app built to support local businesses. Built with Expo and React Native for reliable day-to-day sales tracking without depending on a constant internet connection.",
-        "images": ["/assets/images/gunit.png"],
+        "images": [
+          "/assets/images/gunit.png",
+          "/assets/images/gunit/gunit-web1.png",
+          "/assets/images/gunit/gunit-web2.png"
+        ],
         "imageAlt": "Gunit — offline inventory POS mobile app built with Expo and React Native"
       },
       {
@@ -262,7 +270,8 @@
           { "name": "SQLAlchemy", "icon": "SiPostgresql", "color": "#336791" }
         ],
         "description": "Built the backend for a league management system as part of an academic project. Implemented basic role-based access control (RBAC) to manage user permissions and improve data organization and security.",
-        "images": []
+        "images": [],
+        "url": "https://github.com/jswnh/bogoballers-server"
       },
       {
         "id": "bogoballers-web",
@@ -274,8 +283,13 @@
           { "name": "Shadcnui", "icon": "SiShadcnui", "color": "" }
         ],
         "description": "Developed a web-based dashboard for managing league data. Focused on building reusable UI components and implementing features such as match scheduling.",
-        "images": ["/assets/images/dashboardImage.png"],
-        "imageAlt": "BogoBallers Web Dashboard Preview"
+        "images": [
+          "/assets/images/capstone/capstone-web1.png",
+          "/assets/images/capstone/capstone-web2.png",
+          "/assets/images/capstone/capstone-web3.png"
+        ],
+        "imageAlt": "BogoBallers Web Dashboard Preview",
+        "link": "https://github.com/jswnh/bogoballers-admin"
       },
       {
         "id": "bogoballers-mobile",
@@ -286,8 +300,9 @@
           { "name": "Dart", "icon": "SiDart", "color": "#02569B" }
         ],
         "description": "Created a mobile application prototype focused on displaying league and match information. Practiced integrating backend APIs and building responsive layouts.",
-        "images": ["/assets/images/team_creator_or_player_login_screen.png"],
-        "imageAlt": "BogoBallers Mobile App Interface"
+        "images": ["/assets/images/capstone/capstone-mobile1.png"],
+        "imageAlt": "BogoBallers Mobile App Interface",
+        "link": "https://github.com/jswnh/bogoballers"
       }
     ]
   },
