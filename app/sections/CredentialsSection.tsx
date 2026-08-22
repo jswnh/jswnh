@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useRef } from "react";
+import Image from "next/image";
 import {
   Trophy,
   Award,
@@ -12,6 +13,7 @@ import {
   Medal,
 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
+import { BorderBeam } from "@/components/ui/border-beam";
 import { motion, AnimatePresence, useScroll, useTransform, useSpring } from "framer-motion";
 import portfolioData from "@/data/portfolio-data.json";
 
@@ -27,6 +29,7 @@ interface CredentialItem {
   tags: string[];
   year: string;
   link?: string;
+  image?: string;
   credentialId?: string;
 }
 
@@ -227,7 +230,7 @@ export default function CredentialsSection() {
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 will-change-transform"
         >
           <AnimatePresence mode="popLayout">
-            {filteredItems.map((item) => (
+            {filteredItems.map((item, idx) => (
               <motion.div
                 key={item.id}
                 layout
@@ -237,6 +240,15 @@ export default function CredentialsSection() {
                 transition={{ duration: 0.25 }}
                 className="group relative bg-card/60 backdrop-blur-md border border-border/60 hover:border-primary/40 rounded-2xl p-5 shadow-xs hover:shadow-lg hover:shadow-primary/5 transition-all duration-300 flex flex-col justify-between overflow-hidden"
               >
+                <BorderBeam
+                  size={80}
+                  duration={8}
+                  delay={(idx % 3) * 2}
+                  colorFrom="#60A5FA"
+                  colorTo="#a855f7"
+                  borderWidth={1.5}
+                  borderRadius={16}
+                />
                 {/* Subtle top glow */}
                 <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full blur-2xl pointer-events-none group-hover:bg-primary/10 transition-colors" />
 
@@ -270,6 +282,26 @@ export default function CredentialsSection() {
                       {item.description}
                     </p>
                   </div>
+
+                  {/* Award / Certificate Image Preview (if present) */}
+                  {item.image && (
+                    <a
+                      href={item.image}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="relative aspect-video w-full rounded-xl overflow-hidden border border-border/60 bg-neutral-900 shadow-sm block group/img mt-3 cursor-pointer"
+                      title="Open award / certificate in new tab"
+                    >
+                      <Image
+                        src={item.image}
+                        alt={item.title}
+                        fill
+                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 320px, 400px"
+                        className="object-cover object-center transition-transform duration-500 group-hover/img:scale-105"
+                      />
+                      <div className="absolute inset-0 bg-black/0 group-hover/img:bg-black/10 dark:group-hover/img:bg-white/5 transition-colors" />
+                    </a>
+                  )}
                 </div>
 
                 {/* Card Footer */}
@@ -300,6 +332,17 @@ export default function CredentialsSection() {
                       aria-label={`Verify ${item.title}`}
                     >
                       <span>Verify</span>
+                      <ArrowUpRight className="size-3.5 transition-transform group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5" />
+                    </a>
+                  ) : item.image ? (
+                    <a
+                      href={item.image}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1 text-[11px] font-semibold text-primary hover:text-primary/80 transition-colors shrink-0 group/link"
+                      aria-label={`View ${item.title} certificate`}
+                    >
+                      <span>View</span>
                       <ArrowUpRight className="size-3.5 transition-transform group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5" />
                     </a>
                   ) : (

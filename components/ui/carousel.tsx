@@ -226,6 +226,12 @@ export interface ImageCarouselProps {
   aspectRatio?: string;
 }
 
+const getImageSrc = (src: any): string => {
+  if (typeof src === "string") return src;
+  if (src && typeof src === "object" && "src" in src) return src.src;
+  return "";
+};
+
 export function ImageCarousel({
   images,
   link,
@@ -249,6 +255,7 @@ export function ImageCarousel({
   };
 
   if (images.length === 1) {
+    const singleImageSrc = getImageSrc(images[0].src);
     const singleImage = (
       <div
         className={`relative ${aspectRatio} w-full rounded-xl overflow-hidden border border-border/60 bg-neutral-900 shadow-sm transition-all duration-300 group-hover:border-primary/40 group-hover:shadow-md`}
@@ -266,12 +273,13 @@ export function ImageCarousel({
 
     return (
       <div className={`${className} mt-3`}>
-        {link ? (
+        {singleImageSrc ? (
           <a
-            href={link}
+            href={singleImageSrc}
             target="_blank"
             rel="noopener noreferrer"
-            className="block group"
+            className="block group cursor-pointer"
+            title="Open image in new tab"
           >
             {singleImage}
           </a>
@@ -281,6 +289,8 @@ export function ImageCarousel({
       </div>
     );
   }
+
+  const currentImageSrc = getImageSrc(images[current].src);
 
   return (
     <div className={`${className} mt-3 relative group/carousel select-none`}>
@@ -296,12 +306,13 @@ export function ImageCarousel({
             transition={{ duration: 0.25, ease: "easeInOut" }}
             className="absolute inset-0 w-full h-full"
           >
-            {link ? (
+            {currentImageSrc ? (
               <a
-                href={link}
+                href={currentImageSrc}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="block w-full h-full"
+                className="block w-full h-full cursor-pointer"
+                title="Open image in new tab"
               >
                 <Image
                   src={images[current].src}
