@@ -1,6 +1,5 @@
 "use client";
 import { useScroll, useTransform, motion } from "motion/react";
-import { ArrowUpRight } from "lucide-react";
 import React, { useEffect, useRef, useState } from "react";
 
 export interface TimelineEntry {
@@ -11,30 +10,13 @@ export interface TimelineEntry {
 
 function TimelineTitle({
   title,
-  link,
   className,
 }: {
   title: string;
   link?: string;
   className: string;
 }) {
-  if (!link) {
-    return <h3 className={className}>{title}</h3>;
-  }
-
-  return (
-    <h3 className={className}>
-      <a
-        href={link}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="inline-flex items-center gap-1.5 hover:text-primary transition-colors group"
-      >
-        {title}
-        <ArrowUpRight className="size-4 shrink-0 opacity-70 group-hover:opacity-100" />
-      </a>
-    </h3>
-  );
+  return <h3 className={className}>{title}</h3>;
 }
 
 export const Timeline = ({ data }: { data: TimelineEntry[] }) => {

@@ -49,11 +49,11 @@ export default function Page() {
           <section id="skills" aria-labelledby="skills-heading">
             <SkillSection />
           </section>
-          <section id="projects" aria-labelledby="projects-heading">
-            <FeatureProjectSection />
-          </section>
           <section id="credentials" aria-labelledby="credentials-heading">
             <CredentialsSection />
+          </section>
+          <section id="projects" aria-labelledby="projects-heading">
+            <FeatureProjectSection />
           </section>
           <section id="contact" aria-labelledby="contact-heading">
             <ContactSection />

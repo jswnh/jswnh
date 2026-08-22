@@ -64,37 +64,14 @@ export const TracingBeam = ({
     },
   );
 
+  const beamPath = `M 12 0 V ${svgHeight * 0.16} l -8 16 V ${svgHeight * 0.28} l 8 16 V ${svgHeight * 0.46} l -8 16 V ${svgHeight * 0.58} l 8 16 V ${svgHeight * 0.76} l -8 16 V ${svgHeight * 0.88} l 8 16 V ${svgHeight}`;
+
   return (
     <motion.div
       ref={ref}
       className={cn("relative mx-auto h-full w-full max-w-6xl px-4 sm:px-6 md:px-8", className)}
     >
-      <div className="absolute top-3 -right-2 sm:-right-6 md:-right-10 lg:-right-14 flex flex-col items-center z-30 pointer-events-none w-6">
-        <motion.div
-          transition={{
-            duration: 0.2,
-            delay: 0.5,
-          }}
-          animate={{
-            boxShadow:
-              scrollYProgress.get() > 0
-                ? "none"
-                : "rgba(110, 86, 207, 0.35) 0px 3px 8px",
-          }}
-          className="border-border/60 flex h-3.5 w-3.5 sm:h-4 sm:w-4 items-center justify-center rounded-full border shadow-xs bg-background/80 backdrop-blur-md shrink-0"
-        >
-          <motion.div
-            transition={{
-              duration: 0.2,
-              delay: 0.5,
-            }}
-            animate={{
-              backgroundColor: scrollYProgress.get() > 0 ? "#6e56cf" : "#60A5FA",
-              borderColor: scrollYProgress.get() > 0 ? "#a855f7" : "#3b82f6",
-            }}
-            className="h-1.5 w-1.5 sm:h-2 sm:w-2 rounded-full border border-primary/30 bg-primary"
-          />
-        </motion.div>
+      <div className="absolute top-0 -right-2 sm:-right-6 md:-right-10 lg:-right-14 flex flex-col items-center z-30 pointer-events-none w-6">
         <svg
           viewBox={`0 0 24 ${svgHeight}`}
           width="24"
@@ -103,7 +80,7 @@ export const TracingBeam = ({
           aria-hidden="true"
         >
           <motion.path
-            d={`M 12 0 V -36 l -8 24 V ${svgHeight * 0.8} l 8 24 V ${svgHeight}`}
+            d={beamPath}
             fill="none"
             stroke="currentColor"
             className="text-neutral-300/40 dark:text-neutral-700/40"
@@ -113,7 +90,7 @@ export const TracingBeam = ({
             }}
           />
           <motion.path
-            d={`M 12 0 V -36 l -8 24 V ${svgHeight * 0.8} l 8 24 V ${svgHeight}`}
+            d={beamPath}
             fill="none"
             stroke="url(#gradient)"
             strokeWidth="1.5"

@@ -137,7 +137,7 @@ export default function CredentialsSection() {
           <div className="inline-flex p-1.5 rounded-full bg-card border border-border shadow-xs gap-1">
             <button
               onClick={() => setActiveTab("all")}
-              className={`relative px-4 py-1.5 rounded-full text-xs font-semibold transition-colors cursor-pointer ${
+              className={`relative px-3.5 py-1.5 rounded-full text-xs font-semibold transition-colors cursor-pointer flex items-center gap-1.5 ${
                 activeTab === "all"
                   ? "text-primary-foreground"
                   : "text-muted-foreground hover:text-foreground"
@@ -150,12 +150,21 @@ export default function CredentialsSection() {
                   transition={{ type: "spring", stiffness: 400, damping: 30 }}
                 />
               )}
-              <span className="relative z-10">All ({allItems.length})</span>
+              <span className="relative z-10">All</span>
+              <span
+                className={`relative z-10 text-[10px] font-bold px-1.5 py-0.5 rounded-full leading-none tabular-nums transition-colors ${
+                  activeTab === "all"
+                    ? "bg-primary-foreground/20 text-primary-foreground"
+                    : "bg-muted text-muted-foreground"
+                }`}
+              >
+                {allItems.length}
+              </span>
             </button>
 
             <button
               onClick={() => setActiveTab("awards")}
-              className={`relative px-4 py-1.5 rounded-full text-xs font-semibold transition-colors cursor-pointer ${
+              className={`relative px-3.5 py-1.5 rounded-full text-xs font-semibold transition-colors cursor-pointer flex items-center gap-1.5 ${
                 activeTab === "awards"
                   ? "text-primary-foreground"
                   : "text-muted-foreground hover:text-foreground"
@@ -168,15 +177,22 @@ export default function CredentialsSection() {
                   transition={{ type: "spring", stiffness: 400, damping: 30 }}
                 />
               )}
-              <span className="relative z-10 flex items-center gap-1.5">
-                <Trophy className="size-3" />
-                Awards ({achievements.length})
+              <Trophy className="size-3 relative z-10 shrink-0" />
+              <span className="relative z-10">Awards</span>
+              <span
+                className={`relative z-10 text-[10px] font-bold px-1.5 py-0.5 rounded-full leading-none tabular-nums transition-colors ${
+                  activeTab === "awards"
+                    ? "bg-primary-foreground/20 text-primary-foreground"
+                    : "bg-muted text-muted-foreground"
+                }`}
+              >
+                {achievements.length}
               </span>
             </button>
 
             <button
               onClick={() => setActiveTab("certifications")}
-              className={`relative px-4 py-1.5 rounded-full text-xs font-semibold transition-colors cursor-pointer ${
+              className={`relative px-3.5 py-1.5 rounded-full text-xs font-semibold transition-colors cursor-pointer flex items-center gap-1.5 ${
                 activeTab === "certifications"
                   ? "text-primary-foreground"
                   : "text-muted-foreground hover:text-foreground"
@@ -189,9 +205,16 @@ export default function CredentialsSection() {
                   transition={{ type: "spring", stiffness: 400, damping: 30 }}
                 />
               )}
-              <span className="relative z-10 flex items-center gap-1.5">
-                <ShieldCheck className="size-3" />
-                Certifications ({certifications.length})
+              <ShieldCheck className="size-3 relative z-10 shrink-0" />
+              <span className="relative z-10">Certifications</span>
+              <span
+                className={`relative z-10 text-[10px] font-bold px-1.5 py-0.5 rounded-full leading-none tabular-nums transition-colors ${
+                  activeTab === "certifications"
+                    ? "bg-primary-foreground/20 text-primary-foreground"
+                    : "bg-muted text-muted-foreground"
+                }`}
+              >
+                {certifications.length}
               </span>
             </button>
           </div>
