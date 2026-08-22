@@ -18,6 +18,7 @@ import CredentialsSection from "./sections/CredentialsSection";
 import ContactSection from "./sections/ContactSection";
 import LoadingScreen from "@/components/LoadingScreen";
 import { FlickeringGrid } from "@/components/ui/flickering-grid";
+import { TracingBeam } from "@/components/ui/tracing-beam";
 import DockNavigation from "@/components/dock-navigation";
 
 export default function Page() {
@@ -37,26 +38,28 @@ export default function Page() {
         />
       </div>
 
-      <main id="main-content" className="relative z-10">
-        <section id="hero" aria-labelledby="hero-heading">
-          <HeroSection />
-        </section>
-        <section id="about" aria-labelledby="about-heading">
-          <AboutSection />
-        </section>
-        <section id="skills" aria-labelledby="skills-heading">
-          <SkillSection />
-        </section>
-        <section id="projects" aria-labelledby="projects-heading">
-          <FeatureProjectSection />
-        </section>
-        <section id="credentials" aria-labelledby="credentials-heading">
-          <CredentialsSection />
-        </section>
-        <section id="contact" aria-labelledby="contact-heading">
-          <ContactSection />
-        </section>
-      </main>
+      <TracingBeam className="relative z-10">
+        <main id="main-content">
+          <section id="hero" aria-labelledby="hero-heading">
+            <HeroSection />
+          </section>
+          <section id="about" aria-labelledby="about-heading">
+            <AboutSection />
+          </section>
+          <section id="skills" aria-labelledby="skills-heading">
+            <SkillSection />
+          </section>
+          <section id="projects" aria-labelledby="projects-heading">
+            <FeatureProjectSection />
+          </section>
+          <section id="credentials" aria-labelledby="credentials-heading">
+            <CredentialsSection />
+          </section>
+          <section id="contact" aria-labelledby="contact-heading">
+            <ContactSection />
+          </section>
+        </main>
+      </TracingBeam>
 
       <nav aria-label="Site navigation">
         <DockNavigation />
