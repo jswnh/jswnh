@@ -107,12 +107,12 @@
     "subBio": "I focus on learning new technologies, designing clean database schemas, and building practical, reliable applications.",
     "highlights": [
       { "label": "Origin", "value": "Philippines", "icon": "MapPin" },
+      { "label": "Experience", "value": "Real-World Projects", "icon": "Briefcase" },
       {
         "label": "Education",
         "value": "Bachelor of Science in Information Technology Degree Holder",
         "icon": "GraduationCap"
-      },
-      { "label": "Experience", "value": "Real-World Projects", "icon": "Briefcase" }
+      }
     ]
   },
   "skillSectionData": {

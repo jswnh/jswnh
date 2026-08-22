@@ -1,7 +1,13 @@
 "use client";
 
 import React, { useRef, useId } from "react";
-import { MapPin, GraduationCap, Briefcase, Sparkles, Heart } from "lucide-react";
+import {
+  MapPin,
+  GraduationCap,
+  Briefcase,
+  Sparkles,
+  Heart,
+} from "lucide-react";
 import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 import { DottedMap } from "@/components/ui/dotted-map";
 import type { Marker } from "@/components/ui/dotted-map";
@@ -28,22 +34,14 @@ export default function AboutSection() {
   const opacity = useTransform(
     scrollYProgress,
     [0, 0.22, 0.78, 1],
-    [0, 1, 1, 0]
+    [0, 1, 1, 0],
   );
 
   const yMap = useSpring(yMapRaw, { stiffness: 100, damping: 25 });
   const yText = useSpring(yTextRaw, { stiffness: 100, damping: 25 });
 
-  const {
-    heading,
-    subtitle,
-    location,
-    lat,
-    lng,
-    bio,
-    subBio,
-    highlights,
-  } = portfolioData.aboutSectionData;
+  const { heading, subtitle, location, lat, lng, bio, subBio, highlights } =
+    portfolioData.aboutSectionData;
 
   const markers: MyMarker[] = [
     {
@@ -153,7 +151,8 @@ export default function AboutSection() {
             id="about-heading"
             className="text-2xl sm:text-3xl md:text-4xl font-bold uppercase tracking-tight text-foreground leading-tight"
           >
-            {heading.title} <span className="text-primary">{heading.highlight}</span>
+            {heading.title}{" "}
+            <span className="text-primary">{heading.highlight}</span>
           </h2>
 
           <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">
@@ -164,28 +163,33 @@ export default function AboutSection() {
             {subBio}
           </p>
 
-          {/* Highlight Badges */}
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 pt-1">
-            {highlights.map((item) => (
-              <div
-                key={item.label}
-                className="p-2.5 px-3 rounded-xl bg-card/50 border border-border/60 flex items-start sm:items-center gap-2.5 shadow-2xs hover:border-primary/30 transition-colors"
-              >
-                <div className="p-1.5 rounded-lg bg-primary/10 shrink-0 mt-0.5 sm:mt-0">
-                  {iconLookup[item.icon] || (
-                    <Sparkles className="size-3.5 text-primary" />
-                  )}
+          {/* Highlight Badges: Origin & Experience on top row, Education spanning full width below */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 pt-1">
+            {highlights.map((item, idx) => {
+              const isEducation = item.label.toLowerCase() === "education";
+              return (
+                <div
+                  key={item.label}
+                  className={`relative overflow-hidden p-2.5 px-3 rounded-xl bg-card/50 border border-border/60 flex items-center gap-2.5 shadow-2xs hover:border-primary/30 transition-colors ${
+                    isEducation ? "sm:col-span-2" : ""
+                  }`}
+                >
+                  <div className="p-1.5 rounded-lg bg-primary/10 shrink-0 relative z-10">
+                    {iconLookup[item.icon] || (
+                      <Sparkles className="size-3.5 text-primary" />
+                    )}
+                  </div>
+                  <div className="min-w-0 flex-1 relative z-10">
+                    <p className="text-[10px] uppercase font-bold text-muted-foreground tracking-wider">
+                      {item.label}
+                    </p>
+                    <p className="text-xs sm:text-sm font-semibold text-foreground leading-snug break-words">
+                      {item.value}
+                    </p>
+                  </div>
                 </div>
-                <div className="min-w-0 flex-1">
-                  <p className="text-[10px] uppercase font-bold text-muted-foreground tracking-wider">
-                    {item.label}
-                  </p>
-                  <p className="text-xs sm:text-sm font-semibold text-foreground leading-snug break-words">
-                    {item.value}
-                  </p>
-                </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
 
           <div className="flex gap-2 pt-1">
