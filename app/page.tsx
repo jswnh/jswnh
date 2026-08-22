@@ -16,7 +16,7 @@ import FeatureProjectSection from "./sections/FeatureProjectSection";
 import SkillSection from "./sections/SkillSection";
 import CredentialsSection from "./sections/CredentialsSection";
 import ContactSection from "./sections/ContactSection";
-import LoadingScreen from "@/components/LoadingScreen";
+import KeyboardLoadingScreen from "@/components/KeyboardLoadingScreen";
 import { FlickeringGrid } from "@/components/ui/flickering-grid";
 import { TracingBeam } from "@/components/ui/tracing-beam";
 import DockNavigation from "@/components/dock-navigation";
@@ -24,7 +24,7 @@ import DockNavigation from "@/components/dock-navigation";
 export default function Page() {
   return (
     <div className="relative scroll-smooth overflow-x-clip min-h-screen">
-      <LoadingScreen />
+      <KeyboardLoadingScreen />
 
       {/* Top Header Flickering Grid Background with bottom fade */}
       <div className="absolute top-0 left-0 right-0 z-0 h-64 sm:h-80 md:h-[420px] w-full overflow-hidden pointer-events-none [mask-image:linear-gradient(to_bottom,black_20%,transparent_100%)] [-webkit-mask-image:linear-gradient(to_bottom,black_20%,transparent_100%)]">
