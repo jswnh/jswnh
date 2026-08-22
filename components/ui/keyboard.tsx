@@ -474,7 +474,7 @@ const KeystrokePreview = () => {
               damping: 30,
               mass: 0.5,
             }}
-            className="absolute flex items-center justify-center rounded-lg px-4 py-2 font-mono text-2xl font-black text-neutral-700"
+            className="absolute flex items-center justify-center rounded-lg px-4 py-2 font-mono text-2xl font-black text-neutral-700 dark:text-neutral-100"
           >
             <motion.span
               initial={{ opacity: 0, scale: 1.2, filter: "blur(10px)" }}
@@ -526,7 +526,7 @@ export const Keyboard = ({
 
 export const Keypad = () => {
   return (
-    <div className="h-fit w-fit rounded-2xl bg-neutral-200 p-1.5 shadow-xl ring-1 shadow-black/10 ring-black/10 border border-neutral-300">
+    <div className="h-fit w-fit rounded-2xl bg-neutral-200 dark:bg-[#16161a] p-1.5 shadow-xl ring-1 shadow-black/10 dark:shadow-2xl dark:shadow-black/60 ring-black/10 dark:ring-white/10 border border-neutral-300 dark:border-[#27272a] transition-colors duration-200">
       {/* Function Row */}
       <Row>
         <Key
@@ -586,8 +586,8 @@ export const Keypad = () => {
           <span className="mt-1">F12</span>
         </Key>
         <Key containerClassName="rounded-tr-xl" className="rounded-tr-lg">
-          <div className="h-4 w-4 rounded-full bg-gradient-to-b from-neutral-300 via-neutral-200 to-neutral-300 p-px">
-            <div className="h-full w-full rounded-full bg-neutral-100" />
+          <div className="h-4 w-4 rounded-full bg-gradient-to-b from-neutral-300 via-neutral-200 to-neutral-300 dark:from-neutral-700 dark:via-neutral-800 dark:to-neutral-700 p-px">
+            <div className="h-full w-full rounded-full bg-neutral-100 dark:bg-[#18181c]" />
           </div>
         </Key>
       </Row>
@@ -700,7 +700,7 @@ export const Keypad = () => {
               keyCode={`Key${letter}`}
               className={
                 isS
-                  ? "ring-1.5 ring-neutral-400 shadow-[0_0_8px_rgba(200,200,200,0.8),0_0_14px_rgba(150,150,150,0.4)] animate-pulse font-bold"
+                  ? "ring-1.5 ring-neutral-400 dark:ring-primary/60 shadow-[0_0_8px_rgba(200,200,200,0.8),0_0_14px_rgba(150,150,150,0.4)] dark:shadow-[0_0_10px_rgba(96,165,250,0.6),0_0_18px_rgba(168,85,247,0.35)] animate-pulse font-bold text-neutral-900 dark:text-primary"
                   : undefined
               }
               childrenClassName={isS ? "font-bold" : undefined}
@@ -874,15 +874,15 @@ const Key = ({
         onMouseUp={handleMouseUp}
         onMouseLeave={handleMouseLeave}
         className={cn(
-          "flex h-6 w-6 cursor-pointer items-center justify-center rounded-[3.5px] bg-gray-100 shadow-[0px_0px_1px_0px_rgba(0,0,0,0.5),0px_1px_1px_0px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(255,255,255,1)_inset] transition-transform duration-75 active:scale-[0.98]",
+          "flex h-6 w-6 cursor-pointer items-center justify-center rounded-[3.5px] bg-gray-100 dark:bg-[#222226] text-neutral-700 dark:text-neutral-200 shadow-[0px_0px_1px_0px_rgba(0,0,0,0.5),0px_1px_1px_0px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(255,255,255,1)_inset] dark:shadow-[0px_0px_1px_0px_rgba(0,0,0,0.9),0px_1px_2px_0px_rgba(0,0,0,0.6),0px_1px_0px_0px_rgba(255,255,255,0.08)_inset] transition-all duration-75 active:scale-[0.98]",
           isPressed &&
-            "scale-[0.98] bg-gray-100/80 shadow-[0px_0px_1px_0px_rgba(0,0,0,0.5),0px_1px_1px_0px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(255,255,255,0.5)]",
+            "scale-[0.98] bg-gray-100/80 dark:bg-[#18181c] shadow-[0px_0px_1px_0px_rgba(0,0,0,0.5),0px_1px_1px_0px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(255,255,255,0.5)] dark:shadow-[0px_0px_1px_0px_rgba(0,0,0,0.9),0px_1px_0px_0px_rgba(255,255,255,0.04)_inset]",
           className,
         )}
       >
         <div
           className={cn(
-            "flex h-full w-full flex-col items-center justify-center text-[5px] text-neutral-700",
+            "flex h-full w-full flex-col items-center justify-center text-[5px] text-neutral-700 dark:text-neutral-200",
             childrenClassName,
           )}
         >
@@ -936,13 +936,13 @@ const ModifierKey = ({
         onMouseUp={handleMouseUp}
         onMouseLeave={handleMouseLeave}
         className={cn(
-          "flex h-6 w-6 cursor-pointer items-center justify-center rounded-[3.5px] bg-gray-100 shadow-[0px_0px_1px_0px_rgba(0,0,0,0.5),0px_1px_1px_0px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(255,255,255,1)_inset] transition-transform duration-75 active:scale-[0.98]",
+          "flex h-6 w-6 cursor-pointer items-center justify-center rounded-[3.5px] bg-gray-100 dark:bg-[#222226] text-neutral-700 dark:text-neutral-200 shadow-[0px_0px_1px_0px_rgba(0,0,0,0.5),0px_1px_1px_0px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(255,255,255,1)_inset] dark:shadow-[0px_0px_1px_0px_rgba(0,0,0,0.9),0px_1px_2px_0px_rgba(0,0,0,0.6),0px_1px_0px_0px_rgba(255,255,255,0.08)_inset] transition-all duration-75 active:scale-[0.98]",
           isPressed &&
-            "scale-[0.98] bg-gray-100/80 shadow-[0px_0px_1px_0px_rgba(0,0,0,0.5),0px_1px_1px_0px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(255,255,255,0.5)]",
+            "scale-[0.98] bg-gray-100/80 dark:bg-[#18181c] shadow-[0px_0px_1px_0px_rgba(0,0,0,0.5),0px_1px_1px_0px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(255,255,255,0.5)] dark:shadow-[0px_0px_1px_0px_rgba(0,0,0,0.9),0px_1px_0px_0px_rgba(255,255,255,0.04)_inset]",
           className,
         )}
       >
-        <div className="flex h-full w-full flex-col items-start justify-between p-1 text-[5px] text-neutral-700">
+        <div className="flex h-full w-full flex-col items-start justify-between p-1 text-[5px] text-neutral-700 dark:text-neutral-200">
           {children}
         </div>
       </button>

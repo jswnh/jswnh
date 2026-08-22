@@ -318,28 +318,32 @@
         "title": "Outstanding Intern of the Year",
         "description": "Awarded during graduation in May 2026 for demonstrating exceptional technical performance and reliability throughout the internship period.",
         "tags": ["Graduation Award", "Internship", "Excellence"],
-        "year": "Graduation 2026"
+        "year": "Graduation 2026",
+        "image": "/assets/awards-certs/outstandingintern.jpg"
       },
       {
         "number": "02",
         "title": "Full-Stack Developer of the Year",
         "description": "Recognized during graduation in May 2026 for excellence and implementation in end-to-end application development.",
         "tags": ["Graduation Award", "Full-Stack", "Software Development"],
-        "year": "Graduation 2026"
+        "year": "Graduation 2026",
+        "image": "/assets/awards-certs/fullstackdevaward.jpg"
       },
       {
         "number": "03",
         "title": "Best in PC Troubleshooting",
         "description": "Honored during graduation in May 2026 for demonstrating outstanding practical skills in hardware diagnostics and system problem-solving.",
         "tags": ["Graduation Award", "Hardware", "Diagnostics"],
-        "year": "Graduation 2026"
+        "year": "Graduation 2026",
+        "image": "/assets/awards-certs/bestinpctroubleshooting.jpg"
       },
       {
         "number": "04",
         "title": "ISITE National Python Contest",
         "description": "Selected as the official school representative to compete against student developers in a national-level technical tournament — validating Python programming skills and algorithmic problem-solving skills under high-pressure conditions.",
         "tags": ["National Representative", "Python Skills", "Algorithms"],
-        "year": "2025"
+        "year": "2025",
+        "image": "/assets/awards-certs/nationalcontest.png"
       }
     ]
   },

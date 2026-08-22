@@ -64,9 +64,9 @@ export default function KeyboardLoadingScreen() {
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.15 }}
-              className="pointer-events-none select-none inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-neutral-100 border border-neutral-200 text-neutral-700 text-xs sm:text-sm font-medium shadow-xs"
+              className="pointer-events-none select-none inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-neutral-100 dark:bg-neutral-900/90 border border-neutral-200 dark:border-neutral-800 text-neutral-700 dark:text-neutral-200 text-xs sm:text-sm font-medium shadow-xs backdrop-blur-md"
             >
-              <kbd className="inline-flex items-center justify-center size-5 rounded bg-white text-neutral-800 font-mono font-bold text-xs shadow-xs ring-1 ring-neutral-300 animate-pulse">
+              <kbd className="inline-flex items-center justify-center size-5 rounded bg-white dark:bg-neutral-800 text-neutral-800 dark:text-neutral-100 font-mono font-bold text-xs shadow-xs ring-1 ring-neutral-300 dark:ring-neutral-700 animate-pulse">
                 S
               </kbd>
               <span>

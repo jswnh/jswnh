@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useRef } from "react";
-import Image from "next/image";
+import Image, { StaticImageData } from "next/image";
 import {
   Trophy,
   Award,
@@ -11,11 +11,53 @@ import {
   Sparkles,
   GraduationCap,
   Medal,
+  RotateCw,
+  RotateCcw,
+  ChevronLeft,
+  ChevronRight,
+  Image as ImageIcon,
 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
-import { BorderBeam } from "@/components/ui/border-beam";
-import { motion, AnimatePresence, useScroll, useTransform, useSpring } from "framer-motion";
+import {
+  motion,
+  AnimatePresence,
+  useScroll,
+  useTransform,
+  useSpring,
+} from "framer-motion";
 import portfolioData from "@/data/portfolio-data.json";
+
+import outstandingInternImg from "@/assets/awards-certs/outstandingintern.jpg";
+import fullstackDevAwardImg from "@/assets/awards-certs/fullstackdevaward.jpg";
+import bestInPcTroubleshootingImg from "@/assets/awards-certs/bestinpctroubleshooting.jpg";
+import nationalContestImg from "@/assets/awards-certs/nationalcontest.png";
+
+const credentialImageMap: Record<string, StaticImageData> = {
+  "/assets/awards-certs/outstandingintern.jpg": outstandingInternImg,
+  "/assets/awards-certs/fullstackdevaward.jpg": fullstackDevAwardImg,
+  "/assets/awards-certs/bestinpctroubleshooting.jpg":
+    bestInPcTroubleshootingImg,
+  "/assets/awards-certs/nationalcontest.png": nationalContestImg,
+};
+
+const resolveCredentialImage = (
+  src: string | StaticImageData | undefined,
+): string | StaticImageData => {
+  if (!src) return "";
+  if (typeof src === "string" && credentialImageMap[src]) {
+    return credentialImageMap[src];
+  }
+  return src;
+};
+
+const getCredentialImageHref = (
+  src: string | StaticImageData | undefined,
+): string => {
+  if (!src) return "";
+  if (typeof src === "string") return src;
+  if (typeof src === "object" && "src" in src) return src.src;
+  return "";
+};
 
 type CredentialType = "all" | "awards" | "certifications";
 
@@ -30,7 +72,252 @@ interface CredentialItem {
   year: string;
   link?: string;
   image?: string;
+  images?: string[];
   credentialId?: string;
+}
+
+function CredentialCard({
+  item,
+  idx,
+  getIcon,
+  getIconBg,
+}: {
+  item: CredentialItem;
+  idx: number;
+  getIcon: (item: CredentialItem) => React.ReactNode;
+  getIconBg: (item: CredentialItem) => string;
+}) {
+  const [isFlipped, setIsFlipped] = useState(false);
+  const [currentImgIdx, setCurrentImgIdx] = useState(0);
+
+  const rawImagesList: string[] =
+    Array.isArray(item.images) && item.images.length > 0
+      ? item.images
+      : item.image
+        ? [item.image]
+        : [];
+
+  const hasImages = rawImagesList.length > 0;
+
+  const handlePrevImg = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    e.preventDefault();
+    setCurrentImgIdx((prev) =>
+      prev === 0 ? rawImagesList.length - 1 : prev - 1,
+    );
+  };
+
+  const handleNextImg = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    e.preventDefault();
+    setCurrentImgIdx((prev) =>
+      prev === rawImagesList.length - 1 ? 0 : prev + 1,
+    );
+  };
+
+  return (
+    <motion.div
+      layout
+      initial={{ opacity: 0, scale: 0.95, y: 15 }}
+      animate={{ opacity: 1, scale: 1, y: 0 }}
+      exit={{ opacity: 0, scale: 0.95, y: 15 }}
+      transition={{ duration: 0.25 }}
+      className="[perspective:1200px] h-full min-h-[300px]"
+    >
+      <motion.div
+        animate={{ rotateY: isFlipped ? 180 : 0 }}
+        transition={{ duration: 0.6, ease: [0.23, 1, 0.32, 1] }}
+        className="relative w-full h-full [transform-style:preserve-3d]"
+      >
+        {/* FRONT FACE */}
+        <div className="[backface-visibility:hidden] relative bg-card/60 backdrop-blur-md border border-border/60 hover:border-primary/40 rounded-2xl p-5 shadow-xs hover:shadow-lg hover:shadow-primary/5 transition-all duration-300 flex flex-col justify-between overflow-hidden h-full">
+          {/* Subtle top glow */}
+          <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full blur-2xl pointer-events-none group-hover:bg-primary/10 transition-colors" />
+
+          <div className="space-y-3 relative z-10">
+            {/* Card Header */}
+            <div className="flex items-center justify-between gap-2">
+              <div className="flex items-center gap-2.5 min-w-0">
+                <div
+                  className={`p-2 rounded-xl border flex items-center justify-center shrink-0 ${getIconBg(
+                    item,
+                  )}`}
+                >
+                  {getIcon(item)}
+                </div>
+                <span className="text-[11px] font-semibold text-muted-foreground truncate">
+                  {item.issuer ||
+                    (item.type === "award" ? "Award" : "Certification")}
+                </span>
+              </div>
+
+              <span className="text-[10px] font-medium text-muted-foreground bg-secondary/80 px-2 py-0.5 rounded-full shrink-0 tabular-nums border border-border/40">
+                {item.year}
+              </span>
+            </div>
+
+            {/* Title & Description */}
+            <div>
+              <h3 className="text-base font-bold text-foreground group-hover:text-primary transition-colors leading-snug">
+                {item.title}
+              </h3>
+              <p className="text-xs text-muted-foreground mt-2 leading-relaxed line-clamp-3">
+                {item.description}
+              </p>
+            </div>
+          </div>
+
+          {/* Card Footer */}
+          <div className="pt-4 mt-4 border-t border-border/40 flex items-center justify-between gap-3 relative z-10">
+            <div className="flex flex-wrap gap-1.5 flex-1 min-w-0">
+              {item.tags.slice(0, 2).map((tag) => (
+                <Badge
+                  key={tag}
+                  variant="outline"
+                  className="text-[10px] px-2 py-0.5 border-border/50 bg-background/60 font-normal truncate"
+                >
+                  {tag}
+                </Badge>
+              ))}
+              {item.tags.length > 2 && (
+                <span className="text-[9px] text-muted-foreground self-center">
+                  +{item.tags.length - 2}
+                </span>
+              )}
+            </div>
+
+            <div className="flex items-center gap-2 shrink-0">
+              {hasImages && (
+                <button
+                  type="button"
+                  onClick={() => setIsFlipped(true)}
+                  className="inline-flex items-center gap-1 text-[11px] font-semibold text-primary hover:text-primary/80 bg-primary/10 hover:bg-primary/15 border border-primary/20 px-2.5 py-1 rounded-full transition-all cursor-pointer"
+                  title="Flip to view certificate / award image"
+                >
+                  <RotateCw className="size-3" />
+                  <span>View</span>
+                </button>
+              )}
+
+              {item.link ? (
+                <a
+                  href={item.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1 text-[11px] font-semibold text-primary hover:text-primary/80 transition-colors shrink-0 group/link"
+                  aria-label={`Verify ${item.title}`}
+                >
+                  <span>Verify</span>
+                  <ArrowUpRight className="size-3.5 transition-transform group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5" />
+                </a>
+              ) : !hasImages ? (
+                <span className="text-[10px] text-muted-foreground font-medium uppercase tracking-wider shrink-0">
+                  Honored
+                </span>
+              ) : null}
+            </div>
+          </div>
+        </div>
+
+        {/* BACK FACE (Images / Certificate Carousel Preview) */}
+        {hasImages && (
+          <div className="[backface-visibility:hidden] [transform:rotateY(180deg)] absolute inset-0 bg-card/95 backdrop-blur-md border border-border/60 hover:border-primary/40 rounded-2xl p-4 sm:p-5 shadow-lg flex flex-col justify-between overflow-hidden h-full">
+            {/* Back Header */}
+            <div className="flex items-center justify-between gap-2 relative z-10">
+              <div className="flex items-center gap-2 min-w-0">
+                <div className="p-1.5 rounded-lg bg-primary/10 text-primary shrink-0">
+                  <ImageIcon className="size-3.5" />
+                </div>
+                <span className="text-xs font-bold text-foreground truncate">
+                  {item.title}
+                </span>
+              </div>
+
+              <button
+                type="button"
+                onClick={() => setIsFlipped(false)}
+                className="inline-flex items-center gap-1 text-[11px] font-semibold text-muted-foreground hover:text-foreground bg-secondary/80 hover:bg-secondary px-2.5 py-1 rounded-full border border-border/40 transition-colors cursor-pointer shrink-0"
+                title="Flip back to details"
+              >
+                <RotateCcw className="size-3" />
+                <span>Details</span>
+              </button>
+            </div>
+
+            {/* Image / Carousel Display */}
+            <div className="relative aspect-video w-full rounded-xl overflow-hidden border border-border/60 bg-neutral-900 shadow-sm my-auto group/preview select-none">
+              <a
+                href={getCredentialImageHref(
+                  resolveCredentialImage(rawImagesList[currentImgIdx]),
+                )}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block w-full h-full cursor-pointer relative"
+                title="Click to open full-resolution image in new tab"
+              >
+                <Image
+                  src={resolveCredentialImage(rawImagesList[currentImgIdx])}
+                  alt={`${item.title} certificate image ${currentImgIdx + 1}`}
+                  fill
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 380px, 450px"
+                  className="object-cover object-center transition-transform duration-500 group-hover/preview:scale-105"
+                />
+                <div className="absolute inset-0 bg-black/0 group-hover/preview:bg-black/10 dark:group-hover/preview:bg-white/5 transition-colors" />
+              </a>
+
+              {/* Prev / Next controls if multiple images */}
+              {rawImagesList.length > 1 && (
+                <>
+                  <button
+                    type="button"
+                    onClick={handlePrevImg}
+                    aria-label="Previous image"
+                    className="absolute left-2 top-1/2 -translate-y-1/2 z-20 size-7 rounded-full bg-background/80 hover:bg-background text-foreground border border-border/60 shadow-md backdrop-blur-md flex items-center justify-center transition-all opacity-80 hover:opacity-100 hover:scale-105 active:scale-95 cursor-pointer"
+                  >
+                    <ChevronLeft className="size-4" />
+                  </button>
+                  <button
+                    type="button"
+                    onClick={handleNextImg}
+                    aria-label="Next image"
+                    className="absolute right-2 top-1/2 -translate-y-1/2 z-20 size-7 rounded-full bg-background/80 hover:bg-background text-foreground border border-border/60 shadow-md backdrop-blur-md flex items-center justify-center transition-all opacity-80 hover:opacity-100 hover:scale-105 active:scale-95 cursor-pointer"
+                  >
+                    <ChevronRight className="size-4" />
+                  </button>
+                  <div className="absolute bottom-2 right-2 z-20 px-2 py-0.5 rounded-full bg-black/70 backdrop-blur-md text-white text-[10px] font-semibold tabular-nums border border-white/10 shadow-sm pointer-events-none">
+                    {currentImgIdx + 1} / {rawImagesList.length}
+                  </div>
+                </>
+              )}
+            </div>
+
+            {/* Back Footer */}
+            <div className="pt-2 border-t border-border/40 flex items-center justify-between gap-2 relative z-10 text-xs">
+              <a
+                href={getCredentialImageHref(
+                  resolveCredentialImage(rawImagesList[currentImgIdx]),
+                )}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1 text-[11px] font-semibold text-primary hover:text-primary/80 transition-colors group/link"
+              >
+                <span>Open Full Image</span>
+                <ArrowUpRight className="size-3.5 transition-transform group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5" />
+              </a>
+
+              <button
+                type="button"
+                onClick={() => setIsFlipped(false)}
+                className="text-[11px] text-muted-foreground hover:text-foreground font-medium transition-colors cursor-pointer"
+              >
+                Flip Back ↵
+              </button>
+            </div>
+          </div>
+        )}
+      </motion.div>
+    </motion.div>
+  );
 }
 
 export default function CredentialsSection() {
@@ -77,7 +364,10 @@ export default function CredentialsSection() {
       if (item.title.toLowerCase().includes("troubleshooting")) {
         return <Medal className="size-4 text-amber-500" />;
       }
-      if (item.title.toLowerCase().includes("contest") || item.title.toLowerCase().includes("python")) {
+      if (
+        item.title.toLowerCase().includes("contest") ||
+        item.title.toLowerCase().includes("python")
+      ) {
         return <Trophy className="size-4 text-amber-500" />;
       }
       return <GraduationCap className="size-4 text-amber-500" />;
@@ -231,127 +521,13 @@ export default function CredentialsSection() {
         >
           <AnimatePresence mode="popLayout">
             {filteredItems.map((item, idx) => (
-              <motion.div
+              <CredentialCard
                 key={item.id}
-                layout
-                initial={{ opacity: 0, scale: 0.95, y: 15 }}
-                animate={{ opacity: 1, scale: 1, y: 0 }}
-                exit={{ opacity: 0, scale: 0.95, y: 15 }}
-                transition={{ duration: 0.25 }}
-                className="group relative bg-card/60 backdrop-blur-md border border-border/60 hover:border-primary/40 rounded-2xl p-5 shadow-xs hover:shadow-lg hover:shadow-primary/5 transition-all duration-300 flex flex-col justify-between overflow-hidden"
-              >
-                <BorderBeam
-                  size={80}
-                  duration={8}
-                  delay={(idx % 3) * 2}
-                  colorFrom="#60A5FA"
-                  colorTo="#a855f7"
-                  borderWidth={1.5}
-                  borderRadius={16}
-                />
-                {/* Subtle top glow */}
-                <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full blur-2xl pointer-events-none group-hover:bg-primary/10 transition-colors" />
-
-                <div className="space-y-3 relative z-10">
-                  {/* Card Header */}
-                  <div className="flex items-center justify-between gap-2">
-                    <div className="flex items-center gap-2.5 min-w-0">
-                      <div
-                        className={`p-2 rounded-xl border flex items-center justify-center shrink-0 ${getIconBg(
-                          item
-                        )}`}
-                      >
-                        {getIcon(item)}
-                      </div>
-                      <span className="text-[11px] font-semibold text-muted-foreground truncate">
-                        {item.issuer || (item.type === "award" ? "Award" : "Certification")}
-                      </span>
-                    </div>
-
-                    <span className="text-[10px] font-medium text-muted-foreground bg-secondary/80 px-2 py-0.5 rounded-full shrink-0 tabular-nums border border-border/40">
-                      {item.year}
-                    </span>
-                  </div>
-
-                  {/* Title & Description */}
-                  <div>
-                    <h3 className="text-base font-bold text-foreground group-hover:text-primary transition-colors leading-snug">
-                      {item.title}
-                    </h3>
-                    <p className="text-xs text-muted-foreground mt-2 leading-relaxed line-clamp-3">
-                      {item.description}
-                    </p>
-                  </div>
-
-                  {/* Award / Certificate Image Preview (if present) */}
-                  {item.image && (
-                    <a
-                      href={item.image}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="relative aspect-video w-full rounded-xl overflow-hidden border border-border/60 bg-neutral-900 shadow-sm block group/img mt-3 cursor-pointer"
-                      title="Open award / certificate in new tab"
-                    >
-                      <Image
-                        src={item.image}
-                        alt={item.title}
-                        fill
-                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 320px, 400px"
-                        className="object-cover object-center transition-transform duration-500 group-hover/img:scale-105"
-                      />
-                      <div className="absolute inset-0 bg-black/0 group-hover/img:bg-black/10 dark:group-hover/img:bg-white/5 transition-colors" />
-                    </a>
-                  )}
-                </div>
-
-                {/* Card Footer */}
-                <div className="pt-4 mt-4 border-t border-border/40 flex items-center justify-between gap-3 relative z-10">
-                  <div className="flex flex-wrap gap-1.5 flex-1 min-w-0">
-                    {item.tags.slice(0, 2).map((tag) => (
-                      <Badge
-                        key={tag}
-                        variant="outline"
-                        className="text-[10px] px-2 py-0.5 border-border/50 bg-background/60 font-normal truncate"
-                      >
-                        {tag}
-                      </Badge>
-                    ))}
-                    {item.tags.length > 2 && (
-                      <span className="text-[9px] text-muted-foreground self-center">
-                        +{item.tags.length - 2}
-                      </span>
-                    )}
-                  </div>
-
-                  {item.link ? (
-                    <a
-                      href={item.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1 text-[11px] font-semibold text-primary hover:text-primary/80 transition-colors shrink-0 group/link"
-                      aria-label={`Verify ${item.title}`}
-                    >
-                      <span>Verify</span>
-                      <ArrowUpRight className="size-3.5 transition-transform group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5" />
-                    </a>
-                  ) : item.image ? (
-                    <a
-                      href={item.image}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1 text-[11px] font-semibold text-primary hover:text-primary/80 transition-colors shrink-0 group/link"
-                      aria-label={`View ${item.title} certificate`}
-                    >
-                      <span>View</span>
-                      <ArrowUpRight className="size-3.5 transition-transform group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5" />
-                    </a>
-                  ) : (
-                    <span className="text-[10px] text-muted-foreground font-medium uppercase tracking-wider shrink-0">
-                      Honored
-                    </span>
-                  )}
-                </div>
-              </motion.div>
+                item={item}
+                idx={idx}
+                getIcon={getIcon}
+                getIconBg={getIconBg}
+              />
             ))}
           </AnimatePresence>
         </motion.div>
