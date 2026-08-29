@@ -17,9 +17,19 @@ import {
   SiHono,
   SiTypescript,
   SiCloudflare,
+  SiNodedotjs,
+  SiJavascript,
+  SiNpm,
 } from "react-icons/si";
 import { Timeline } from "@/components/ui/timeline";
-import { Smartphone, ArrowUpRight, CreditCard } from "lucide-react";
+import {
+  Smartphone,
+  ArrowUpRight,
+  CreditCard,
+  Terminal,
+  Cpu,
+  FileText,
+} from "lucide-react";
 import { ImageCarousel } from "@/components/ui/carousel";
 import portfolioData from "@/data/portfolio-data.json";
 
@@ -35,6 +45,8 @@ import capstoneMobile1 from "@/assets/images/capstone/capstone-mobile1.png";
 import evershelfDashboard from "@/assets/images/everyshelf.png";
 import clinicsLogo from "@/assets/images/clinics.png";
 import gunitLogo from "@/assets/images/gunit.png";
+import wanotesImage1 from "@/assets/images/wanotes/image-1.png";
+import wanotesImage2 from "@/assets/images/wanotes/image-2.png";
 
 const imageMap: Record<string, StaticImageData> = {
   "/assets/images/forkplay-image1.png": forkplayImg1,
@@ -49,6 +61,8 @@ const imageMap: Record<string, StaticImageData> = {
   "/assets/images/capstone/capstone-mobile1.png": capstoneMobile1,
   "/assets/images/gunit/gunit-web1.png": gunitWeb1,
   "/assets/images/gunit/gunit-web2.png": gunitWeb2,
+  "/assets/images/wanotes/image-1.png": wanotesImage1,
+  "/assets/images/wanotes/image-2.png": wanotesImage2,
 };
 
 const iconMap: Record<
@@ -68,8 +82,14 @@ const iconMap: Record<
   SiDart,
   SiTypescript,
   SiCloudflare,
+  SiNodedotjs,
+  SiJavascript,
+  SiNpm,
   Smartphone,
   CreditCard,
+  Terminal,
+  Cpu,
+  FileText,
 };
 
 export default function FeatureProjectSection() {

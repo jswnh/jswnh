@@ -190,6 +190,24 @@
     },
     "projects": [
       {
+        "id": "wanote-cli",
+        "title": "wanote-cli — Personal Project",
+        "role": "Personal Project",
+        "link": "https://www.npmjs.com/package/wanote-cli?activeTab=readme",
+        "techStack": [
+          { "name": "Node.js", "icon": "SiNodedotjs", "color": "#5FA04E" },
+          { "name": "JavaScript", "icon": "SiJavascript", "color": "#F7DF1E" },
+          { "name": "CLI / Terminal", "icon": "Terminal", "color": "" },
+          { "name": "npm Package", "icon": "SiNpm", "color": "#CB3837" },
+          { "name": "Cross-Platform", "icon": "Cpu", "color": "" }
+        ],
+        "description": "A lightweight, zero-dependency, cross-platform CLI tool for plain-text notes. Built entirely with Node.js built-ins to provide a fast, distraction-free terminal note-taking workflow with multi-line editing, intelligent search suggestions, and configurable storage.",
+        "images": [
+          "/assets/images/wanotes/image-1.png",
+          "/assets/images/wanotes/image-2.png"
+        ]
+      },
+      {
         "id": "forkplay",
         "title": "Forkplay — Personal Project",
         "role": "Personal Project",
