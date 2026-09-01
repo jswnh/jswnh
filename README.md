@@ -1,11 +1,11 @@
 <div align="center">
 
-  # Hi there, I'm Josuan Leonardo Hulom 👋
+# Hi there, I'm Josuan Leonardo Hulom 👋
 
   <h3>Software Developer</h3>
 
   <p align="center">
-    📍 Tabogon, Cebu, Philippines 🇵🇭
+    📍 Cebu, Philippines 🇵🇭
   </p>
 
   <p align="center">
@@ -30,17 +30,7 @@ I focus on learning new technologies, designing clean database schemas, and buil
 
 <div align="center">
 
-  <img src="https://skillicons.dev/icons?i=python,fastapi,cs,dotnet,nodejs,ts,js,react,nextjs,tailwind,postgres,supabase,mongodb,sqlite,docker,git,npm,vscode&perline=9" alt="Tech Stack Icon Cloud" />
-
-  <br /><br />
-
-  <p align="center">
-    <img src="https://img.shields.io/badge/Flutter-02569B?style=for-the-badge&logo=flutter&logoColor=white" alt="Flutter" />
-    <img src="https://img.shields.io/badge/Dart-0175C2?style=for-the-badge&logo=dart&logoColor=white" alt="Dart" />
-    <br />
-    <img src="https://img.shields.io/badge/React_Native-20232A?style=for-the-badge&logo=react&logoColor=61DAFB" alt="React Native" />
-    <img src="https://img.shields.io/badge/Expo-000020?style=for-the-badge&logo=expo&logoColor=white" alt="Expo" />
-  </p>
+  <img src="https://skillicons.dev/icons?i=ts,nextjs,nestjs,react,nodejs,postgres,supabase,python,fastapi,cs,dotnet,mongodb,sqlite,tailwind,flutter,dart,docker,git,npm,vscode&perline=10" alt="Tech Stack Icon Cloud" />
 
 </div>
 
@@ -57,10 +47,10 @@ I focus on learning new technologies, designing clean database schemas, and buil
 
 <div align="center">
 
-  ### 💬 Let's Connect!
+### 💬 Let's Connect!
 
-  [![Portfolio](https://img.shields.io/badge/Portfolio-josuan.cv-3B82F6?style=flat-square&logo=googlechrome&logoColor=white)](https://josuan.cv)
-  [![LinkedIn](https://img.shields.io/badge/LinkedIn-hulomjosuan-0A66C2?style=flat-square&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/hulomjosuan/)
-  [![Email](https://img.shields.io/badge/Email-hulomjosuan%40gmail.com-EA4335?style=flat-square&logo=gmail&logoColor=white)](mailto:hulomjosuan@gmail.com)
+[![Portfolio](https://img.shields.io/badge/Portfolio-josuan.cv-3B82F6?style=flat-square&logo=googlechrome&logoColor=white)](https://josuan.cv)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-hulomjosuan-0A66C2?style=flat-square&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/hulomjosuan/)
+[![Email](https://img.shields.io/badge/Email-hulomjosuan%40gmail.com-EA4335?style=flat-square&logo=gmail&logoColor=white)](mailto:hulomjosuan@gmail.com)
 
 </div>
