@@ -34,16 +34,6 @@ I focus on learning new technologies, designing clean database schemas, and buil
 
 </div>
 
----
-
-### 📊 GitHub Activity
-
-<div align="center">
-  <img height="155em" src="https://github-readme-stats.vercel.app/api?username=jswnh&show_icons=true&theme=tokyonight&hide_border=true&bg_color=0D1117" alt="GitHub Stats" />
-  <img height="155em" src="https://github-readme-stats.vercel.app/api/top-langs/?username=jswnh&layout=compact&theme=tokyonight&hide_border=true&bg_color=0D1117" alt="Top Languages" />
-</div>
-
----
 
 <div align="center">
 
