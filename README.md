@@ -34,6 +34,7 @@ I focus on learning new technologies, designing clean database schemas, and buil
 
 </div>
 
+---
 
 <div align="center">
 
