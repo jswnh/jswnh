@@ -25,7 +25,7 @@ export function CoffeeCup({ size = "lg", className = "" }: LoaderProps) {
       <style>{`
         @keyframes steam {
           0% { transform: translateY(0) translateX(0) scaleX(1); opacity: 0; }
-          30% { opacity: 0.9; }
+          25% { opacity: 0.85; }
           100% { transform: translateY(-200%) translateX(45%) scaleX(1.4); opacity: 0; }
         }
       `}</style>
@@ -38,8 +38,8 @@ export function CoffeeCup({ size = "lg", className = "" }: LoaderProps) {
             key={i}
             className="w-[16%] h-full rounded-full bg-current"
             style={{
-              animation: `steam ${1.6 + i * 0.3}s ease-in-out infinite`,
-              animationDelay: `${i * 0.45}s`,
+              animation: `steam ${1.1 + i * 0.2}s ease-in-out infinite`,
+              animationDelay: `${-0.8 + i * 0.3}s`,
               marginTop: i === 1 ? "-24%" : 0,
             }}
           />

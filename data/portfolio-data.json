@@ -94,6 +94,25 @@
       }
     }
   },
+  "numberStatSectionData": {
+    "stats": [
+      {
+        "id": "stat-1",
+        "value": "7+",
+        "label": "MONTHS EXPERIENCE"
+      },
+      {
+        "id": "stat-2",
+        "value": "8",
+        "label": "PROJECTS"
+      },
+      {
+        "id": "stat-3",
+        "value": "10",
+        "label": "AWARDS & CERTS"
+      }
+    ]
+  },
   "aboutSectionData": {
     "heading": {
       "title": "About",
@@ -103,7 +122,7 @@
     "location": "Tabogon, Cebu, Philippines",
     "lat": 10.93,
     "lng": 124.03,
-    "bio": "I am a Bachelor of Science in Information Technology degree holder from Tabogon, Cebu, Philippines. I've gained hands-on experience building real-world projects across full-stack web, back-end APIs, and mobile apps, pursuing software development as my core focus and craft.",
+    "bio": "With a background starting from a solid internship to a contractual basis, personal projects, and a Bachelor's degree in Information Technology, I am a detail-oriented and results-driven software developer pursuing software development as my core focus and craft, working collaboratively to deliver reliable software that fulfills client needs.",
     "subBio": "I focus on learning new technologies, designing clean database schemas, and building practical, reliable applications.",
     "highlights": [
       { "label": "Origin", "value": "Philippines", "icon": "MapPin" },

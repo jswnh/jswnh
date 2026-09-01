@@ -8,15 +8,15 @@ export default function CoffeeLoadingScreen() {
   const [isVisible, setIsVisible] = useState(true);
 
   useEffect(() => {
-    // Fast load duration (~1.8s) so the steam animation clearly shows, then smoothly exits
+    // Fast load duration: ~1.2s total so the site loads promptly
     const timer = setTimeout(() => {
       setIsVisible(false);
-    }, 1800);
+    }, 1200);
 
     return () => clearTimeout(timer);
   }, []);
 
-  // Allow visitor to skip by pressing Esc, Enter, Space, or clicking anywhere
+  // Allow visitor to skip immediately by pressing Esc, Enter, Space, or clicking anywhere
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape" || e.key === "Enter" || e.key === " ") {
@@ -34,26 +34,25 @@ export default function CoffeeLoadingScreen() {
           initial={{ opacity: 1 }}
           exit={{
             opacity: 0,
-            transition: { duration: 0.45, ease: [0.76, 0, 0.24, 1] },
+            transition: { duration: 0.3, ease: "easeOut" },
           }}
           className="fixed inset-0 z-100 flex items-center justify-center bg-background select-none overflow-hidden cursor-pointer"
           aria-hidden="true"
           onClick={() => setIsVisible(false)}
         >
-          {/* Subtle ambient glow behind the coffee cup matching theme */}
+          {/* Ambient glow behind the coffee cup matching theme */}
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-primary/10 dark:bg-primary/20 rounded-full blur-3xl pointer-events-none" />
 
-          {/* Centered Coffee Cup only, matching light & dark theme of the app */}
+          {/* Centered Coffee Cup: present immediately without any entrance delay */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.85 }}
+            initial={{ opacity: 1, scale: 1 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{
               opacity: 0,
-              scale: 0.9,
-              y: -15,
-              transition: { duration: 0.35, ease: [0.76, 0, 0.24, 1] },
+              scale: 0.92,
+              y: -10,
+              transition: { duration: 0.25, ease: "easeOut" },
             }}
-            transition={{ duration: 0.3, ease: "easeOut" }}
             className="relative z-10 flex items-center justify-center"
           >
             <CoffeeCup

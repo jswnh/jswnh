@@ -6,6 +6,7 @@ import { ModeToggle } from "@/components/mode-toggle";
 import { Separator } from "@/components/ui/separator";
 import {
   IconSmartHome,
+  IconMail,
   IconBrandGithub,
   IconBrandLinkedin,
   IconBrandX,
@@ -13,7 +14,10 @@ import {
 import { Dock, DockIcon } from "./ui/dock";
 
 const DATA = {
-  navbar: [{ href: "#hero", icon: IconSmartHome, label: "Home" }],
+  navbar: [
+    { href: "#hero", icon: IconSmartHome, label: "Home" },
+    { href: "#contact", icon: IconMail, label: "Contact" },
+  ],
   contact: {
     social: {
       GitHub: {
@@ -39,13 +43,27 @@ const DATA = {
 };
 
 export default function DockNavigation() {
-  const handleScrollToTop = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    e.preventDefault();
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
-    window.history.replaceState(null, "", "#hero");
+  const handleNavClick = (
+    e: React.MouseEvent<HTMLAnchorElement>,
+    href: string,
+  ) => {
+    if (href.startsWith("#")) {
+      e.preventDefault();
+      const targetId = href.replace("#", "");
+      if (targetId === "hero") {
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth",
+        });
+        window.history.replaceState(null, "", "#hero");
+      } else {
+        const elem = document.getElementById(targetId);
+        if (elem) {
+          elem.scrollIntoView({ behavior: "smooth" });
+          window.history.replaceState(null, "", href);
+        }
+      }
+    }
   };
 
   return (
@@ -57,8 +75,8 @@ export default function DockNavigation() {
               <Tooltip.Trigger asChild>
                 <a
                   href={item.href}
-                  onClick={handleScrollToTop}
-                  aria-label="Scroll to top"
+                  onClick={(e) => handleNavClick(e, item.href)}
+                  aria-label={item.label}
                   className="flex items-center justify-center"
                 >
                   <DockIcon className="rounded-full cursor-pointer bg-background text-muted-foreground hover:text-foreground hover:bg-muted backdrop-blur-3xl border border-border transition-colors">

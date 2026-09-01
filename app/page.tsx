@@ -11,6 +11,7 @@ import {
 } from "lucide-react";
 import { FaLinkedin } from "react-icons/fa";
 import HeroSection from "./sections/HeroSection";
+import NumberStatSection from "./sections/NumberStatSection";
 import AboutSection from "./sections/AboutSection";
 import FeatureProjectSection from "./sections/FeatureProjectSection";
 import SkillSection from "./sections/SkillSection";
@@ -42,6 +43,9 @@ export default function Page() {
         <main id="main-content">
           <section id="hero" aria-labelledby="hero-heading">
             <HeroSection />
+          </section>
+          <section id="numbers" aria-label="Key statistics">
+            <NumberStatSection />
           </section>
           <section id="about" aria-labelledby="about-heading">
             <AboutSection />
