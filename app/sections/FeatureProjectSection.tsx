@@ -31,6 +31,7 @@ import {
   FileText,
 } from "lucide-react";
 import { ImageCarousel } from "@/components/ui/carousel";
+import { LinkPreview } from "@/components/ui/link-preview";
 import portfolioData from "@/data/portfolio-data.json";
 
 import forkplayImg1 from "@/assets/images/forkplay-image1.png";
@@ -110,9 +111,11 @@ export default function FeatureProjectSection() {
       alt: project.imageAlt || `${project.title} screenshot ${imgIndex + 1}`,
     }));
 
+    const projectLink = project.link || (project as { url?: string }).url;
+
     return {
       title: project.title,
-      link: project.link,
+      link: projectLink,
       content: (
         <div className="group relative bg-card/60 backdrop-blur-md border border-border/60 hover:border-primary/40 rounded-2xl p-5 sm:p-6 shadow-xs hover:shadow-lg hover:shadow-primary/5 transition-all duration-300 space-y-4 overflow-hidden">
           {/* Subtle top-right glow */}
@@ -133,17 +136,15 @@ export default function FeatureProjectSection() {
               )}
             </div>
 
-            {project.link && (
-              <a
-                href={project.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-1 text-[11px] font-semibold text-primary hover:text-primary/80 transition-colors ml-auto group/link"
+            {projectLink && (
+              <LinkPreview
+                url={projectLink}
+                className="inline-flex items-center gap-1 text-[11px] font-semibold text-primary hover:text-primary/80 transition-colors ml-auto group/link cursor-pointer"
                 aria-label={`View ${project.title}`}
               >
                 <span>View Project</span>
                 <ArrowUpRight className="size-3.5 transition-transform group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5" />
-              </a>
+              </LinkPreview>
             )}
           </div>
 

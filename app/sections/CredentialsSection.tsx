@@ -161,7 +161,7 @@ function CredentialCard({
               <h3 className="text-base font-bold text-foreground group-hover:text-primary transition-colors leading-snug">
                 {item.title}
               </h3>
-              <p className="text-xs text-muted-foreground mt-2 leading-relaxed line-clamp-3">
+              <p className="text-xs text-muted-foreground mt-2 leading-relaxed">
                 {item.description}
               </p>
             </div>
