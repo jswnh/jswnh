@@ -38,32 +38,32 @@ export default function NumberStatSection() {
       aria-label="Key statistics"
       className="relative w-full py-4 sm:py-6 md:py-8 overflow-hidden"
     >
-      <div className="max-w-3xl mx-auto px-3 sm:px-4">
-        {/* 3-Column Framed Grid with scroll-linked spring parallax & fade */}
+      <div className="max-w-4xl mx-auto px-2 sm:px-4">
+        {/* 4-Column Framed Grid with scroll-linked spring parallax & fade */}
         <motion.div
           style={{ y, opacity, scale }}
-          className="relative grid grid-cols-3 rounded-xl sm:rounded-2xl overflow-hidden border border-border/60 bg-card/60 dark:bg-card/40 backdrop-blur-md divide-x divide-border/60 shadow-xs hover:shadow-md hover:shadow-primary/5 transition-shadow duration-300"
+          className="relative grid grid-cols-4 rounded-xl sm:rounded-2xl overflow-hidden border border-border/60 bg-card/60 dark:bg-card/40 backdrop-blur-md divide-x divide-border/60 shadow-xs hover:shadow-md hover:shadow-primary/5 transition-shadow duration-300"
         >
           {stats.map((item, index) => (
             <div
               key={item.id || index}
-              className="p-3 sm:p-4 md:py-4 md:px-6 flex flex-col justify-center transition-colors duration-200 hover:bg-primary/[0.03]"
+              className="px-1.5 py-2 sm:p-3 md:py-4 md:px-5 flex flex-col justify-center min-w-0 overflow-hidden transition-colors duration-200 hover:bg-primary/[0.03]"
             >
               {/* Numeric Stat */}
-              <div className="font-sans text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black tracking-tight text-primary leading-none select-none">
+              <div className="font-sans text-lg sm:text-2xl md:text-4xl lg:text-5xl font-black tracking-tight text-primary leading-none select-none truncate">
                 {item.value}
               </div>
 
               {/* Short Uppercase Label */}
-              <h3 className="text-[10px] sm:text-xs font-bold uppercase tracking-wider sm:tracking-widest text-foreground mt-1.5 sm:mt-2.5 leading-snug">
+              <h3 className="text-[7px] sm:text-[9.5px] md:text-xs font-bold uppercase tracking-tight sm:tracking-normal md:tracking-wider text-foreground mt-1 sm:mt-1.5 md:mt-2 leading-tight break-words">
                 {item.label}
               </h3>
             </div>
           ))}
 
-          {/* Animated Border Beam around the statistics card */}
+          {/* Animated Border Beam around the 4-column statistics card */}
           <BorderBeam
-            size={140}
+            size={160}
             duration={8}
             colorFrom="#60A5FA"
             colorTo="#A855F7"

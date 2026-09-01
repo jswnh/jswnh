@@ -103,13 +103,18 @@
       },
       {
         "id": "stat-2",
-        "value": "8",
+        "value": "6",
         "label": "PROJECTS"
       },
       {
         "id": "stat-3",
-        "value": "10",
-        "label": "AWARDS & CERTS"
+        "value": "4",
+        "label": "AWARDS"
+      },
+      {
+        "id": "stat-4",
+        "value": "6",
+        "label": "CERTIFICATIONS"
       }
     ]
   },
@@ -299,47 +304,27 @@
         "imageAlt": "Everyshelf Web Dashboard"
       },
       {
-        "id": "bogoballers-backend",
-        "title": "BogoBallers — Backend",
-        "role": "Backend",
+        "id": "bogoballers",
+        "title": "BogoBallers — Capstone Full Stack Project",
+        "role": "Capstone Full Stack Project",
+        "link": "https://github.com/jswnh/bogoballers-admin",
         "techStack": [
           { "name": "Python (Quart)", "icon": "SiPython", "color": "#3776AB" },
-          { "name": "SQLAlchemy", "icon": "SiPostgresql", "color": "#336791" }
-        ],
-        "description": "Built the backend for a league management system as part of an academic project. Implemented basic role-based access control (RBAC) to manage user permissions and improve data organization and security.",
-        "images": [],
-        "url": "https://github.com/jswnh/bogoballers-server"
-      },
-      {
-        "id": "bogoballers-web",
-        "title": "BogoBallers — Web Dashboard",
-        "role": "Web Dashboard",
-        "techStack": [
+          { "name": "SQLAlchemy", "icon": "SiPostgresql", "color": "#336791" },
           { "name": "React.js", "icon": "SiReact", "color": "#61DAFB" },
           { "name": "Tailwind CSS", "icon": "SiTailwindcss", "color": "" },
-          { "name": "Shadcnui", "icon": "SiShadcnui", "color": "" }
-        ],
-        "description": "Developed a web-based dashboard for managing league data. Focused on building reusable UI components and implementing features such as match scheduling.",
-        "images": [
-          "/assets/images/capstone/capstone-web1.png",
-          "/assets/images/capstone/capstone-web2.png",
-          "/assets/images/capstone/capstone-web3.png"
-        ],
-        "imageAlt": "BogoBallers Web Dashboard Preview",
-        "link": "https://github.com/jswnh/bogoballers-admin"
-      },
-      {
-        "id": "bogoballers-mobile",
-        "title": "BogoBallers — Mobile App",
-        "role": "Mobile App",
-        "techStack": [
+          { "name": "Shadcnui", "icon": "SiShadcnui", "color": "" },
           { "name": "Flutter", "icon": "SiFlutter", "color": "#02569B" },
           { "name": "Dart", "icon": "SiDart", "color": "#02569B" }
         ],
-        "description": "Created a mobile application prototype focused on displaying league and match information. Practiced integrating backend APIs and building responsive layouts.",
-        "images": ["/assets/images/capstone/capstone-mobile1.png"],
-        "imageAlt": "BogoBallers Mobile App Interface",
-        "link": "https://github.com/jswnh/bogoballers"
+        "description": "An end-to-end sports league management system consisting of 3 repositories: a centralized Python (Quart) back-end API server with role-based access control (RBAC), a React.js admin web dashboard for match scheduling and league data management, and a Flutter mobile app for players to track tournament schedules, rosters, and live game updates.",
+        "images": [
+          "/assets/images/capstone/capstone-web1.png",
+          "/assets/images/capstone/capstone-web2.png",
+          "/assets/images/capstone/capstone-web3.png",
+          "/assets/images/capstone/capstone-mobile1.png"
+        ],
+        "imageAlt": "BogoBallers — 3-repository full-stack system: web dashboard, mobile app, and Python backend"
       }
     ]
   },
