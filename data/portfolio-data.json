@@ -103,7 +103,7 @@
       },
       {
         "id": "stat-2",
-        "value": "6",
+        "value": "7",
         "label": "PROJECTS"
       },
       {
@@ -215,6 +215,29 @@
       "highlight": "Projects"
     },
     "projects": [
+      {
+        "id": "locapi",
+        "title": "Locapi — Local-First Desktop API Client",
+        "role": "Personal Project",
+        "link": "https://github.com/jswnh/locapi/releases/tag/v1.0.0-beta",
+        "techStack": [
+          { "name": "Electron", "icon": "SiElectron", "color": "#47848F" },
+          { "name": "TypeScript", "icon": "SiTypescript", "color": "#3178C6" },
+          { "name": "React.js", "icon": "SiReact", "color": "#61DAFB" },
+          { "name": "SQLite (WAL)", "icon": "SiSqlite", "color": "#003B57" },
+          { "name": "REST & GraphQL", "icon": "SiGraphql", "color": "#E10098" },
+          { "name": "Local-First", "icon": "Cpu", "color": "" }
+        ],
+        "description": "A lightweight, local-first desktop API testing client built with embedded SQLite storage and zero telemetry. Supports multi-protocol requests (REST, GraphQL, WebSocket, gRPC) with seamless Postman and OpenAPI import & export.",
+        "images": [
+          "/assets/images/locapi/locapi-1.png",
+          "/assets/images/locapi/locapi-2.png",
+          "/assets/images/locapi/locapi-3.png",
+          "/assets/images/locapi/locapi-4.png",
+          "/assets/images/locapi/locapi-5.png"
+        ],
+        "imageAlt": "Locapi — modern, lightweight, local-first desktop API testing client"
+      },
       {
         "id": "wanote-cli",
         "title": "wanote-cli — Personal Project",

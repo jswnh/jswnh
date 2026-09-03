@@ -20,6 +20,9 @@ import {
   SiNodedotjs,
   SiJavascript,
   SiNpm,
+  SiSqlite,
+  SiGraphql,
+  SiElectron,
 } from "react-icons/si";
 import { Timeline } from "@/components/ui/timeline";
 import {
@@ -48,6 +51,11 @@ import clinicsLogo from "@/assets/images/clinics.png";
 import gunitLogo from "@/assets/images/gunit.png";
 import wanotesImage1 from "@/assets/images/wanotes/image-1.png";
 import wanotesImage2 from "@/assets/images/wanotes/image-2.png";
+import locapiImage1 from "@/assets/images/locapi/locapi-1.png";
+import locapiImage2 from "@/assets/images/locapi/locapi-2.png";
+import locapiImage3 from "@/assets/images/locapi/locapi-3.png";
+import locapiImage4 from "@/assets/images/locapi/locapi-4.png";
+import locapiImage5 from "@/assets/images/locapi/locapi-5.png";
 
 const imageMap: Record<string, StaticImageData> = {
   "/assets/images/forkplay-image1.png": forkplayImg1,
@@ -64,6 +72,11 @@ const imageMap: Record<string, StaticImageData> = {
   "/assets/images/gunit/gunit-web2.png": gunitWeb2,
   "/assets/images/wanotes/image-1.png": wanotesImage1,
   "/assets/images/wanotes/image-2.png": wanotesImage2,
+  "/assets/images/locapi/locapi-1.png": locapiImage1,
+  "/assets/images/locapi/locapi-2.png": locapiImage2,
+  "/assets/images/locapi/locapi-3.png": locapiImage3,
+  "/assets/images/locapi/locapi-4.png": locapiImage4,
+  "/assets/images/locapi/locapi-5.png": locapiImage5,
 };
 
 const iconMap: Record<
@@ -86,6 +99,9 @@ const iconMap: Record<
   SiNodedotjs,
   SiJavascript,
   SiNpm,
+  SiSqlite,
+  SiGraphql,
+  SiElectron,
   Smartphone,
   CreditCard,
   Terminal,
