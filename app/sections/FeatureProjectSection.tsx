@@ -23,6 +23,7 @@ import {
   SiSqlite,
   SiGraphql,
   SiElectron,
+  SiLaravel,
 } from "react-icons/si";
 import { Timeline } from "@/components/ui/timeline";
 import {
@@ -32,6 +33,8 @@ import {
   Terminal,
   Cpu,
   FileText,
+  MapPin,
+  Sparkles,
 } from "lucide-react";
 import { ImageCarousel } from "@/components/ui/carousel";
 import { LinkPreview } from "@/components/ui/link-preview";
@@ -56,6 +59,12 @@ import locapiImage2 from "@/assets/images/locapi/locapi-2.png";
 import locapiImage3 from "@/assets/images/locapi/locapi-3.png";
 import locapiImage4 from "@/assets/images/locapi/locapi-4.png";
 import locapiImage5 from "@/assets/images/locapi/locapi-5.png";
+import yutaImage1 from "@/assets/images/yuta/yuta-img1.png";
+import yutaImage2 from "@/assets/images/yuta/yuta-img2.png";
+import yutaImage3 from "@/assets/images/yuta/yuta-img3.png";
+import yutaImage4 from "@/assets/images/yuta/yuta-img4.png";
+import yutaImage5 from "@/assets/images/yuta/yuta-img5.png";
+import yutaImage6 from "@/assets/images/yuta/yuta-img6.png";
 
 const imageMap: Record<string, StaticImageData> = {
   "/assets/images/forkplay-image1.png": forkplayImg1,
@@ -77,6 +86,12 @@ const imageMap: Record<string, StaticImageData> = {
   "/assets/images/locapi/locapi-3.png": locapiImage3,
   "/assets/images/locapi/locapi-4.png": locapiImage4,
   "/assets/images/locapi/locapi-5.png": locapiImage5,
+  "/assets/images/yuta/yuta-img1.png": yutaImage1,
+  "/assets/images/yuta/yuta-img2.png": yutaImage2,
+  "/assets/images/yuta/yuta-img3.png": yutaImage3,
+  "/assets/images/yuta/yuta-img4.png": yutaImage4,
+  "/assets/images/yuta/yuta-img5.png": yutaImage5,
+  "/assets/images/yuta/yuta-img6.png": yutaImage6,
 };
 
 const iconMap: Record<
@@ -102,11 +117,14 @@ const iconMap: Record<
   SiSqlite,
   SiGraphql,
   SiElectron,
+  SiLaravel,
   Smartphone,
   CreditCard,
   Terminal,
   Cpu,
   FileText,
+  MapPin,
+  Sparkles,
 };
 
 export default function FeatureProjectSection() {

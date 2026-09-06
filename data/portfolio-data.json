@@ -103,7 +103,7 @@
       },
       {
         "id": "stat-2",
-        "value": "7",
+        "value": "8",
         "label": "PROJECTS"
       },
       {
@@ -215,6 +215,30 @@
       "highlight": "Projects"
     },
     "projects": [
+      {
+        "id": "yuta",
+        "title": "Yuta — AI-Powered Land & Property Platform",
+        "role": "Personal Project",
+        "link": "https://yuta.onrender.com",
+        "techStack": [
+          { "name": "Laravel", "icon": "SiLaravel", "color": "#FF2D20" },
+          { "name": "React.js", "icon": "SiReact", "color": "#61DAFB" },
+          { "name": "Cloudflare", "icon": "SiCloudflare", "color": "#F38020" },
+          { "name": "PostgreSQL", "icon": "SiPostgresql", "color": "#336791" },
+          { "name": "GIS Mapping", "icon": "MapPin", "color": "#10B981" },
+          { "name": "AI Valuation", "icon": "Sparkles", "color": "#8B5CF6" }
+        ],
+        "description": "An AI-powered land and property acquisition platform to discover verified residential, agricultural, and commercial plots. Features interactive GIS perimeter mapping, AI listing search, and direct seller negotiation.",
+        "images": [
+          "/assets/images/yuta/yuta-img1.png",
+          "/assets/images/yuta/yuta-img2.png",
+          "/assets/images/yuta/yuta-img3.png",
+          "/assets/images/yuta/yuta-img4.png",
+          "/assets/images/yuta/yuta-img5.png",
+          "/assets/images/yuta/yuta-img6.png"
+        ],
+        "imageAlt": "Yuta — AI-powered precision land and property acquisition platform"
+      },
       {
         "id": "locapi",
         "title": "Locapi — Local-First Desktop API Client",
