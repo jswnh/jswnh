@@ -16,6 +16,7 @@ import {
   ChevronLeft,
   ChevronRight,
   Image as ImageIcon,
+  FileText,
 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import {
@@ -59,6 +60,40 @@ const getCredentialImageHref = (
   return "";
 };
 
+const formatPdfPath = (path?: string): string => {
+  if (!path) return "";
+  const trimmed = path.trim();
+  if (!trimmed) return "";
+  if (trimmed.startsWith("http://") || trimmed.startsWith("https://")) {
+    return trimmed;
+  }
+  const normalized = trimmed.replace(/\\/g, "/").replace(/\/+/g, "/");
+  return normalized.startsWith("/") ? normalized : `/${normalized}`;
+};
+
+const parseDateToTimestamp = (dateStr?: string): number => {
+  if (!dateStr) return 0;
+  const str = dateStr.toLowerCase().trim();
+  const yearMatch = str.match(/\b(20\d\d)\b/);
+  const year = yearMatch ? parseInt(yearMatch[1], 10) : 2000;
+
+  let month = 0;
+  if (str.includes("jan")) month = 0;
+  else if (str.includes("feb")) month = 1;
+  else if (str.includes("mar")) month = 2;
+  else if (str.includes("apr")) month = 3;
+  else if (str.includes("may") || str.includes("graduation")) month = 4;
+  else if (str.includes("jun")) month = 5;
+  else if (str.includes("jul")) month = 6;
+  else if (str.includes("aug")) month = 7;
+  else if (str.includes("sep")) month = 8;
+  else if (str.includes("oct")) month = 9;
+  else if (str.includes("nov")) month = 10;
+  else if (str.includes("dec")) month = 11;
+
+  return new Date(year, month, 1).getTime();
+};
+
 type CredentialType = "all" | "awards" | "certifications";
 
 interface CredentialItem {
@@ -74,6 +109,77 @@ interface CredentialItem {
   image?: string;
   images?: string[];
   credentialId?: string;
+  credlyBadgeId?: string;
+  embedIframe?: string;
+  iframe?: string;
+  pdf?: string;
+}
+
+function getEmbedUrl(item: {
+  embedIframe?: string;
+  iframe?: string;
+  credlyBadgeId?: string;
+}): { url: string; isCredlyBadge: boolean } | null {
+  if (item.credlyBadgeId) {
+    return {
+      url: `https://www.credly.com/embedded_badge/${item.credlyBadgeId}`,
+      isCredlyBadge: true,
+    };
+  }
+
+  const raw = item.embedIframe || item.iframe;
+  if (!raw) return null;
+  const trimmed = raw.trim();
+
+  // If it's a Credly badge UUID directly
+  if (/^[a-f0-9-]{36}$/i.test(trimmed)) {
+    return {
+      url: `https://www.credly.com/embedded_badge/${trimmed}`,
+      isCredlyBadge: true,
+    };
+  }
+
+  // If user pasted Credly script / div snippet: extract data-share-badge-id
+  const badgeIdMatch = trimmed.match(
+    /data-share-badge-id=["']([a-f0-9-]+)["']/i,
+  );
+  if (badgeIdMatch && badgeIdMatch[1]) {
+    return {
+      url: `https://www.credly.com/embedded_badge/${badgeIdMatch[1]}`,
+      isCredlyBadge: true,
+    };
+  }
+
+  // If it's a Credly badge URL (public or embed)
+  const credlyUrlMatch = trimmed.match(
+    /credly\.com\/(?:badges|embedded_badge)\/([a-f0-9-]+)/i,
+  );
+  if (credlyUrlMatch && credlyUrlMatch[1]) {
+    return {
+      url: `https://www.credly.com/embedded_badge/${credlyUrlMatch[1]}`,
+      isCredlyBadge: true,
+    };
+  }
+
+  // If user pasted an iframe tag: extract src="..."
+  const iframeSrcMatch = trimmed.match(/<iframe[^>]+src=["']([^"']+)["']/i);
+  if (iframeSrcMatch && iframeSrcMatch[1]) {
+    const src = iframeSrcMatch[1];
+    return {
+      url: src,
+      isCredlyBadge: src.includes("credly.com/embedded_badge/"),
+    };
+  }
+
+  // If it's a plain URL (e.g. https://www.credly.com/embedded_badge/... or any https://...)
+  if (trimmed.startsWith("http://") || trimmed.startsWith("https://")) {
+    return {
+      url: trimmed,
+      isCredlyBadge: trimmed.includes("credly.com/embedded_badge/"),
+    };
+  }
+
+  return null;
 }
 
 function CredentialCard({
@@ -98,6 +204,9 @@ function CredentialCard({
         : [];
 
   const hasImages = rawImagesList.length > 0;
+  const pdfUrl = formatPdfPath(item.pdf);
+  const hasPdf = Boolean(pdfUrl.length > 0);
+  const hasBackFace = hasImages || hasPdf;
 
   const handlePrevImg = (e: React.MouseEvent) => {
     e.stopPropagation();
@@ -156,14 +265,33 @@ function CredentialCard({
               </span>
             </div>
 
-            {/* Title & Description */}
+            {/* Title & Description or Embed */}
             <div>
               <h3 className="text-base font-bold text-foreground group-hover:text-primary transition-colors leading-snug">
                 {item.title}
               </h3>
-              <p className="text-xs text-muted-foreground mt-2 leading-relaxed">
-                {item.description}
-              </p>
+              {(() => {
+                const embed = getEmbedUrl(item);
+                if (embed) {
+                  return (
+                    <div className="w-[140px] h-[140px] aspect-square mx-auto mt-2 rounded-xl overflow-hidden border border-border/60 bg-card/60 flex items-center justify-center shrink-0">
+                      <iframe
+                        src={embed.url}
+                        title={`${item.title} credential embed`}
+                        className="w-full h-full aspect-square border-0 rounded-xl"
+                        loading="lazy"
+                        scrolling="no"
+                        allowFullScreen
+                      />
+                    </div>
+                  );
+                }
+                return (
+                  <p className="text-xs text-muted-foreground mt-2 leading-relaxed">
+                    {item.description}
+                  </p>
+                );
+              })()}
             </div>
           </div>
 
@@ -187,15 +315,19 @@ function CredentialCard({
             </div>
 
             <div className="flex items-center gap-2 shrink-0">
-              {hasImages && (
+              {hasBackFace && (
                 <button
                   type="button"
                   onClick={() => setIsFlipped(true)}
                   className="inline-flex items-center gap-1 text-[11px] font-semibold text-primary hover:text-primary/80 bg-primary/10 hover:bg-primary/15 border border-primary/20 px-2.5 py-1 rounded-full transition-all cursor-pointer"
-                  title="Flip to view certificate / award image"
+                  title={
+                    hasPdf
+                      ? "Flip to preview PDF"
+                      : "Flip to view certificate / award image"
+                  }
                 >
                   <RotateCw className="size-3" />
-                  <span>View</span>
+                  <span>{hasPdf ? "PDF" : "View"}</span>
                 </button>
               )}
 
@@ -210,7 +342,7 @@ function CredentialCard({
                   <span>Verify</span>
                   <ArrowUpRight className="size-3.5 transition-transform group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5" />
                 </a>
-              ) : !hasImages ? (
+              ) : !hasBackFace ? (
                 <span className="text-[10px] text-muted-foreground font-medium uppercase tracking-wider shrink-0">
                   Honored
                 </span>
@@ -219,14 +351,18 @@ function CredentialCard({
           </div>
         </div>
 
-        {/* BACK FACE (Images / Certificate Carousel Preview) */}
-        {hasImages && (
+        {/* BACK FACE (Images / Certificate Carousel Preview or PDF Preview) */}
+        {hasBackFace && (
           <div className="[backface-visibility:hidden] [transform:rotateY(180deg)] absolute inset-0 bg-card/95 backdrop-blur-md border border-border/60 hover:border-primary/40 rounded-2xl p-4 sm:p-5 shadow-lg flex flex-col justify-between overflow-hidden h-full">
             {/* Back Header */}
             <div className="flex items-center justify-between gap-2 relative z-10">
               <div className="flex items-center gap-2 min-w-0">
                 <div className="p-1.5 rounded-lg bg-primary/10 text-primary shrink-0">
-                  <ImageIcon className="size-3.5" />
+                  {hasPdf ? (
+                    <FileText className="size-3.5" />
+                  ) : (
+                    <ImageIcon className="size-3.5" />
+                  )}
                 </div>
                 <span className="text-xs font-bold text-foreground truncate">
                   {item.title}
@@ -244,66 +380,88 @@ function CredentialCard({
               </button>
             </div>
 
-            {/* Image / Carousel Display */}
-            <div className="relative aspect-video w-full rounded-xl overflow-hidden border border-border/60 bg-neutral-900 shadow-sm my-auto group/preview select-none">
-              <a
-                href={getCredentialImageHref(
-                  resolveCredentialImage(rawImagesList[currentImgIdx]),
-                )}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="block w-full h-full cursor-pointer relative"
-                title="Click to open full-resolution image in new tab"
-              >
-                <Image
-                  src={resolveCredentialImage(rawImagesList[currentImgIdx])}
-                  alt={`${item.title} certificate image ${currentImgIdx + 1}`}
-                  fill
-                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 380px, 450px"
-                  className="object-cover object-center transition-transform duration-500 group-hover/preview:scale-105"
+            {/* Content: PDF Preview or Image Carousel */}
+            {hasPdf ? (
+              <div className="relative aspect-video w-full rounded-xl overflow-hidden border border-border/60 bg-neutral-900 shadow-sm my-auto">
+                <iframe
+                  src={`${pdfUrl}#toolbar=0&navpanes=0`}
+                  title={`${item.title} PDF Document`}
+                  className="w-full h-full rounded-xl border-0"
                 />
-                <div className="absolute inset-0 bg-black/0 group-hover/preview:bg-black/10 dark:group-hover/preview:bg-white/5 transition-colors" />
-              </a>
+              </div>
+            ) : (
+              <div className="relative aspect-video w-full rounded-xl overflow-hidden border border-border/60 bg-neutral-900 shadow-sm my-auto group/preview select-none">
+                <a
+                  href={getCredentialImageHref(
+                    resolveCredentialImage(rawImagesList[currentImgIdx]),
+                  )}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block w-full h-full cursor-pointer relative"
+                  title="Click to open full-resolution image in new tab"
+                >
+                  <Image
+                    src={resolveCredentialImage(rawImagesList[currentImgIdx])}
+                    alt={`${item.title} certificate image ${currentImgIdx + 1}`}
+                    fill
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 380px, 450px"
+                    className="object-cover object-center transition-transform duration-500 group-hover/preview:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-black/0 group-hover/preview:bg-black/10 dark:group-hover/preview:bg-white/5 transition-colors" />
+                </a>
 
-              {/* Prev / Next controls if multiple images */}
-              {rawImagesList.length > 1 && (
-                <>
-                  <button
-                    type="button"
-                    onClick={handlePrevImg}
-                    aria-label="Previous image"
-                    className="absolute left-2 top-1/2 -translate-y-1/2 z-20 size-7 rounded-full bg-background/80 hover:bg-background text-foreground border border-border/60 shadow-md backdrop-blur-md flex items-center justify-center transition-all opacity-80 hover:opacity-100 hover:scale-105 active:scale-95 cursor-pointer"
-                  >
-                    <ChevronLeft className="size-4" />
-                  </button>
-                  <button
-                    type="button"
-                    onClick={handleNextImg}
-                    aria-label="Next image"
-                    className="absolute right-2 top-1/2 -translate-y-1/2 z-20 size-7 rounded-full bg-background/80 hover:bg-background text-foreground border border-border/60 shadow-md backdrop-blur-md flex items-center justify-center transition-all opacity-80 hover:opacity-100 hover:scale-105 active:scale-95 cursor-pointer"
-                  >
-                    <ChevronRight className="size-4" />
-                  </button>
-                  <div className="absolute bottom-2 right-2 z-20 px-2 py-0.5 rounded-full bg-black/70 backdrop-blur-md text-white text-[10px] font-semibold tabular-nums border border-white/10 shadow-sm pointer-events-none">
-                    {currentImgIdx + 1} / {rawImagesList.length}
-                  </div>
-                </>
-              )}
-            </div>
+                {/* Prev / Next controls if multiple images */}
+                {rawImagesList.length > 1 && (
+                  <>
+                    <button
+                      type="button"
+                      onClick={handlePrevImg}
+                      aria-label="Previous image"
+                      className="absolute left-2 top-1/2 -translate-y-1/2 z-20 size-7 rounded-full bg-background/80 hover:bg-background text-foreground border border-border/60 shadow-md backdrop-blur-md flex items-center justify-center transition-all opacity-80 hover:opacity-100 hover:scale-105 active:scale-95 cursor-pointer"
+                    >
+                      <ChevronLeft className="size-4" />
+                    </button>
+                    <button
+                      type="button"
+                      onClick={handleNextImg}
+                      aria-label="Next image"
+                      className="absolute right-2 top-1/2 -translate-y-1/2 z-20 size-7 rounded-full bg-background/80 hover:bg-background text-foreground border border-border/60 shadow-md backdrop-blur-md flex items-center justify-center transition-all opacity-80 hover:opacity-100 hover:scale-105 active:scale-95 cursor-pointer"
+                    >
+                      <ChevronRight className="size-4" />
+                    </button>
+                    <div className="absolute bottom-2 right-2 z-20 px-2 py-0.5 rounded-full bg-black/70 backdrop-blur-md text-white text-[10px] font-semibold tabular-nums border border-white/10 shadow-sm pointer-events-none">
+                      {currentImgIdx + 1} / {rawImagesList.length}
+                    </div>
+                  </>
+                )}
+              </div>
+            )}
 
             {/* Back Footer */}
             <div className="pt-2 border-t border-border/40 flex items-center justify-between gap-2 relative z-10 text-xs">
-              <a
-                href={getCredentialImageHref(
-                  resolveCredentialImage(rawImagesList[currentImgIdx]),
-                )}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-1 text-[11px] font-semibold text-primary hover:text-primary/80 transition-colors group/link"
-              >
-                <span>Open Full Image</span>
-                <ArrowUpRight className="size-3.5 transition-transform group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5" />
-              </a>
+              {hasPdf ? (
+                <a
+                  href={pdfUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1 text-[11px] font-semibold text-primary hover:text-primary/80 transition-colors group/link"
+                >
+                  <span>Open Full PDF</span>
+                  <ArrowUpRight className="size-3.5 transition-transform group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5" />
+                </a>
+              ) : (
+                <a
+                  href={getCredentialImageHref(
+                    resolveCredentialImage(rawImagesList[currentImgIdx]),
+                  )}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1 text-[11px] font-semibold text-primary hover:text-primary/80 transition-colors group/link"
+                >
+                  <span>Open Full Image</span>
+                  <ArrowUpRight className="size-3.5 transition-transform group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5" />
+                </a>
+              )}
 
               <button
                 type="button"
@@ -351,7 +509,11 @@ export default function CredentialsSection() {
       id: `cert-${item.number}`,
       type: "certification" as const,
     })),
-  ];
+  ].sort((a, b) => {
+    const diff = parseDateToTimestamp(b.year) - parseDateToTimestamp(a.year);
+    if (diff !== 0) return diff;
+    return a.number.localeCompare(b.number);
+  });
 
   const filteredItems = allItems.filter((item) => {
     if (activeTab === "awards") return item.type === "award";
@@ -379,6 +541,9 @@ export default function CredentialsSection() {
     if (item.issuer?.toLowerCase().includes("microsoft")) {
       return <Award className="size-4 text-blue-500" />;
     }
+    if (item.issuer?.toLowerCase().includes("cisco")) {
+      return <ShieldCheck className="size-4 text-cyan-500" />;
+    }
     return <CheckCircle2 className="size-4 text-purple-500" />;
   };
 
@@ -391,6 +556,9 @@ export default function CredentialsSection() {
     }
     if (item.issuer?.toLowerCase().includes("microsoft")) {
       return "bg-blue-500/10 border-blue-500/20";
+    }
+    if (item.issuer?.toLowerCase().includes("cisco")) {
+      return "bg-cyan-500/10 border-cyan-500/20";
     }
     return "bg-purple-500/10 border-purple-500/20";
   };

@@ -12,7 +12,7 @@
     "phoneFormatted": "+63 968 200 6456",
     "github": "https://github.com/jswnh",
     "linkedIn": "https://www.linkedin.com/in/hulomjosuan/",
-    "resumeUrl": "/assets/pdf/JosuanLeonardoHulom_Resume_FullStackDeveloper.pdf",
+    "resumeUrl": "/assets/pdf/Josuan_Leonardo_Hulom_Software_Developer_Resume.pdf",
     "websiteUrl": "https://josuan.cv",
     "availability": "Available for Projects"
   },
@@ -113,7 +113,7 @@
       },
       {
         "id": "stat-4",
-        "value": "6",
+        "value": "7",
         "label": "CERTIFICATIONS"
       }
     ]
@@ -306,7 +306,7 @@
       },
       {
         "id": "qrwise-clinic",
-        "title": "QrWise Clinic — Full-Stack Developer (Contract)",
+        "title": "QrWise Clinic — Full-Stack Developer (Consultant)",
         "role": "Full-Stack Developer",
         "company": "QrWise Clinic",
         "techStack": [
@@ -423,10 +423,22 @@
       "title": "Certifi",
       "highlight": "cations"
     },
-    "description": "Verified certifications from Microsoft, HackerRank, and freeCodeCamp.",
+    "description": "Verified certifications from Cisco, Microsoft, HackerRank, and freeCodeCamp.",
     "certifications": [
       {
         "number": "01",
+        "title": "JavaScript Essentials 1",
+        "issuer": "Cisco",
+        "description": "Foundational JavaScript certification issued by Cisco Networking Academy & OpenEDG JS Institute, validating core language syntax, control flow, functions, and algorithmic problem-solving fundamentals.",
+        "tags": ["Cisco", "JavaScript"],
+        "year": "Sep 2026",
+        "link": "https://www.credly.com/badges/ac249af7-cf67-4ad2-b642-10dce6442664/public_url",
+        "credlyBadgeId": "ac249af7-cf67-4ad2-b642-10dce6442664",
+        "embedIframe": "https://www.credly.com/embedded_badge/ac249af7-cf67-4ad2-b642-10dce6442664",
+        "pdf": "/assets/awards-certs/pdf/JavaScriptEssentials1Update20260909-20-u9pm8m.pdf"
+      },
+      {
+        "number": "02",
         "title": "SQL (Advanced)",
         "issuer": "HackerRank",
         "description": "Advanced SQL certification validating complex query optimization, joins, indexing, subqueries, and window functions.",
@@ -436,7 +448,7 @@
         "link": "https://www.hackerrank.com/certificates/3b69edc82268"
       },
       {
-        "number": "02",
+        "number": "03",
         "title": "Software Engineer Intern",
         "issuer": "HackerRank",
         "description": "Software Engineer Intern role skill certification covering core problem solving, data structures, Python, and relational database management.",
@@ -446,7 +458,7 @@
         "link": "https://www.hackerrank.com/certificates/d6ea8006d5a4"
       },
       {
-        "number": "03",
+        "number": "04",
         "title": "React Certification",
         "issuer": "HackerRank",
         "description": "React developer certification demonstrating proficiency in component lifecycle, hooks, state management, and modern front-end architecture.",
@@ -456,7 +468,7 @@
         "link": "https://www.hackerrank.com/certificates/56c625ac85a4"
       },
       {
-        "number": "04",
+        "number": "05",
         "title": "Python Certification",
         "issuer": "freeCodeCamp",
         "description": "Python programming certification demonstrating core algorithms, data structures, and back-end logic implementation.",
@@ -465,7 +477,7 @@
         "link": "https://www.freecodecamp.org/certification/josuanhulom/python-v9"
       },
       {
-        "number": "05",
+        "number": "06",
         "title": "JavaScript Certification",
         "issuer": "freeCodeCamp",
         "description": "JavaScript algorithms and data structures certification validating ES6+, asynchronous programming, and web development fundamentals.",
@@ -474,7 +486,7 @@
         "link": "https://www.freecodecamp.org/certification/josuanhulom/javascript-v9"
       },
       {
-        "number": "06",
+        "number": "07",
         "title": "Foundational C# Microsoft",
         "issuer": "Microsoft / freeCodeCamp",
         "description": "Foundational certification awarded by Microsoft Developer and freeCodeCamp — strengthening C# programming skills, .NET fundamentals, and object-oriented development.",
