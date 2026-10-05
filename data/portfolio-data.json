@@ -311,7 +311,6 @@
         "company": "QrWise Clinic",
         "techStack": [
           { "name": "Flutter", "icon": "SiFlutter", "color": "#02569B" },
-          { "name": "Python", "icon": "SiPython", "color": "#3776AB" },
           { "name": "React.js", "icon": "SiReact", "color": "#61DAFB" },
           { "name": "PostgreSQL", "icon": "SiPostgresql", "color": "#336791" }
         ],
