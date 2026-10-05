@@ -310,8 +310,8 @@
         "role": "Full-Stack Developer",
         "company": "QrWise Clinic",
         "techStack": [
-          { "name": "Flutter", "icon": "SiFlutter", "color": "#02569B" },
-          { "name": "React.js", "icon": "SiReact", "color": "#61DAFB" },
+          { "name": "Next.js", "icon": "SiNextdotjs", "color": "" },
+          { "name": "Hono API", "icon": "SiHono", "color": "#E36002" },
           { "name": "PostgreSQL", "icon": "SiPostgresql", "color": "#336791" }
         ],
         "description": "Worked on a contract basis for QrWise Clinic, applying full-stack skills to build an inventory POS and booking system with integrated marketing tools. Used back-end architecture, mobile development, and web development skills to streamline clinic operations and patient scheduling.",
